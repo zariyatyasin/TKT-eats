@@ -1,6 +1,7 @@
 import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { Button } from "../ui/button";
 
 export default function Hero() {
   return (
@@ -28,7 +29,7 @@ export default function Hero() {
     //     />
     //   </div>
     // </section>
-    <section className="w-full py-12 md:py-24  ">
+    <section className="w-full py-12 md:py-24 bg-slate-100  ">
       <div className=" max-w-7xl mx-auto px-4 md:px-6 grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
         <div className="flex flex-col justify-center space-y-4">
           <div className="space-y-2">
@@ -106,5 +107,100 @@ export default function Hero() {
         />
       </div>
     </section>
+
+    // <div className="w-full mt-16  max-w-7xl mx-auto">
+    //   <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+    //     <video
+    //       className="w-full h-[600px] object-cover rounded-md"
+    //       autoPlay
+    //       loop
+    //       muted
+    //     >
+    //       <source src="/v1.mp4" type="video/mp4" />
+    //       Your browser does not support the video tag.
+    //     </video>
+    //     {/* <img
+    //       src="/booking.webp"
+    //       width={400}
+    //       height={400}
+    //       alt="Image 1"
+    //       className="w-full border h-full object-cover rounded-md"
+    //     /> */}
+
+    //     {/* <img
+    //         src="/placeholder.svg"
+    //         width={600}
+    //         height={400}
+    //         alt="Image 2"
+    //         className="w-full h-full object-cover"
+    //       /> */}
+    //     <div className=" bg-primary rounded-md  inset-0  flex items-center  ">
+    //       <div className="text-center text-white space-y-4">
+    //         <h2 className="text-3xl md:text-4xl font-bold uppercase">
+    //           DINE LUXURIOUSLY, YOUR WAY
+    //         </h2>
+    //       </div>
+    //     </div>
+
+    //     <video
+    //       className="w-full h-[600px] object-cover rounded-md"
+    //       autoPlay
+    //       loop
+    //       muted
+    //     >
+    //       <source src="/v2.mp4" type="video/mp4" />
+    //       Your browser does not support the video tag.
+    //     </video>
+    //   </section>
+    //   <div>
+    //     <div className=" bg-gray-950 py-12 rounded-md tracking-widest text-white my-6 text-center text-xl font-bold">
+    //       AFFORDABLE PRIVATE DINING EXPERIENCE IN YOUR KITCHEN
+    //     </div>
+    //     <div className="w-full">
+    //       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+    //         <div className="relative col-span-1 md:col-span-1 h-[300px] md:h-[400px] rounded-md overflow-hidden">
+    //           <img
+    //             src="/chef1.webp"
+    //             width={600}
+    //             height={400}
+    //             alt="Image 2"
+    //             className="w-full h-full object-cover"
+    //           />
+    //           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+    //             <div className="text-center text-white space-y-4">
+    //               <h2 className="text-3xl md:text-4xl font-bold">
+    //                 Discover Our Products
+    //               </h2>
+    //               <p className="text-lg md:text-xl">
+    //                 Explore our wide range of high-quality products.
+    //               </p>
+    //               <Button>For Chef</Button>
+    //             </div>
+    //           </div>
+    //         </div>
+    //         <div className="relative col-span-1 md:col-span-1 h-[300px] md:h-[400px] rounded-md overflow-hidden">
+    //           <img
+    //             src="/family.webp"
+    //             width={600}
+    //             height={400}
+    //             alt="Image 2"
+    //             className="w-full h-full object-cover"
+    //           />
+    //           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+    //             <div className="text-center text-white space-y-4">
+    //               <h2 className="text-3xl md:text-4xl font-bold">
+    //                 Discover Our Products
+    //               </h2>
+    //               <p className="text-lg md:text-xl">
+    //                 Explore our wide range of high-quality products.
+    //               </p>
+    //               <Button>For Chef</Button>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </section>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
