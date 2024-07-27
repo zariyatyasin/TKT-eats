@@ -2,6 +2,7 @@ import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
+import { delay, easeOut, motion, useScroll } from "framer-motion";
 
 export default function Hero() {
   return (
@@ -31,14 +32,19 @@ export default function Hero() {
     // </section>
     <section className="w-full py-12 md:py-24 bg-slate-100  ">
       <div className=" max-w-7xl mx-auto px-4 md:px-6 grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-        <div className="flex flex-col justify-center space-y-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0, ease: "easeOut" }}
+          className="flex flex-col justify-center space-y-4"
+        >
           <div className="space-y-2">
             <h1 className="text-3xl  font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
               DINE LUXURIOUSLY, YOUR WAY
             </h1>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl">
-              Our platform connects you with top-rated chefs for unforgettable
-              dining experiences in the comfort of your own home.
+            <p className="max-w-[600px] font-bold text-muted-foreground md:text-2xl">
+              <span className=" text-primary "> Affordable</span> private dining
+              experience in your kitchen
             </p>
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -47,15 +53,15 @@ export default function Hero() {
               className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
-              Join Our Community
+              Become a chef
             </Link>
-            <Link
+            {/* <Link
               href="#"
               className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
-              Book a Chef
-            </Link>
+              Form for Client
+            </Link> */}
           </div>
           {/* <div className="grid grid-cols-2 gap-4">
             <Link
@@ -97,14 +103,32 @@ export default function Hero() {
               </div>
             </Link>
           </div> */}
-        </div>
-        <img
+        </motion.div>
+        <motion.div
+          className="space-y-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0, ease: "easeOut" }}
+        >
+          {" "}
+          <video
+            className="w-full h-[600px] object-cover rounded-md"
+            autoPlay
+            loop
+            muted
+          >
+            <source src="/v4.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </motion.div>
+
+        {/* <img
           src="/p1.jpg"
           width="550"
           height="550"
           alt="Hero"
           className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last lg:aspect-square"
-        />
+        /> */}
       </div>
     </section>
 

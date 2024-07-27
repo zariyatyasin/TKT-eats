@@ -1,5 +1,6 @@
 import { CalendarRange, Search, SmileIcon } from "lucide-react";
 import React from "react";
+import { delay, easeOut, motion, useScroll } from "framer-motion";
 
 export default function Howitswork() {
   return (
@@ -33,9 +34,17 @@ export default function Howitswork() {
     //     </div>
     //   </div>
     // </section>
-    <section className="py-12 md:py-24 lg:py-32 bg-muted">
+    <section
+      className="py-12 md:py-24 lg:py-32  bg-white
+     "
+    >
       <div className=" max-w-7xl mx-auto px-4 md:px-6 grid gap-8 lg:grid-cols-2">
-        <div className="space-y-4">
+        <motion.div
+          className="space-y-4"
+          initial={{ x: -100 }}
+          whileInView={{ x: 0 }}
+          transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
+        >
           <h2 className="text-3xl font-bold">How It Works</h2>
           <p className="text-muted-foreground text-lg">
             Booking your dream culinary experience is easy with our platform.
@@ -79,14 +88,20 @@ export default function Howitswork() {
               </div>
             </div>
           </div>
-        </div>
-        <img
-          src="/family.webp"
-          width={600}
-          height={400}
-          alt="How It Works"
-          className="rounded-lg object-cover aspect-[3/2]"
-        />
+        </motion.div>
+        <motion.div
+          initial={{ x: 100 }}
+          whileInView={{ x: 0 }}
+          transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
+        >
+          <img
+            src="/how.webp"
+            width={600}
+            height={400}
+            alt="How It Works"
+            className="rounded-lg object-cover aspect-[3/2]"
+          />
+        </motion.div>
       </div>
     </section>
   );

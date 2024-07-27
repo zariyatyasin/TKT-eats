@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { delay, easeOut, motion, useScroll } from "framer-motion";
 
 export default function Partners() {
   return (
@@ -20,7 +21,11 @@ export default function Partners() {
         We are proud to partner with leading companies in the food industry.
       </p>
       <div className="  flex  items-center  justify-center gap-6">
-        <div className="space-y-2 flex flex-col items-center ">
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+          className="space-y-2 flex flex-col items-center "
+        >
           <img
             src="pt3.png"
             width="270"
@@ -29,8 +34,12 @@ export default function Partners() {
             className="    overflow-hidden rounded-lg object-contain object-center"
           />
           <p className="text-lg text-gray-500 ">washington sate university</p>
-        </div>
-        <div className="space-y-2 flex flex-col items-center ">
+        </motion.div>
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+          className="space-y-2 flex flex-col items-center "
+        >
           <img
             src="pt2.png"
             width="240"
@@ -39,8 +48,12 @@ export default function Partners() {
             className="    overflow-hidden rounded-lg object-contain object-center"
           />
           <p className="text-lg text-gray-500 ">B2BeTrade</p>
-        </div>
-        <div className="space-y-2 flex flex-col items-center ">
+        </motion.div>
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+          className="space-y-2 flex flex-col items-center "
+        >
           <img
             src="pt1.png"
             width="240"
@@ -51,7 +64,7 @@ export default function Partners() {
           <p className="text-lg text-gray-500 ">
             East Delta university foundry
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
 
