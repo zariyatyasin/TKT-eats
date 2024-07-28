@@ -14,13 +14,14 @@ import { motion, useScroll } from "framer-motion";
 
 export default function HomeDemo1() {
   return (
-    <div className="min-h-screen bg-slate-50 ">
+    <div className="min-h-screen bg-slate-50 overflow-hidden ">
       <Header />
       <main>
         <Hero />
         <Servery />
+
         <Partners />
-        {/* <Discoverus /> */}
+
         <Howitswork />
         <Whyus />
         <Faq />
@@ -28,6 +29,7 @@ export default function HomeDemo1() {
         <Contact />
         <Footer />
       </main>
+      {/* <Discoverus /> */}
     </div>
   );
 }
