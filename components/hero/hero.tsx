@@ -30,7 +30,7 @@ export default function Hero() {
     //     />
     //   </div>
     // </section>
-    <section className="w-full py-12 md:py-24 bg-slate-100  ">
+    <section className="w-full py-24   bg-slate-100  ">
       <div className=" max-w-7xl mx-auto px-4 md:px-6 grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
         <motion.div
           initial={{ opacity: 0 }}
@@ -49,7 +49,7 @@ export default function Hero() {
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
             <Link
-              href="#"
+              href="https://forms.gle/UVsY8CN4HU91Sr559"
               className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -112,7 +112,7 @@ export default function Hero() {
         >
           {" "}
           <video
-            className="w-full h-[600px] object-cover rounded-md"
+            className="w-full md:h-[600px] object-cover rounded-md"
             autoPlay
             loop
             muted

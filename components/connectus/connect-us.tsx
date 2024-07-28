@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Connectus() {
@@ -22,10 +23,12 @@ export default function Connectus() {
         </div>
       </div>
       <div className="md:w-1/2">
-        <img
-          src="/placeholder.svg"
+        <Image
+          height={1000}
+          width={1000}
+          src="/logo.webp"
           alt="Stay Connected"
-          className="w-full h-auto"
+          className=" w-full h-auto"
         />
       </div>
     </section>

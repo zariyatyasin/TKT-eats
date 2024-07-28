@@ -1,38 +1,51 @@
 "use client";
 
 import React from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { delay, easeOut, motion, useScroll } from "framer-motion";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Partners() {
   return (
-    <section className="container space-y-4 mx-auto text-center py-2 md:py-24 px-6">
-      <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-        Our Partners
-      </h2>
-      <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-        We are proud to partner with leading companies in the food industry.
-      </p>
-      <div className="  flex  items-center  justify-center gap-6">
+    <section
+      id="partners"
+      className="  max-w-7xl mx-auto   space-y-4  -auto text-center py-2 md:py-24 px-6"
+    >
+      <motion.div
+        initial={{ x: 100 }}
+        whileInView={{ x: 0 }}
+        transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
+        className=" space-y-4"
+      >
+        <h2 className="text-3xl text-left md:text-center font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          Our Partners
+        </h2>
+        <p className="mx-auto max-w-[700px] text-left md:text-center text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          We are proud to partner with leading companies .
+        </p>
+      </motion.div>
+      <motion.div
+        initial={{ x: -100 }}
+        whileInView={{ x: 0 }}
+        transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
+        className="  flex flex-col  md:flex-row   items-center  justify-center gap-6"
+      >
         <motion.div
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
           className="space-y-2 flex flex-col items-center "
         >
-          <img
-            src="pt3.png"
-            width="270"
-            height="70"
-            alt="Partner Logo 1"
-            className="    overflow-hidden rounded-lg object-contain object-center"
-          />
+          <Link href={"https://entrepreneurship.wsu.edu"}>
+            <Image
+              height={1000}
+              width={1000}
+              src="/wsu.png"
+              alt="Partner Logo 1"
+              className="  w-52    overflow-hidden rounded-lg object-contain object-center"
+            />
+          </Link>
+
           <p className="text-lg text-gray-500 ">washington sate university</p>
         </motion.div>
         <motion.div
@@ -40,13 +53,16 @@ export default function Partners() {
           whileTap={{ scale: 0.8 }}
           className="space-y-2 flex flex-col items-center "
         >
-          <img
-            src="pt2.png"
-            width="240"
-            height="70"
-            alt="Partner Logo 1"
-            className="    overflow-hidden rounded-lg object-contain object-center"
-          />
+          <Link href={"https://www.b2betrade.com/"}>
+            {" "}
+            <Image
+              height={1000}
+              width={1000}
+              src="/pt2.png"
+              alt="Partner Logo 1"
+              className="  w-52   overflow-hidden rounded-lg object-contain object-center"
+            />
+          </Link>
           <p className="text-lg text-gray-500 ">B2BeTrade</p>
         </motion.div>
         <motion.div
@@ -54,18 +70,25 @@ export default function Partners() {
           whileTap={{ scale: 0.8 }}
           className="space-y-2 flex flex-col items-center "
         >
-          <img
-            src="pt1.png"
-            width="240"
-            height="70"
-            alt="Partner Logo 1"
-            className="  overflow-hidden rounded-lg object-contain object-center"
-          />
+          <Link
+            href={
+              "https://foundry.eastdelta.edu.bd/?fbclid=IwAR00ly7RRiTJXctX-M2LSotUHBCqxXAcx-SDsV0VZSpm9aX-DVInKa-UU2Y"
+            }
+          >
+            <Image
+              height={1000}
+              width={1000}
+              src="/pt1.png"
+              alt="Partner Logo 1"
+              className="w-52   overflow-hidden rounded-lg object-contain object-center"
+            />
+          </Link>
+
           <p className="text-lg text-gray-500 ">
             East Delta university foundry
           </p>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
 
     // <section className="w-full py-12 md:py-24 lg:py-32">

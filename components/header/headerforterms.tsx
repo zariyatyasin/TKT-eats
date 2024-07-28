@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { ChefHatIcon, Facebook, Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
-export default function Header() {
+export default function HeaderTerms() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -38,43 +38,7 @@ export default function Header() {
             The Kitchen Table
           </span> */}
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
-          <Link
-            href="#partners"
-            className="text-base font-medium hover:underline"
-            prefetch={false}
-          >
-            Our partners
-          </Link>
-          <Link
-            href="#joinnow"
-            className="text-base font-medium hover:underline"
-            prefetch={false}
-          >
-            Join Now
-          </Link>
-          <Link
-            href="#about"
-            className="text-base font-medium hover:underline"
-            prefetch={false}
-          >
-            About
-          </Link>
-          <Link
-            href="#"
-            className="text-base font-medium hover:underline"
-            prefetch={false}
-          >
-            Contact
-          </Link>
-          <Link
-            href="#"
-            className="text-base font-medium hover:underline"
-            prefetch={false}
-          >
-            FAQ
-          </Link>
-        </nav>
+
         <div className=" flex items-center gap-2 md:gap-6 ">
           <Link href={"https://www.facebook.com/share/BTfjTAcdVZ29i6HJ/"}>
             <Facebook className=" w-6 h-6 text-blue-600" />

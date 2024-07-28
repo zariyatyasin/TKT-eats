@@ -1,10 +1,13 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Discoverus() {
   return (
     <section className="container mx-auto flex flex-col md:flex-row items-center py-12 px-6">
       <div className="md:w-1/2">
-        <img
+        <Image
+          height={1000}
+          width={1000}
           src="/placeholder.svg"
           alt="FreshFarm Catalog"
           className="w-full h-auto"

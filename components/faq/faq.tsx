@@ -13,7 +13,7 @@ export default function Faq() {
     //     Frequently Asked Questions (FAQ)
     //   </h2>
     //   <p className="mb-6">
-    //     Explore Common Queries About FreshFarm's Fresh and Organic Vegetables
+    //     Explore Common Queries About FreshFarm&apos;s Fresh and Organic Vegetables
     //   </p>
     //   <div className="space-y-4">
     //     <div className="border p-4 rounded">
@@ -68,7 +68,9 @@ export default function Faq() {
           <Accordion type="single" collapsible>
             <AccordionItem value="question-1">
               <AccordionTrigger>
-                <h3 className="text-xl font-bold">How do I book a chef?</h3>
+                <h3 className="text-xl font-bold text-left">
+                  How do I book a chef?
+                </h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
@@ -81,45 +83,46 @@ export default function Faq() {
             </AccordionItem>
             <AccordionItem value="question-2">
               <AccordionTrigger>
-                <h3 className="text-xl font-bold">
-                  What types of events do you cater to?
+                <h3 className="text-xl text-left font-bold">
+                  What equipment do I need to provide?
                 </h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  We cater to a wide range of events, including private parties,
-                  corporate functions, cooking classes, and more. Our chefs are
-                  skilled in various cuisines and can accommodate any dietary
-                  requirements.
+                  Our chefs usually use the equipment (pots, pans, oven, stone
+                  etc), and serve ware (glasses, plates, serving platters, etc)
+                  in the customers&apos; homes. If you are low on equipment or
+                  need the chef to provide this, please add this into your
+                  request (this will cost extra). Once booked in, you can
+                  directly message or call your chef to confirm on the exact
+                  equipment required.
                 </p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="question-3">
               <AccordionTrigger>
-                <h3 className="text-xl font-bold">
-                  Do you offer any discounts or promotions?
+                <h3 className="text-xl font-bold text-left">
+                  What is the minimum spend?
                 </h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  Yes, we offer various discounts and promotions throughout the
-                  year. Be sure to check our website or sign up for our
-                  newsletter to stay up-to-date on the latest offers.
+                  The minimum spend is $50
                 </p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="question-4">
               <AccordionTrigger>
-                <h3 className="text-xl font-bold">
+                <h3 className="text-xl font-bold text-left">
                   How do I become a chef on your platform?
                 </h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  If you're a talented chef interested in joining our platform,
-                  please visit our "Become a Chef" page and fill out the
-                  application form. Our team will review your credentials and
-                  get in touch if you're a good fit.
+                  If you&apos;re a talented chef interested in joining our
+                  platform, please visit our &quot;ecome a Chef&quot; page and
+                  fill out the application form. Our team will review your
+                  credentials and get in touch if you&apos;re a good fit.
                 </p>
               </AccordionContent>
             </AccordionItem>

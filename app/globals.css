@@ -77,3 +77,6 @@
   background: var(--red);
   transform-origin: 0%;
 }
+html {
+  scroll-behavior: smooth;
+}

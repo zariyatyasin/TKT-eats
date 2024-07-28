@@ -1,10 +1,11 @@
 import { ChefHat } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-
+import { delay, easeOut, motion, useScroll } from "framer-motion";
+import Image from "next/image";
 export default function Whyus() {
   return (
-    <div>
+    <div id="about">
       {/* <section className="container max-w-7xl md:space-y-8 mx-auto py-12 md:py-24 px-6">
         <h2 className="text-3xl font-bold mb-4">Affordable Luxury Dining</h2>
         <p className="mb-6">
@@ -60,12 +61,26 @@ export default function Whyus() {
 
       <section className="w-full py-12 md:py-24 lg:py-32  ">
         <div className="container grid max-w-7xl items-center justify-center gap-4  text-center md:gap-8  lg:grid-cols-2 lg:text-left  xl:gap-10">
-          <img
-            src="/chef1.webp"
-            alt="Who We Are"
-            className="mx-auto border  w-[400px] h-full overflow-hidden rounded-xl object-cover object-center   lg:order-last"
-          />
-          <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          >
+            <Image
+              height={1000}
+              width={1000}
+              src="/chef1.webp"
+              alt="Who We Are"
+              className="mx-auto border  w-[400px] h-full overflow-hidden rounded-xl object-cover object-center   lg:order-last"
+            />
+          </motion.div>
+
+          <motion.div
+            className="space-y-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.75, ease: "easeOut" }}
+          >
             <div className="space-y-3">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 What is TKT?
@@ -86,7 +101,7 @@ export default function Whyus() {
                 Learn More
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
