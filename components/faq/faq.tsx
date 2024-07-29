@@ -61,7 +61,7 @@ export default function Faq() {
     //     </button>
     //   </div>
     // </section>
-    <section className="py-12 md:py-24 lg:py-32">
+    <section id="faq" className="py-12 md:py-24 lg:py-32">
       <div className=" max-w-7xl mx-auto px-4 md:px-6 grid gap-8  ">
         <div className="space-y-4">
           <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
@@ -89,13 +89,11 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  Our chefs usually use the equipment (pots, pans, oven, stone
-                  etc), and serve ware (glasses, plates, serving platters, etc)
-                  in the customers&apos; homes. If you are low on equipment or
-                  need the chef to provide this, please add this into your
-                  request (this will cost extra). Once booked in, you can
-                  directly message or call your chef to confirm on the exact
-                  equipment required.
+                  Generally our professional and certified chef will be using
+                  your pots, pans, utensils and cutleries. The chef will be
+                  bringing the items that you do not have at no cost. After
+                  booking, your chef will reach out to you to confirm on the
+                  exact equipment needed.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -107,22 +105,23 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  The minimum spend is $50
+                  prices starts as low as $25 during our pilot program,
+                  don&quot;t miss out. the minimum spend for non-subcriber will
+                  be $45 per service during our pilot program.
                 </p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="question-4">
               <AccordionTrigger>
                 <h3 className="text-xl font-bold text-left">
-                  How do I become a chef on your platform?
+                  How to be a chef?
                 </h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  If you&apos;re a talented chef interested in joining our
-                  platform, please visit our &quot;ecome a Chef&quot; page and
-                  fill out the application form. Our team will review your
-                  credentials and get in touch if you&apos;re a good fit.
+                  Click on the link here to be your own boss, choose your client
+                  and create your perfect menu. our team will reach out to you
+                  within 12 hours.
                 </p>
               </AccordionContent>
             </AccordionItem>

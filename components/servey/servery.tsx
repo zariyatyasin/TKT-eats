@@ -58,7 +58,7 @@ export default function Servery() {
             alt="Image 2"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center px-2">
             <div className="text-center text-white space-y-4">
               <h2 className="text-2xl md:text-4xl font-bold">
                 Be our First user
@@ -67,7 +67,11 @@ export default function Servery() {
                 Don&apos;t wait and be the first experience our pilot program
                 and stand a cahnge to win a free meal
               </p>
-              <Link href={"  "}>
+              <Link
+                href={
+                  "https://docs.google.com/forms/d/e/1FAIpQLSfpRxz6IwfEZi_cIo0aD24X4-9SOTkmjHP5Su2MHtxazujs-g/viewform?usp=sf_link "
+                }
+              >
                 <Button className="mt-2 ">
                   <User />
                   <span className=" ml-2">Join now</span>

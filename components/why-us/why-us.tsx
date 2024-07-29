@@ -92,7 +92,7 @@ export default function Whyus() {
                 who want personalized dining experiences in their own homes.
               </p>
             </div>
-            <div className="flex justify-center space-x-4 lg:justify-start">
+            {/* <div className="flex justify-center space-x-4 lg:justify-start">
               <Link
                 href="#"
                 className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
@@ -100,7 +100,7 @@ export default function Whyus() {
               >
                 Learn More
               </Link>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </section>

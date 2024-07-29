@@ -287,7 +287,7 @@ export default function page() {
         <h2>16. Contact Information</h2>
         <p>
           If you have any questions about these Terms, please contact us at
-          [Your Contact Information].
+          tkteats@hotmail.com.
         </p>
 
         <h1>TheKitchenTable Privacy Policy</h1>
@@ -422,7 +422,7 @@ export default function page() {
         <h2>10. Contact Us</h2>
         <p>
           If you have any questions or concerns about this Privacy Policy or our
-          privacy practices, please contact us at [Your Contact Information].
+          privacy practices, please contact us at tkteats@hotmail.com.
         </p>
       </div>
       <Footer />

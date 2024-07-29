@@ -19,7 +19,7 @@ export default function Partners() {
         className=" space-y-4"
       >
         <h2 className="text-3xl text-left md:text-center font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Our Partners
+          Our support and partners
         </h2>
         <p className="mx-auto max-w-[700px] text-left md:text-center text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
           We are proud to partner with leading companies .
@@ -31,24 +31,30 @@ export default function Partners() {
         transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
         className="  flex flex-col  md:flex-row   items-center  justify-center gap-6"
       >
-        <motion.div
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.8 }}
-          className="space-y-2 flex flex-col items-center "
-        >
+        <motion.div className="space-y-2 flex flex-col items-center ">
           <Link href={"https://entrepreneurship.wsu.edu"}>
             <Image
               height={1000}
               width={1000}
               src="/wsu.png"
               alt="Partner Logo 1"
-              className="  w-52    overflow-hidden rounded-lg object-contain object-center"
+              className="  w-64    overflow-hidden rounded-lg object-contain object-center"
             />
           </Link>
 
-          <p className="text-lg text-gray-500 ">washington sate university</p>
+          <p className="text-lg text-gray-500 ">
+            Click here to learn what it's like to be an entrepreneur{" "}
+            <Link
+              href={
+                "https://catalog.wsu.edu/General/Academics/DegreeProgram/10062"
+              }
+              className=" text-blue-600 "
+            >
+              Here
+            </Link>
+          </p>
         </motion.div>
-        <motion.div
+        {/* <motion.div
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
           className="space-y-2 flex flex-col items-center "
@@ -64,8 +70,8 @@ export default function Partners() {
             />
           </Link>
           <p className="text-lg text-gray-500 ">B2BeTrade</p>
-        </motion.div>
-        <motion.div
+        </motion.div> */}
+        {/* <motion.div
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
           className="space-y-2 flex flex-col items-center "
@@ -87,7 +93,7 @@ export default function Partners() {
           <p className="text-lg text-gray-500 ">
             East Delta university foundry
           </p>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </section>
 
