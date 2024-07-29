@@ -43,7 +43,7 @@ export default function Partners() {
           </Link>
 
           <p className="text-lg text-gray-500 ">
-            Click here to learn what it's like to be an entrepreneur{" "}
+            Click here to learn what it&apos;s like to be an entrepreneur{" "}
             <Link
               href={
                 "https://catalog.wsu.edu/General/Academics/DegreeProgram/10062"
