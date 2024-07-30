@@ -40,11 +40,11 @@ export default function HeaderTerms() {
         </Link>
 
         <div className=" flex items-center gap-2 md:gap-6 ">
-          <Link href={"https://www.facebook.com/share/BTfjTAcdVZ29i6HJ/"}>
+          <Link href={" https://www.facebook.com/share/1oty7mFZcgvYkeQE/"}>
             <Facebook className=" w-6 h-6 text-blue-600" />
           </Link>
           <Link
-            href={"ttps://www.instagram.com/thekitchentable_official/?hl=en"}
+            href={"https://www.instagram.com/thekitchentable_official/?hl=en"}
           >
             <Instagram className=" w-6 h-6  text-orange-500" />
           </Link>
@@ -52,9 +52,9 @@ export default function HeaderTerms() {
             href={
               "https://www.linkedin.com/company/thekitchentable/?viewAsMember=true"
             }
-          ></Link>
-
-          <Linkedin className=" w-6 h-6  text-green-500" />
+          >
+            <Linkedin className=" w-6 h-6  text-green-500" />
+          </Link>
         </div>
       </div>
     </header>

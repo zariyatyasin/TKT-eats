@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import Link from "next/link";
 
 export default function Faq() {
   return (
@@ -74,10 +75,17 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  To book a chef, simply browse our selection of top-rated
-                  chefs, select your preferred chef and event details, and
-                  submit your request. Our team will handle the rest and confirm
-                  your booking.
+                  Click on the link{" "}
+                  <span>
+                    <Link
+                      href={
+                        "https://docs.google.com/forms/d/e/1FAIpQLScw52mz8Jg2fmbWsbs4omjcairhpwYNJdnbxYfOdOb6FBJUmg/viewform?usp=sf_link "
+                      }
+                      className=" text-blue-600"
+                    >
+                      here
+                    </Link>
+                  </span>
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -105,9 +113,8 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  prices starts as low as $25 during our pilot program,
-                  don&quot;t miss out. the minimum spend for non-subcriber will
-                  be $45 per service during our pilot program.
+                  Prices starts as low as $15 during our promotion period.
+                  Minimum number of guest required
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -120,7 +127,7 @@ export default function Faq() {
               <AccordionContent>
                 <p className="text-muted-foreground">
                   Click on the link here to be your own boss, choose your client
-                  and create your perfect menu. our team will reach out to you
+                  and create your perfect menu. Our team will reach out to you
                   within 12 hours.
                 </p>
               </AccordionContent>

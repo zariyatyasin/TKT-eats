@@ -12,7 +12,7 @@ export default function page() {
           TheKitchenTable Terms & Conditions
         </h1>
         <p>
-          <strong>Effective Date:</strong> September 1, 2024
+          <strong>Effective Date:</strong> July 29, 2024
         </p>
         <p>
           Welcome to TheKitchenTable! These Terms & Conditions (Terms&ldquo;)

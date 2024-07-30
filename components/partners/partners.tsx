@@ -22,7 +22,7 @@ export default function Partners() {
           Our support and partners
         </h2>
         <p className="mx-auto max-w-[700px] text-left md:text-center text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-          We are proud to partner with leading companies .
+          We are proud to partner with leading schools.
         </p>
       </motion.div>
       <motion.div
@@ -43,15 +43,16 @@ export default function Partners() {
           </Link>
 
           <p className="text-lg text-gray-500 ">
-            Click here to learn what it&apos;s like to be an entrepreneur{" "}
+            Click{" "}
             <Link
               href={
                 "https://catalog.wsu.edu/General/Academics/DegreeProgram/10062"
               }
-              className=" text-blue-600 "
+              className=" text-blue-600 mr-1"
             >
-              Here
+              here
             </Link>
+            to learn what it&apos;s like to be an entrepreneur{" "}
           </p>
         </motion.div>
         {/* <motion.div

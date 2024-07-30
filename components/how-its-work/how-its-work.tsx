@@ -18,8 +18,9 @@ export default function Howitswork() {
         >
           <h2 className="text-3xl font-bold">How It Works</h2>
           <p className="text-muted-foreground text-lg">
-            Booking your dream culinary experience is easy with our platform.
-            Follow these simple steps:
+            Booking your dream culinary experience made simple. Ready to embark
+            on a delightful culinary journey? Follow these straightforward steps
+            to secure your unforgettable experience:
           </p>
           <div className="grid gap-6">
             <div className="flex items-start gap-4">
