@@ -89,7 +89,7 @@ export default function Whyus() {
                 Welcome to TheKitchenTable, a platform that makes private chef
                 services accessible and affordable for everyone. We help chefs
                 take control of their careers by connecting them with clients
-                who want personalized dining experiences in their own homes.
+                who desire personalized dining experiences in their own homes.
               </p>
             </div>
             {/* <div className="flex justify-center space-x-4 lg:justify-start">

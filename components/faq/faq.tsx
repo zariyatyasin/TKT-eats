@@ -75,17 +75,10 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  Click on the link{" "}
-                  <span>
-                    <Link
-                      href={
-                        "https://docs.google.com/forms/d/e/1FAIpQLScw52mz8Jg2fmbWsbs4omjcairhpwYNJdnbxYfOdOb6FBJUmg/viewform?usp=sf_link "
-                      }
-                      className=" text-blue-600"
-                    >
-                      here
-                    </Link>
-                  </span>
+                  To book a chef, simply browse our selection of top-rated
+                  chefs, select your preferred chef and event details, and
+                  submit your request. Our team will handle the rest and confirm
+                  your booking.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -97,11 +90,10 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  Generally our professional and certified chef will be using
-                  your pots, pans, utensils and cutleries. The chef will be
-                  bringing the items that you do not have at no cost. After
-                  booking, your chef will reach out to you to confirm on the
-                  exact equipment needed.
+                  Generally, our professional and certified chef will be using
+                  your pots, pans, utensils, and cutlery. The chef will bring
+                  any missing items at no cost. After booking, your chef will
+                  reach out to confirm the exact equipment needed.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -113,8 +105,8 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  Prices starts as low as $15 during our promotion period.
-                  Minimum number of guest required
+                  Prices start as low as $15 during our promotion period.
+                  Minimum number of guests required.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -126,9 +118,17 @@ export default function Faq() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-muted-foreground">
-                  Click on the link here to be your own boss, choose your client
-                  and create your perfect menu. Our team will reach out to you
-                  within 12 hours.
+                  Click on the link{" "}
+                  <span>
+                    <Link
+                      href={
+                        "https://docs.google.com/forms/d/e/1FAIpQLScw52mz8Jg2fmbWsbs4omjcairhpwYNJdnbxYfOdOb6FBJUmg/viewform?usp=sf_link "
+                      }
+                      className=" text-blue-600"
+                    >
+                      here
+                    </Link>
+                  </span>
                 </p>
               </AccordionContent>
             </AccordionItem>
