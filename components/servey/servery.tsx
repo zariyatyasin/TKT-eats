@@ -13,7 +13,7 @@ export default function Servery() {
     >
       <section className=" grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
         <motion.div
-          initial={{ x: 100 }}
+          initial={{ x: -100 }}
           whileInView={{ x: 0 }}
           transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
           className="relative col-span-1 md:col-span-1 h-[200px] md:h-[400px] rounded-md overflow-hidden"
@@ -46,7 +46,7 @@ export default function Servery() {
           </div>
         </motion.div>
         <motion.div
-          initial={{ x: -100 }}
+          initial={{ x: 100 }}
           whileInView={{ x: 0 }}
           transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
           className="relative col-span-1 md:col-span-1 h-[200px] md:h-[400px] rounded-md overflow-hidden"
