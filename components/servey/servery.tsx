@@ -34,7 +34,7 @@ export default function Servery() {
               </p>
               <Link
                 href={
-                  "https://docs.google.com/forms/d/e/1FAIpQLSfpRxz6IwfEZi_cIo0aD24X4-9SOTkmjHP5Su2MHtxazujs-g/viewform?usp=sf_link "
+                  "https://docs.google.com/forms/d/e/1FAIpQLSfpRxz6IwfEZi_cIo0aD24X4-9SOTkmjHP5Su2MHtxazujs-g/viewform "
                 }
               >
                 <Button className="mt-2 ">
@@ -60,14 +60,14 @@ export default function Servery() {
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div className="text-center text-white space-y-4">
-              <h2 className="text-2xl md:text-4xl font-bold">Become a Chef</h2>
+              <h2 className="text-2xl md:text-4xl font-bold">Become A Chef</h2>
               <p className="text-sm md:text-xl">
                 Sign up to be our pilot program prive chef
               </p>
 
               <Link
                 href={
-                  "https://docs.google.com/forms/d/e/1FAIpQLScw52mz8Jg2fmbWsbs4omjcairhpwYNJdnbxYfOdOb6FBJUmg/viewform?usp=sf_link  "
+                  "https://docs.google.com/forms/d/e/1FAIpQLSd7Vxv1DLXIVBHjbUMyj_rVuaM1fuCYqUtJRpzqYX_efEWRRA/viewform?pli=1 "
                 }
               >
                 <Button className="mt-2 ">
