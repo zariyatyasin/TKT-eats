@@ -29,14 +29,14 @@ export default function Footer() {
             About
           </Link>
           <Link
-            href="#"
+            href="#contact"
             className="text-base font-medium hover:underline"
             prefetch={false}
           >
             Contact
           </Link>
           <Link
-            href="#"
+            href="#faq"
             className="text-base font-medium hover:underline"
             prefetch={false}
           >
