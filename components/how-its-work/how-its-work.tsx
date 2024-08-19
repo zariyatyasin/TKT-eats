@@ -16,8 +16,10 @@ export default function Howitswork() {
           whileInView={{ x: 0 }}
           transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
         >
-          <h2 className="text-3xl font-bold">How It Works</h2>
-          <p className="text-muted-foreground text-lg">
+          <h2 className="text-3xl font-bold text-center md:text-left">
+            How It Works
+          </h2>
+          <p className="text-muted-foreground text-base text-center md:text-lg">
             Booking your dream culinary experience made simple. Ready to embark
             on a delightful culinary journey? Follow these straightforward steps
             to secure your unforgettable experience:

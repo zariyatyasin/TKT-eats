@@ -69,7 +69,7 @@ export default function Whyus() {
             <Image
               height={1000}
               width={1000}
-              src="/chef1.webp"
+              src="/whatistkt.jpeg"
               alt="Who We Are"
               className="mx-auto border  w-[400px] h-full overflow-hidden rounded-xl object-cover object-center   lg:order-last"
             />
@@ -85,7 +85,7 @@ export default function Whyus() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 What is TKT?
               </h2>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="mx-auto max-w-[700px] text-muted-foreground  md:text-lg">
                 Welcome to TheKitchenTable, a platform that makes private chef
                 services accessible and affordable for everyone. We help chefs
                 take control of their careers by connecting them with clients

@@ -6,8 +6,7 @@ import React from "react";
 export default function page() {
   return (
     <div>
-      <HeaderTerms />
-      <div className=" max-w-4xl mx-auto px-4 py-12 space-y-4">
+      <div className=" max-w-4xl mx-auto px-4 py-24 space-y-4">
         <h1 className=" text-3xl font-bold">
           TheKitchenTable Terms & Conditions
         </h1>
@@ -425,7 +424,6 @@ export default function page() {
           privacy practices, please contact us at tkteats@hotmail.com.
         </p>
       </div>
-      <Footer />
     </div>
   );
 }

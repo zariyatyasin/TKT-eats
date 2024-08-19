@@ -10,7 +10,7 @@ export default function Partners() {
   return (
     <section
       id="partners"
-      className="  max-w-7xl mx-auto   space-y-4  -auto text-center py-2 md:py-24 px-6"
+      className="  max-w-7xl mx-auto   space-y-4  -auto text-center py-24 px-6"
     >
       <motion.div
         initial={{ x: 100 }}
@@ -18,10 +18,10 @@ export default function Partners() {
         transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
         className=" space-y-4"
       >
-        <h2 className="text-3xl text-left md:text-center font-bold tracking-tighter sm:text-4xl md:text-5xl">
+        <h2 className="text-3xl  text-center font-bold tracking-tighter sm:text-4xl md:text-5xl">
           Our support and partners
         </h2>
-        <p className="mx-auto max-w-[700px] text-left md:text-center text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+        <p className="mx-auto max-w-[700px] text-center text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
           We are proud to partner with leading schools.
         </p>
       </motion.div>
@@ -42,7 +42,7 @@ export default function Partners() {
             />
           </Link>
 
-          <p className="text-lg text-gray-500 ">
+          <p className=" text-sm md:text-lg text-gray-500  ">
             Click{" "}
             <Link
               href={

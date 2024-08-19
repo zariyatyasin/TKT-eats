@@ -1,4 +1,10 @@
-import { MailIcon, PhoneIcon } from "lucide-react";
+import {
+  Facebook,
+  InstagramIcon,
+  Linkedin,
+  MailIcon,
+  PhoneIcon,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -19,6 +25,27 @@ export default function Contact() {
               out.
             </p>
             <div className="space-y-4 md:space-y-6">
+              <div className="flex items-center  space-x-4  justify-center">
+                <Link
+                  href={" https://www.facebook.com/share/1oty7mFZcgvYkeQE/"}
+                >
+                  <Facebook className=" w-6 h-6 text-blue-600" />
+                </Link>
+                <Link
+                  href={
+                    "https://www.instagram.com/thekitchentable_official/?hl=en"
+                  }
+                >
+                  <InstagramIcon className=" w-6 h-6  text-orange-500" />
+                </Link>
+                <Link
+                  href={
+                    "https://www.linkedin.com/company/thekitchentable/?viewAsMember=true"
+                  }
+                >
+                  <Linkedin className=" w-6 h-6  text-green-500" />
+                </Link>
+              </div>
               <div className="flex items-center justify-center space-x-2">
                 <PhoneIcon className="w-5 h-5 text-primary" />
                 <Link
