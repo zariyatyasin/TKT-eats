@@ -1,13 +1,16 @@
 // components/KnowTheChef.tsx
 
 import React, { useState } from "react";
-import { CalendarIcon, TagIcon, XIcon } from "lucide-react";
+import { CalendarIcon, LocateIcon, MapPin, TagIcon, XIcon } from "lucide-react";
 
 interface KnowTheChefProps {
   images: string[];
   onImageClick: (image: string) => void;
   isModalOpen: boolean;
   selectedImage: string | null;
+  experience?: string | null;
+  location?: string | null;
+  description?: string | null;
   onModalClose: () => void;
 }
 
@@ -16,24 +19,25 @@ const KnowTheChef: React.FC<KnowTheChefProps> = ({
   onImageClick,
   isModalOpen,
   selectedImage,
+  experience,
+  location,
+  description,
+
   onModalClose,
 }) => {
   return (
     <section className="rounded-lg grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto py-24">
       <div className="gap-4">
         <h2 className="text-3xl font-bold">Know our Chef</h2>
-        <p className="text-muted-foreground">
-          Immerse yourself in the captivating landscapes and vibrant colors of
-          our
-        </p>
-        <div className="grid gap-2">
+        <p className="text-muted-foreground">{description && description}</p>
+        <div className="grid mt-2 md:mt-5 gap-2">
           <div className="flex items-center gap-2">
             <CalendarIcon className="w-5 h-5 text-muted-foreground" />
-            <span className="text-muted-foreground">August 15, 2024</span>
+            <span className="text-muted-foreground">{experience}</span>
           </div>
           <div className="flex items-center gap-2">
-            <TagIcon className="w-5 h-5 text-muted-foreground" />
-            <span className="text-muted-foreground">Nature, Photography</span>
+            <MapPin className="w-5 h-5 text-muted-foreground" />
+            <span className="text-muted-foreground">{location}</span>
           </div>
         </div>
       </div>

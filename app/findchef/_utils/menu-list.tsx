@@ -92,9 +92,9 @@ export function Menu({ menu, selectedItems, handleAddToBooking }: MenuProps) {
                         ))}
                       </ul>
                     </div>
-                    <DialogFooter>
+                    {/* <DialogFooter>
                       <Button type="submit">Close</Button>
-                    </DialogFooter>
+                    </DialogFooter> */}
                   </DialogContent>
                 </Dialog>
               ) : (

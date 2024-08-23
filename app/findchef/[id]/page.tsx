@@ -228,6 +228,9 @@ export default function Page({ searchParams }: { searchParams: any }) {
             {/* Image Gallery */}
             {chefData && (
               <KnowTheChef
+                experience={chefData.experience}
+                location={chefData.location}
+                description={chefData.description}
                 images={chefData.images.map((img: any) => img.url)}
                 onImageClick={handleImageClick}
                 isModalOpen={isModalOpen}
