@@ -11,7 +11,7 @@ export const POST = async (request: Request) => {
       // Parse the request body to get the order data
       const body = await request.json();
  
-     console.log( body.notes);
+    
      
       // Create a new order document using the request body
       const newOrder = new Order({
@@ -38,8 +38,9 @@ export const POST = async (request: Request) => {
         data: savedOrder, status: 201 }));
     } catch (error: any) {
       // Handle any errors and return an error response
-      return new NextResponse("Error creating order: " + error.message, {
-        status: 500,
-      });
+      return NextResponse.json(
+        { message:error.message },
+        { status: 500 }
+      );
     }
   };

@@ -94,9 +94,9 @@ export default function Page({ searchParams }: { searchParams: any }) {
         title: "Booking Error",
         description: "Please select at least one item before booking.",
       });
-
       return;
     }
+
     setIsSubmitting(true); // Start loading
 
     const requestData = {
@@ -113,24 +113,27 @@ export default function Page({ searchParams }: { searchParams: any }) {
       chefId: chefData._id,
     };
 
-    console.log(requestData);
-
     try {
       const res = await createOrder(requestData);
 
-      if (res.status === 201) {
-        // Assuming a successful response, redirect to a success page
-        router.push("/booking-confirm/" + res?.data?._id); // Replace '/success' with your target page route
+      if (res.success === false) {
+        throw new Error(res.message);
       }
-    } catch (error) {
-      console.error("Booking submission failed:", error);
-      alert("An error occurred. Please try again.");
-    } finally {
+
       toast({
         title: "Booking Confirmed",
         description: "The chef has been successfully booked.",
       });
-
+      router.push("/booking-confirm/" + res?.data?._id); // Redirect to success page
+    } catch (error: any) {
+      console.error("Booking submission failed:", error);
+      toast({
+        title: "Booking Error",
+        description: `Error creating order: ${
+          error.message || "Something went wrong."
+        }`,
+      });
+    } finally {
       setIsSubmitting(false); // End loading
     }
   };
@@ -234,7 +237,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
             )}
           </div>
         </div>
-        <div className="col-span-1 md:col-span-5 flex flex-col gap-6">
+        <div className="col-span-1  lg:sticky top-20  md:col-span-5 flex flex-col gap-6">
           <BookingSummary
             selectedItems={selectedItems}
             totalCost={totalCost}

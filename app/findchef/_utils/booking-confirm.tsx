@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea"; // Assuming you have a Textarea component
 import { Button } from "@/components/ui/button";
 
+import { CircleDashedIcon } from "lucide-react";
+
 interface BookingDetailsForm {
   name: string;
   address: string;
@@ -157,13 +159,36 @@ export function BookingDetails({
             />
           </div>
           <div className=" z-50  p-2 flex items-center  md:hidden   fixed bottom-0 left-0 w-full bg-white   justify-between  l   border-y-2  border-gray-200 border-2">
-            <Button size={"sm"} className=" w-full md:hidden " type="submit">
-              {isSubmitting ? "Booking..." : " Book Now"}
+            <Button
+              disabled={isSubmitting}
+              size={"sm"}
+              className=" w-full md:hidden "
+              type="submit"
+            >
+              {isSubmitting ? (
+                <div className="flex items-center">
+                  <CircleDashedIcon className="mr-2 h-4 w-4 animate-spin" />
+                  <p> Please wait</p>
+                </div>
+              ) : (
+                " Book Now"
+              )}
             </Button>
           </div>
 
-          <Button className="w-full hidden md:flex mt-4" type="submit">
-            {isSubmitting ? "Booking..." : " Book Now"}
+          <Button
+            disabled={isSubmitting}
+            className="w-full hidden md:flex mt-4"
+            type="submit"
+          >
+            {isSubmitting ? (
+              <div className="flex items-center">
+                <CircleDashedIcon className="mr-2 h-4 w-4 animate-spin" />
+                <p> Please wait</p>
+              </div>
+            ) : (
+              " Book Now"
+            )}
           </Button>
         </form>
       </CardContent>

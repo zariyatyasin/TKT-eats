@@ -39,8 +39,6 @@ export const GetSingleChef = async (id:string) => {
   }
 };
 export const createOrder = async (data: any) => {
-  console.log("this is dara",data);
-  
   try {
     const response = await fetch(`${BASE_URL}/order`, {
       method: "POST",
@@ -49,17 +47,25 @@ export const createOrder = async (data: any) => {
       },
       body: JSON.stringify(data),
     });
+
     const result = await response.json();
-    //console.log(result)
- 
+
+  
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to create order");
+    }
+
     return result;
-  } catch (error) {
+  } catch (error: any) {
+    console.error("Error in createOrder:", error.message);
+
     return {
       success: false,
-      message: "Something went wrong",
+      message: error.message,
     };
   }
 };
+
 
 export const GetorderDetails = async (id:string) => {
   try {

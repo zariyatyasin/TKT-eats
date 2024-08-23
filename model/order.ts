@@ -67,7 +67,7 @@ const orderSchema = new Schema<IOrder>({
   },
   address: {
     type: String,
-    required: true
+    // required: true
   },
   phone: {
     type: String,
