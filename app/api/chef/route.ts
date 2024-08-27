@@ -3,19 +3,43 @@
  
  
 import Chef from "@/model/chef";
+import Review from "@/model/reviews";
 import connect from "@/utils/db";
 import { NextResponse } from "next/server";
-export const GET = async () => {
 
+export const GET = async () => {
   await connect();
 
   try {
-     
-    const allChef = await Chef.find().lean();
-    
-    return new NextResponse(JSON.stringify({data:allChef}), { status: 200 });
+    // Step 1: Get all chefs
+    const allChefs = await Chef.find().lean();
+
+    // Step 2: Get the count of reviews for each chef
+    const reviewCounts = await Review.aggregate([
+      {
+        $group: {
+          _id: "$chef", // Group by the chef ID (assuming the field is called 'chef' in Review schema)
+          count: { $sum: 1 }, // Count the number of reviews for each chef
+        },
+      },
+    ]);
+
+    // Step 3: Map review counts to chefs
+    const chefsWithReviewCounts = allChefs.map((chef) => {
+      const chefReviews = reviewCounts.find(
+        (review) => review._id.toString() === chef?._id.toString()
+      );
+      return {
+        ...chef,
+        reviewCount: chefReviews ? chefReviews.count : 0, // Add review count to each chef
+      };
+    });
+
+    return new NextResponse(JSON.stringify({ data: chefsWithReviewCounts }), {
+      status: 200,
+    });
   } catch (error: any) {
-    return new NextResponse("Error in fetching users" + error.message, {
+    return new NextResponse("Error in fetching chefs: " + error.message, {
       status: 500,
     });
   }

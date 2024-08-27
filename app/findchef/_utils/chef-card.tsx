@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChefHat } from "lucide-react";
+import { ChefHat, Star } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -8,6 +8,7 @@ interface ChefCardProps {
   cuisines: string[];
   id: string;
   profileImage: string;
+  reviewCount: number;
 }
 
 export default function ChefCard({
@@ -15,6 +16,7 @@ export default function ChefCard({
   cuisines,
   id,
   profileImage,
+  reviewCount,
 }: ChefCardProps) {
   return (
     <div className="bg-background rounded-xl overflow-hidden shadow-lg">
@@ -30,9 +32,12 @@ export default function ChefCard({
           className="w-full h-48  object-center object-contain"
           style={{ aspectRatio: "400/300", objectFit: "cover" }}
         />
-        {/* <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-          5.0
-        </div> */}
+        {reviewCount > 0 && (
+          <div className="absolute flex gap-1 items-center top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
+            <Star className="  f h-4 w-4" />
+            {reviewCount}
+          </div>
+        )}
       </div>
       <div className="p-4 space-y-2">
         <h3 className="text-xl font-bold">{name}</h3>

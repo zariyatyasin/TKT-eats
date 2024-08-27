@@ -151,7 +151,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
     try {
       if (searchParams?._id) {
         const result = await GetSingleChef(searchParams?._id);
-        console.log("thiis wow ", result);
+
         setChefData(result.chef);
         setReview(result.allreviews);
         setMenu(
@@ -263,7 +263,17 @@ export default function Page({ searchParams }: { searchParams: any }) {
             isSubmitting={isSubmitting}
           />
         </div>
-        <Reviews review={review} />
+        {isLoading ? (
+          <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
+            <Skeleton className="h-[150px] w-[150px] rounded-md" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </div>
+        ) : (
+          <Reviews review={review} />
+        )}
       </div>
     </div>
   );

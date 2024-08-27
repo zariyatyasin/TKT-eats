@@ -16,6 +16,7 @@ interface Chef {
   profileImage: string;
   name: string;
   cuisines: string[];
+  reviewCount: number;
 }
 
 export default function HomeDemo1() {
@@ -41,6 +42,7 @@ export default function HomeDemo1() {
       setIsLoading(false);
     }
   };
+  console.log(chefs);
 
   useEffect(() => {
     fetchChefs();
@@ -77,6 +79,7 @@ export default function HomeDemo1() {
                 ?.slice(0, 4)
                 .map((chef) => (
                   <ChefCard
+                    reviewCount={chef.reviewCount}
                     profileImage={chef.profileImage}
                     key={chef._id}
                     name={chef.name}
