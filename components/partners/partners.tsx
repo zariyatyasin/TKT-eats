@@ -19,7 +19,7 @@ export default function Partners() {
         className=" space-y-4"
       >
         <h2 className="text-3xl  text-center font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Our support and partners
+          Our Support and Partners
         </h2>
         <p className="mx-auto max-w-[700px] text-center text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
           We are proud to partner with leading schools.

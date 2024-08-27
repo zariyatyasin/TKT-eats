@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import Chef from "@/model/chef";
 import connect from "@/utils/db";
 import ChefMenu from "@/model/chefmenu";
+import Review from "@/model/reviews";
 
 export const PATCH = async (request: Request, { params }: { params: { id: string } }) => {
     await connect();
@@ -86,11 +87,13 @@ export const PATCH = async (request: Request, { params }: { params: { id: string
 
         // Fetch all menus associated with the chef by ID
         const menus = await ChefMenu.find({ chef: id });
+        const allreviews = await Review.find({ chef: id });
 
         
         if (!GetChef) {
             return new NextResponse("Chef not found", { status: 404 });
         }
+        const totalReviews = await Review.countDocuments({ chef: id });
 
         // Return the chef's details along with their menus
         return new NextResponse(
@@ -98,6 +101,8 @@ export const PATCH = async (request: Request, { params }: { params: { id: string
                 message: "Chef successfully retrieved",
                 chef: GetChef,
                 menus: menus,
+                totalReviews: totalReviews,
+                allreviews
             }),
             { status: 200 }
         );

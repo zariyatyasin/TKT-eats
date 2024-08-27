@@ -27,7 +27,7 @@ export const GetSingleChef = async (id:string) => {
     });
 
     const result = await response.json();
-
+    
   
 
     return result;

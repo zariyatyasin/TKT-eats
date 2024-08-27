@@ -38,7 +38,7 @@ export function BookingDetails({
   };
 
   return (
-    <Card>
+    <Card className=" lg:sticky top-20">
       <CardHeader>
         <CardTitle>Booking Details</CardTitle>
       </CardHeader>

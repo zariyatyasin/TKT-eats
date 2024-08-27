@@ -27,7 +27,7 @@ export default function ChefCard({
           width={400}
           height={300}
           alt="Chef Profile"
-          className="w-full h-48 object-cover"
+          className="w-full h-48  object-center object-contain"
           style={{ aspectRatio: "400/300", objectFit: "cover" }}
         />
         {/* <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">

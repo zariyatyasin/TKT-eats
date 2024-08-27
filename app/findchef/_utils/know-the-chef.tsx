@@ -32,7 +32,6 @@ const KnowTheChef: React.FC<KnowTheChefProps> = ({
         <p className="text-muted-foreground">{description && description}</p>
         <div className="grid mt-2 md:mt-5 gap-2">
           <div className="flex items-center gap-2">
-            <CalendarIcon className="w-5 h-5 text-muted-foreground" />
             <span className="text-muted-foreground">{experience}</span>
           </div>
           <div className="flex items-center gap-2">
@@ -62,10 +61,10 @@ const KnowTheChef: React.FC<KnowTheChefProps> = ({
             <img
               src={selectedImage}
               alt="Gallery Image"
-              width={1200}
-              height={800}
-              className="rounded-lg object-contain max-h-[90vh]"
-              style={{ aspectRatio: "1200/800", objectFit: "cover" }}
+              // width={800}
+              // height={800}
+              className="rounded-lg  over max-h-[90vh]"
+              // style={{ aspectRatio: "1200/800", objectFit: "cover" }}
             />
             <button
               className="absolute top-4 right-4 text-white bg-gray-800 hover:bg-gray-700 rounded-full p-2 focus:outline-none"

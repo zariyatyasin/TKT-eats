@@ -45,14 +45,14 @@ export default function Header() {
             className="text-base font-medium hover:underline"
             prefetch={false}
           >
-            Our partners
+            Our Partners
           </Link>
           <Link
-            href="#joinnow"
-            className="text-base font-medium hover:underline"
+            href="/findchef"
             prefetch={false}
+            className="text-base font-medium hover:underline"
           >
-            Join Now
+            Find All Chef
           </Link>
           <Link
             href="#about"

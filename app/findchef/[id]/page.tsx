@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import KnowTheChef from "../_utils/know-the-chef";
 import { createOrder, GetSingleChef } from "../_utils/action";
 import { useRouter } from "next/navigation";
+import Reviews from "../_utils/review";
 // MenuItem interface now includes ingredients
 interface MenuItem {
   id: string; // Ensure 'id' is of type 'string'
@@ -39,6 +40,12 @@ interface BookingDetails {
   time: string;
   notes?: string;
 }
+interface Review {
+  _id: string;
+  user: string;
+  rating: number;
+  comment: string;
+}
 
 export default function Page({ searchParams }: { searchParams: any }) {
   const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -47,7 +54,9 @@ export default function Page({ searchParams }: { searchParams: any }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
   const [chefData, setChefData] = useState<any>(null);
+
   const [menu, setMenu] = useState<MenuItem[]>([]);
+  const [review, setReview] = useState<Review[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
@@ -142,7 +151,9 @@ export default function Page({ searchParams }: { searchParams: any }) {
     try {
       if (searchParams?._id) {
         const result = await GetSingleChef(searchParams?._id);
+        console.log("thiis wow ", result);
         setChefData(result.chef);
+        setReview(result.allreviews);
         setMenu(
           result.menus.map((menu: any) => ({
             id: menu._id,
@@ -167,7 +178,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
 
   return (
     <div className="container py-28">
-      <div className="relative grid md:grid-cols-12 gap-12 md:gap-16 max-w-6xl mx-auto justify-between">
+      <div className="relative   grid md:grid-cols-12 gap-12 md:gap-16 max-w-6xl mx-auto justify-between">
         <div className="col-span-1 md:col-span-7 flex flex-col gap-6">
           <div className="">
             {isLoading ? (
@@ -252,6 +263,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
             isSubmitting={isSubmitting}
           />
         </div>
+        <Reviews review={review} />
       </div>
     </div>
   );
