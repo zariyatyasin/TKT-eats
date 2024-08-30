@@ -52,16 +52,16 @@ export default function Contact() {
                   href="tel:+15099928838"
                   className="text-primary hover:underline hover:underline-offset-2"
                 >
-                  +1 (509) 992-8838
+                  +1 720-307-2571
                 </Link>
               </div>
               <div className="flex items-center justify-center space-x-2">
                 <MailIcon className="w-5 h-5 text-primary" />
                 <Link
-                  href="mailto:tkteats@hotmail.com"
+                  href="mailto:thekitchentableofficial@gmail.com"
                   className="text-primary hover:underline hover:underline-offset-2"
                 >
-                  tkteats@hotmail.com
+                  thekitchentableofficial@gmail.com
                 </Link>
               </div>
             </div>
