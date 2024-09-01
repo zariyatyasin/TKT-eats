@@ -195,7 +195,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
             )}
           </div>
           <div className="grid gap-4">
-            <Tabs defaultValue="account" className=" ">
+            <Tabs defaultValue="menu" className=" mt-5 ">
               <TabsList>
                 <TabsTrigger value="menu">Menu</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
