@@ -7,6 +7,7 @@ import { Menu } from "../_utils/menu-list";
 import { BookingSummary } from "../_utils/booking-summary";
 import { BookingDetails } from "../_utils/booking-confirm";
 import { useToast } from "@/components/ui/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import KnowTheChef from "../_utils/know-the-chef";
@@ -194,47 +195,68 @@ export default function Page({ searchParams }: { searchParams: any }) {
             )}
           </div>
           <div className="grid gap-4">
-            <h2 className="text-xl font-bold">Menu</h2>
-            {isLoading ? (
-              <div className=" space-y-4">
-                <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
-                  <Skeleton className="h-[150px] w-[150px] rounded-md" />
-                  <div className="space-y-2">
-                    <Skeleton className="h-4 w-[250px]" />
-                    <Skeleton className="h-4 w-[200px]" />
+            <Tabs defaultValue="account" className=" ">
+              <TabsList>
+                <TabsTrigger value="menu">Menu</TabsTrigger>
+                <TabsTrigger value="reviews">Reviews</TabsTrigger>
+              </TabsList>
+              <TabsContent value="menu">
+                <h2 className="text-xl py-6 font-bold">Menu</h2>
+                {isLoading ? (
+                  <div className=" space-y-4">
+                    <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
+                      <Skeleton className="h-[150px] w-[150px] rounded-md" />
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-[250px]" />
+                        <Skeleton className="h-4 w-[200px]" />
+                      </div>
+                    </div>
+                    <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
+                      <Skeleton className="h-[150px] w-[150px] rounded-md" />
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-[250px]" />
+                        <Skeleton className="h-4 w-[200px]" />
+                      </div>
+                    </div>
+                    <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
+                      <Skeleton className="h-[150px] w-[150px] rounded-md" />
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-[250px]" />
+                        <Skeleton className="h-4 w-[200px]" />
+                      </div>
+                    </div>
+                    <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
+                      <Skeleton className="h-[150px] w-[150px] rounded-md" />
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-[250px]" />
+                        <Skeleton className="h-4 w-[200px]" />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
-                  <Skeleton className="h-[150px] w-[150px] rounded-md" />
-                  <div className="space-y-2">
-                    <Skeleton className="h-4 w-[250px]" />
-                    <Skeleton className="h-4 w-[200px]" />
+                ) : menu.length === 0 ? (
+                  <div>No items</div>
+                ) : (
+                  <Menu
+                    menu={menu}
+                    selectedItems={selectedItems}
+                    handleAddToBooking={handleAddToBooking}
+                  />
+                )}
+              </TabsContent>
+              <TabsContent value="reviews">
+                {isLoading ? (
+                  <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
+                    <Skeleton className="h-[150px] w-[150px] rounded-md" />
+                    <div className="space-y-2">
+                      <Skeleton className="h-4 w-[250px]" />
+                      <Skeleton className="h-4 w-[200px]" />
+                    </div>
                   </div>
-                </div>
-                <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
-                  <Skeleton className="h-[150px] w-[150px] rounded-md" />
-                  <div className="space-y-2">
-                    <Skeleton className="h-4 w-[250px]" />
-                    <Skeleton className="h-4 w-[200px]" />
-                  </div>
-                </div>
-                <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
-                  <Skeleton className="h-[150px] w-[150px] rounded-md" />
-                  <div className="space-y-2">
-                    <Skeleton className="h-4 w-[250px]" />
-                    <Skeleton className="h-4 w-[200px]" />
-                  </div>
-                </div>
-              </div>
-            ) : menu.length === 0 ? (
-              <div>No items</div>
-            ) : (
-              <Menu
-                menu={menu}
-                selectedItems={selectedItems}
-                handleAddToBooking={handleAddToBooking}
-              />
-            )}
+                ) : (
+                  <Reviews review={review} />
+                )}
+              </TabsContent>
+            </Tabs>
 
             {/* Image Gallery */}
             {chefData && (
@@ -263,17 +285,6 @@ export default function Page({ searchParams }: { searchParams: any }) {
             isSubmitting={isSubmitting}
           />
         </div>
-        {isLoading ? (
-          <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
-            <Skeleton className="h-[150px] w-[150px] rounded-md" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-            </div>
-          </div>
-        ) : (
-          <Reviews review={review} />
-        )}
       </div>
     </div>
   );

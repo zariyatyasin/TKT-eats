@@ -26,10 +26,10 @@ const KnowTheChef: React.FC<KnowTheChefProps> = ({
   onModalClose,
 }) => {
   return (
-    <section className="rounded-lg grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto py-24">
+    <section className="rounded-lg grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto py-6 md:py-14">
       <div className="gap-4">
-        <h2 className="text-3xl font-bold">Know our Chef</h2>
-        <p className="text-muted-foreground">{description && description}</p>
+        <h2 className="text-3xl font-bold mb-2">Know our Chef</h2>
+        <p className="text-muted-foreground ">{description && description}</p>
         <div className="grid mt-2 md:mt-5 gap-2">
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground">{experience}</span>

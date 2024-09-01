@@ -14,7 +14,7 @@ interface ReviewsProps {
 
 export default function Reviews({ review }: ReviewsProps) {
   return (
-    <div className="col-span-1 lg:col-span-7">
+    <div className="col-span-1 py-6 lg:col-span-7">
       <h2 className="mb-8 text-2xl font-bold sm:text-3xl">Customer Reviews</h2>
       <div className="space-y-8 sm:space-y-12">
         {review.length > 0 ? (
