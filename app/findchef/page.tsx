@@ -33,6 +33,7 @@ export default async function Page() {
             {result.data &&
               result.data.map((chef: any) => (
                 <ChefCard
+                  location={chef.location}
                   reviewCount={chef.reviewCount}
                   profileImage={chef.profileImage}
                   key={chef._id}

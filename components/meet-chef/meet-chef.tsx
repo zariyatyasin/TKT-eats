@@ -20,6 +20,7 @@ export default async function MeetChef() {
             {result.data &&
               result.data.map((chef: any) => (
                 <ChefCard
+                  location={chef.location}
                   reviewCount={chef.reviewCount}
                   profileImage={chef.profileImage}
                   key={chef._id}
