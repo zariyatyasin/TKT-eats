@@ -132,7 +132,7 @@ export function Menu({ menu, selectedItems, handleAddToBooking }: MenuProps) {
               )}
             </div>
             <div className="flex-1 p-2">
-              <h3 className="text-sm md:text-lg font-bold">{item.name}</h3>
+              <h3 className="text-sm md:text-lg  font-bold">{item.name}</h3>
               <p className="text-muted-foreground text-xs md:text-base">
                 {item.description}
               </p>

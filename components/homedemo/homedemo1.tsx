@@ -15,6 +15,7 @@ interface Chef {
   _id: string;
   profileImage: string;
   name: string;
+  location: string;
   cuisines: string[];
   reviewCount: number;
 }
@@ -80,6 +81,7 @@ export default function HomeDemo1() {
                 .map((chef) => (
                   <ChefCard
                     reviewCount={chef.reviewCount}
+                    location={chef.location}
                     profileImage={chef.profileImage}
                     key={chef._id}
                     name={chef.name}

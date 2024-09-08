@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChefHat, Star } from "lucide-react";
+import { ChefHat, MapPin, Star } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -9,6 +9,7 @@ interface ChefCardProps {
   id: string;
   profileImage: string;
   reviewCount: number;
+  location: string;
 }
 
 export default function ChefCard({
@@ -17,6 +18,7 @@ export default function ChefCard({
   id,
   profileImage,
   reviewCount,
+  location,
 }: ChefCardProps) {
   return (
     <div className="bg-background rounded-xl overflow-hidden shadow-lg">
@@ -39,17 +41,21 @@ export default function ChefCard({
           </div>
         )}
       </div>
-      <div className="p-4 space-y-2">
+      <div className="p-4  space-y-4">
         <h3 className="text-xl font-bold">{name}</h3>
         <p className="text-muted-foreground">{cuisines.join(", ")}</p>
         <div className="flex items-center justify-between">
           <Link href={"/findchef/" + name + "?_id=" + id}>
-            <Button size="sm">
+            <Button size={"sm"} className=" text-xs gap-1">
               {" "}
               <ChefHat className=" h-4 w-4" />
               Book Now
             </Button>
           </Link>
+          <div className="flex items-center gap-1">
+            <MapPin className="w-4 h-4 text-muted-foreground" />
+            <span className="text-muted-foreground text-xs">{location}</span>
+          </div>
         </div>
       </div>
     </div>
