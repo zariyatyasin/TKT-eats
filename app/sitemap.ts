@@ -25,6 +25,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch chef IDs:", error);
   }
 
-  // Combine static and dynamic routes
   return [...staticRoutes, ...chefRoutes];
 }
