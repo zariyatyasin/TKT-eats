@@ -22,6 +22,7 @@ export const POST = async (request: Request) => {
       price: body.price, // Price of the menu item
       ingredients: body.ingredients, // Array of ingredients
       category: body.category,
+      
       menuImage:body.menuImage // Category of the menu item
     });
 

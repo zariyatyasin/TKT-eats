@@ -15,12 +15,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let chefRoutes: MetadataRoute.Sitemap = [];
   try {
     const chefs = await GetAllChef(); // Fetch all chefs data
-
+      console.log("this is chef",chefs);
+      
     // Map through the chef data to generate dynamic routes for each chef
     chefRoutes = chefs.data.map((chef: { _id: string }) => ({
       url: `${baseUrl}/findchef/${chef._id}`,
       lastModified: new Date(),
     }));
+
+
   } catch (error) {
     console.error("Failed to fetch chef IDs:", error);
   }

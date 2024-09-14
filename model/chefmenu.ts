@@ -17,6 +17,7 @@ const chefMenuSchema = new Schema<IChefMenu>(
     menuImage: { type: String, default: null },
     description: { type: String, required: true },
     price: { type: Number, required: true },
+    
     ingredients: { type: [String],  }, // Array of strings for ingredients
     category: { type: String,  }, // Single string for category
   },

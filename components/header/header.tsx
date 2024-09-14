@@ -52,7 +52,7 @@ export default function Header() {
             prefetch={false}
             className="text-base font-medium hover:underline"
           >
-            Find All Chef
+            Find A Chef
           </Link>
           <Link
             href="#about"
@@ -82,10 +82,10 @@ export default function Header() {
             prefetch={false}
           >
             <Button size={"lg"} className=" hidden lg:flex rounded-full">
-              Become a Chef
+              Become A Chef
             </Button>
             <Button size={"sm"} className=" flex lg:hidden rounded-full">
-              Become a Chef
+              Become A Chef
             </Button>
           </Link>
           {/* <Link href={" https://www.facebook.com/share/1oty7mFZcgvYkeQE/"}>
