@@ -20,35 +20,11 @@ interface Chef {
   reviewCount: number;
 }
 
-export default function HomeDemo1() {
-  const [chefs, setChefs] = useState<Chef[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+interface HomeDemo1Props {
+  result: Chef[];
+}
 
-  const fetchChefs = async () => {
-    try {
-      const result = await GetAllChef();
-
-      if (result && result.data) {
-        setChefs(result.data);
-      } else {
-        throw new Error("Failed to fetch chefs.");
-      }
-    } catch (err) {
-      setError(
-        "An error occurred while fetching chefs. Please try again later."
-      );
-      console.error("Error fetching chefs:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  console.log(chefs);
-
-  useEffect(() => {
-    fetchChefs();
-  }, []);
-
+export default function HomeDemo1({ result }: HomeDemo1Props) {
   return (
     <div className="min-h-screen bg-slate-50 overflow-hidden">
       <main>
@@ -58,37 +34,20 @@ export default function HomeDemo1() {
             Featured Chefs
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {isLoading ? (
-              <>
-                {[...Array(4)].map((_, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col items-center space-y-4"
-                  >
-                    <Skeleton className="h-[150px] w-[150px] rounded-md" />
-                    <div className="space-y-2">
-                      <Skeleton className="h-4 w-[250px]" />
-                      <Skeleton className="h-4 w-[200px]" />
-                    </div>
-                  </div>
-                ))}
-              </>
-            ) : error ? (
-              <div className="text-red-500 text-center w-full">{error}</div>
+            {result?.length > 0 ? (
+              result?.map((chef) => (
+                <ChefCard
+                  reviewCount={chef.reviewCount}
+                  location={chef.location}
+                  profileImage={chef.profileImage}
+                  key={chef._id}
+                  name={chef.name}
+                  id={chef._id}
+                  cuisines={chef.cuisines}
+                />
+              ))
             ) : (
-              chefs
-                ?.slice(0, 4)
-                .map((chef) => (
-                  <ChefCard
-                    reviewCount={chef.reviewCount}
-                    location={chef.location}
-                    profileImage={chef.profileImage}
-                    key={chef._id}
-                    name={chef.name}
-                    id={chef._id}
-                    cuisines={chef.cuisines}
-                  />
-                ))
+              <div>no data</div>
             )}
           </div>
         </div>

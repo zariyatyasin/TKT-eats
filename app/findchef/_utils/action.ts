@@ -2,9 +2,9 @@
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASEURL;
 
-export const GetAllChef = async () => {
+export const GetAllChef = async (query?:number) => {
   try {
-    const response = await fetch(`${BASE_URL}/chef`, {
+    const response = await fetch(`${BASE_URL}/chef?limit=${query}`, {
       cache: "no-store",
     });
 

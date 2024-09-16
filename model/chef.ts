@@ -23,6 +23,8 @@ const chefSchema = new Schema(
       email: { type: String, required: true },
     },
     images: { type: [imageSchema], default: [] },  // Updated field for multiple image objects
+    displayOrder: { type: Number, default: null }, // Field to set the display order
+
   },
   {
     timestamps: true,
