@@ -2,7 +2,7 @@ import { GetAllChef } from "./_utils/action";
 import ChefCard from "./_utils/chef-card";
 
 export default async function Page() {
-  const result = await GetAllChef();
+  const result = await GetAllChef(30);
   console.log("new here", result);
 
   if (result?.data?.length < 0) {

@@ -10,7 +10,8 @@ export const GetAllChef = async (query?:number) => {
 
     const result = await response.json();
 
-  
+    console.log("reslet");
+    
 
     return result;
   } catch (error) {

@@ -43,7 +43,8 @@ export const GET = async (request: Request) => {
 
     const limitInt = parseInt(searchParams.get("limit") || "20");
     const pageInt = parseInt(searchParams.get("page") || "1");
-
+    console.log(" this is limit",limitInt);
+    
     // Step 1: Get all chefs with pagination and sorting
     const allChefs: Chef[] = await Chef.aggregate([
       {
