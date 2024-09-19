@@ -8,6 +8,7 @@ import { GetAllChef } from "./findchef/_utils/action";
 
 export default async function Home() {
   const result = await GetAllChef(4);
+
   return (
     <div>
       <HomeDemo1 result={result.data} />
