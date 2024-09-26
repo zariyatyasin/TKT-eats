@@ -7,7 +7,7 @@ import Image from "next/image";
 import { GetAllChef } from "./findchef/_utils/action";
 
 export default async function Home() {
-  const result = await GetAllChef(4);
+  const result = await GetAllChef({ limit: "4" });
 
   return (
     <div>

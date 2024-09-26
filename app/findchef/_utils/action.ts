@@ -2,9 +2,9 @@
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASEURL;
 
-export const GetAllChef = async (query?:number) => {
+export const GetAllChef = async (query?: Record<string, string>) => {
   try {
-    const response = await fetch(`${BASE_URL}/chef?limit=${query}`, {
+    const response = await fetch(`${BASE_URL}/chef?${new URLSearchParams(query)}`, {
       cache: "no-store",
     });
 
@@ -42,6 +42,36 @@ export const GetSingleChef = async (id:string) => {
 export const createOrder = async (data: any) => {
   try {
     const response = await fetch(`${BASE_URL}/order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+  
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to create order");
+    }
+
+    return result;
+  } catch (error: any) {
+    console.error("Error in createOrder:", error.message);
+
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
+};
+export const sendemail = async (data: any) => {
+  try {
+
+     console.log("helllo");
+     
+    const response = await fetch(`${BASE_URL}/emails`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

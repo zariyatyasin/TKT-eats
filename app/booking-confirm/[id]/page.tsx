@@ -68,7 +68,7 @@ export default async function Page({ params }: { params: any }) {
           <div className="bg-gray-100 rounded-lg p-4 w-full">
             <div className="text-gray-950 font-bold">Need Help?</div>
             <div className="text-gray-950 text-lg">
-              Call our support line at +1 (509) 992-8838
+              Call our support line at +1 720-307-2571
             </div>
           </div>
           <Link href="/" className="w-full">

@@ -41,16 +41,24 @@ export const GET = async (request: Request) => {
     const params = new URL(request.url);
     const searchParams = new URLSearchParams(params.search);
 
-    const limitInt = parseInt(searchParams.get("limit") || "20");
+    const limitInt = parseInt(searchParams.get("limit") || "50");
     const pageInt = parseInt(searchParams.get("page") || "1");
-    console.log(" this is limit",limitInt);
-    
-    // Step 1: Get all chefs with pagination and sorting
+    const searchQuery = searchParams.get("search") || "";
+
+    // Step 1: Get all chefs with pagination, sorting, and search functionality
     const allChefs: Chef[] = await Chef.aggregate([
       {
         $addFields: {
           // Assign null displayOrder to a high number so they go to the end of the list
           order: { $ifNull: ["$displayOrder", Number.MAX_SAFE_INTEGER] }
+        }
+      },
+      {
+        $match: {
+          $or: [
+            { location: { $regex: searchQuery, $options: "i" } },
+            { "menus.name": { $regex: searchQuery, $options: "i" } }
+          ]
         }
       },
       { $sort: { order: 1 } }, // Sort by the calculated `order` field
@@ -101,71 +109,7 @@ export const GET = async (request: Request) => {
 
 
 
-
-// export const GET = async (request: Request) => {
-//   await connect();
-
-//   try {
-//     // Parse query parameters from the frontend request
-//     const { limit = 4, page = 1 } = await request.json(); // Default to 4 chefs per page, and the first page
-//     const limitInt = parseInt(limit, 10);
-//     const pageInt = parseInt(page, 10);
-
-//     // Step 1: Get all chefs with pagination
-//     const allChefs = await Chef.find()
-//       .skip((pageInt - 1) * limitInt) // Calculate the number of chefs to skip
-//       .limit(4) // Limit the number of chefs
-//       .lean();
-// console.log("this is",allChefs);
-
-//     // Step 2: Get the count of reviews for each chef
-//     const reviewCounts = await Review.aggregate([
-//       {
-//         $group: {
-//           _id: "$chef", // Group by the chef ID
-//           count: { $sum: 1 }, // Count reviews for each chef
-//         },
-//       },
-//     ]);
-
-//     // Type definition for reviewCounts
-//     interface ReviewCount {
-//       _id: Types.ObjectId;
-//       count: number;
-//     }
-
-//     const chefsWithReviewCounts = allChefs.map((chef: any) => { // Use `any` temporarily for `chef`
-//       const chefReviews = reviewCounts.find(
-//         (review) => review._id.toString() === chef._id.toString()
-//       );
-//       return {
-//         ...chef,
-//         reviewCount: chefReviews ? chefReviews.count : 0, // Add review count to each chef
-//       };
-//     });
-
-//     // Step 4: Send the response with pagination info
-//     return new NextResponse(
-//       JSON.stringify({
-//         data: chefsWithReviewCounts,
-//         currentPage: pageInt,
-//         chefsPerPage: limitInt,
-//         totalChefs: await Chef.countDocuments(), // Total number of chefs
-//       }),
-//       { status: 200 }
-//     );
-//   } catch (error: unknown) {
-//     // Assert error type and handle safely
-//     if (error instanceof Error) {
-//       return new NextResponse("Error in fetching chefs: " + error.message, {
-//         status: 500,
-//       });
-//     } else {
-//       return new NextResponse("Unknown error occurred", { status: 500 });
-//     }
-//   }
-// };
-
+ 
 export const POST = async (request: Request) => {
   // Connect to the database
   await connect();

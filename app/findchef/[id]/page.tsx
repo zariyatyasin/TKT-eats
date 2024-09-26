@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import KnowTheChef from "../_utils/know-the-chef";
-import { createOrder, GetSingleChef } from "../_utils/action";
+import { createOrder, GetSingleChef, sendemail } from "../_utils/action";
 import { useRouter } from "next/navigation";
 import Reviews from "../_utils/review";
 // MenuItem interface now includes ingredients
@@ -124,11 +124,44 @@ export default function Page({ searchParams }: { searchParams: any }) {
     };
 
     try {
+      const emailData = {
+        to: "tkteats@gmail.com",
+        subject: "New Booking Confirmed",
+        text: `You have a new booking from ${details.name}.`,
+        html: `
+          <h1>New Booking Confirmed</h1>
+          <p>You have a new booking from <strong>${details.name}</strong>.</p>
+          <p><strong>Booking Details:</strong></p>
+          <ul>
+            <li><strong>Name:</strong> ${details.name}</li>
+            <li><strong>Address:</strong> ${details.address}</li>
+            <li><strong>Phone:</strong> ${details.phone}</li>
+            <li><strong>Email:</strong> ${details.email}</li>
+            <li><strong>Date:</strong> ${details.date}</li>
+            <li><strong>Time:</strong> ${details.time}</li>
+            <li><strong>Notes:</strong> ${details.notes || "N/A"}</li>
+          </ul>
+          <p><strong>Selected Items:</strong></p>
+          <ul>
+            ${selectedItems
+              .map(
+                (item) => `
+              <li>${item.name} - ${item.quantity} x $${item.price}</li>
+            `
+              )
+              .join("")}
+          </ul>
+          <p><strong>Total Cost:</strong> $${totalCost}</p>
+        `,
+      };
+      await sendemail(emailData);
       const res = await createOrder(requestData);
 
       if (res.success === false) {
         throw new Error(res.message);
       }
+
+      // Notify the chef via email
 
       toast({
         title: "Booking Confirmed",
@@ -147,7 +180,6 @@ export default function Page({ searchParams }: { searchParams: any }) {
       setIsSubmitting(false); // End loading
     }
   };
-
   const fetchChef = async () => {
     try {
       if (searchParams?._id) {
