@@ -35,7 +35,7 @@ interface ReviewCount {
 
 
 export const GET = async (request: Request) => {
-  await connect(); // Ensure database connection
+  await connect();  
 
   try {
     const params = new URL(request.url);
