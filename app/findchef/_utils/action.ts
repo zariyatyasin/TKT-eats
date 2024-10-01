@@ -69,7 +69,7 @@ export const createOrder = async (data: any) => {
 export const sendemail = async (data: any) => {
   try {
 
-     console.log("helllo");
+     
      
     const response = await fetch(`${BASE_URL}/emails`, {
       method: "POST",

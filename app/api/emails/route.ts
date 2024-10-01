@@ -41,7 +41,7 @@ export const POST = async (request: NextRequest) => {
             text,
             html 
           });
-  console.log(newmel);
+ 
   
         return new NextResponse(JSON.stringify({ success: true }), { status: 201 });
       } catch (error: unknown) {

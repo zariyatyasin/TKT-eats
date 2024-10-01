@@ -10,6 +10,7 @@ import Whyus from "../why-us/why-us";
 import { GetAllChef } from "@/app/findchef/_utils/action";
 import ChefCard from "@/app/findchef/_utils/chef-card";
 import { Skeleton } from "@/components/ui/skeleton";
+import ImageGerally from "../home/image-garelly";
 
 interface Chef {
   _id: string;
@@ -55,7 +56,9 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
         <Partners />
         <Howitswork />
         <Whyus />
+        <ImageGerally />
         <Faq />
+
         <Contact />
       </main>
     </div>

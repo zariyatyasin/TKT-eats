@@ -1,140 +1,112 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from "@/components/ui/accordion";
-import Link from "next/link";
 
-export default function Faq() {
-  return (
-    // <section className="container mx-auto py-12 px-6">
-    //   <h2 className="text-2xl font-bold mb-4">
-    //     Frequently Asked Questions (FAQ)
-    //   </h2>
-    //   <p className="mb-6">
-    //     Explore Common Queries About FreshFarm&apos;s Fresh and Organic Vegetables
-    //   </p>
-    //   <div className="space-y-4">
-    //     <div className="border p-4 rounded">
-    //       <h3 className="text-lg font-bold">
-    //         What sets FreshFarm vegetables apart?
-    //       </h3>
-    //       <p>
-    //         FreshFarm vegetables stand out because they are locally grown in our
-    //         own gardens, follow organic farming practices, and are harvested at
-    //         the peak of freshness for the most vibrant flavor.
-    //       </p>
-    //     </div>
-    //     <div className="border p-4 rounded">
-    //       <h3 className="text-lg font-bold">
-    //         How do you maintain the freshness of your vegetables?
-    //       </h3>
-    //       <p>
-    //         We maintain the freshness of our vegetables by harvesting them at
-    //         the peak of ripeness and delivering them directly to your doorstep
-    //         within hours of picking.
-    //       </p>
-    //     </div>
-    //     <div className="border p-4 rounded">
-    //       <h3 className="text-lg font-bold">
-    //         How can I place an order for FreshFarm vegetables?
-    //       </h3>
-    //       <p>
-    //         Placing an order is easy! Simply navigate our website, choose your
-    //         selection, customize your order, and confirm your purchase.
-    //       </p>
-    //     </div>
-    //     <div className="border p-4 rounded">
-    //       <h3 className="text-lg font-bold">
-    //         Do you offer international shipping?
-    //       </h3>
-    //       <p>
-    //         Yes, we offer international shipping to 28 countries. Please check
-    //         our shipping policy for more details.
-    //       </p>
-    //     </div>
-    //   </div>
-    //   <div className="text-center mt-6">
-    //     <button className="bg-black text-white py-2 px-4 rounded">
-    //       Contact Customer Service
-    //     </button>
-    //   </div>
-    // </section>
-    <section id="faq" className="py-12 md:py-24 lg:py-32">
-      <div className=" max-w-7xl mx-auto px-4 md:px-6 grid gap-8  ">
-        <div className="space-y-4">
-          <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
-          <Accordion type="single" collapsible>
-            <AccordionItem value="question-1">
-              <AccordionTrigger>
-                <h3 className="text-xl font-bold text-left">
-                  How do I book a chef?
-                </h3>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className="text-muted-foreground">
-                  To book a chef, simply browse our selection of top-rated
-                  chefs, select your preferred chef and event details, and
-                  submit your request. Our team will handle the rest and confirm
-                  your booking.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="question-2">
-              <AccordionTrigger>
-                <h3 className="text-xl text-left font-bold">
-                  What equipment do I need to provide?
-                </h3>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className="text-muted-foreground">
-                  Generally, our professional and certified chef will be using
-                  your pots, pans, utensils, and cutlery. The chef will bring
-                  any missing items at no cost. After booking, your chef will
-                  reach out to confirm the exact equipment needed.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="question-3">
-              <AccordionTrigger>
-                <h3 className="text-xl font-bold text-left">
-                  What is the minimum spend?
-                </h3>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className="text-muted-foreground">
-                  Prices start as low as $15 during our promotion period.
-                  Minimum number of guests required.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="question-4">
-              <AccordionTrigger>
-                <h3 className="text-xl font-bold text-left">
-                  How to be a chef?
-                </h3>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className="text-muted-foreground">
-                  Click on the link{" "}
-                  <span>
-                    <Link
-                      href={
-                        "https://docs.google.com/forms/d/e/1FAIpQLScw52mz8Jg2fmbWsbs4omjcairhpwYNJdnbxYfOdOb6FBJUmg/viewform?usp=sf_link "
-                      }
-                      className=" text-blue-600"
-                    >
-                      here
-                    </Link>
-                  </span>
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </div>
-    </section>
-  );
+interface FAQ {
+  question: string;
+  answer: string;
 }
+
+interface FAQAccordionProps {
+  faqs: FAQ[];
+}
+
+const FAQAccordion: React.FC<FAQAccordionProps> = ({ faqs }) => {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      {faqs.map((faq, index) => (
+        <AccordionItem value={`item-${index}`} key={index}>
+          <AccordionTrigger className="text-left">
+            {faq.question}
+          </AccordionTrigger>
+          <AccordionContent>{faq.answer}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+};
+
+const Faq: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<"chef" | "user">("chef");
+
+  const chefFAQs: FAQ[] = [
+    {
+      question: "How to join and become a chef? ",
+      answer:
+        "To join as a chef, simply click on the Become a Chef button located at the top right corner of our website and submit your application. ",
+    },
+    {
+      question: "How does the profit works? ",
+      answer:
+        "Chefs are responsible for creating their own menus. The menu price should include the cost of ingredients. Your profit for each dish will be the menu price minus the cost of ingredients.",
+    },
+    {
+      question: "Ingredients ",
+      answer:
+        "All ingredients served should be fresh and either purchased recently or on the day of the service.",
+    },
+    {
+      question: "Menu creation",
+      answer:
+        "Menu creation is entirely at your discretion. You may choose to specialize in a specific cuisine or offer a mix of cuisines on your profile. Keep in mind the cost of ingredients when designing your menu. You can mix and match ingredients to save on costs. We aim to empower your menu creation, encouraging creativity while maintaining a casual and budget-friendly approach.",
+    },
+  ];
+
+  const userFAQs: FAQ[] = [
+    {
+      question: "How will the chef clean up once the meal is complete?",
+      answer:
+        "Once the chef has finished cooking and the meal has been served, they will thoroughly clean the kitchen, including all pots and pans used, restoring it to its original condition prior to their arrival. The service concludes once the chef has completed the cleanup, provided there are no additional plates. Any extra plates and leftover food will be the responsibility of the customer",
+    },
+    {
+      question: "How long does a typical private chef service last?",
+      answer:
+        "A typical private chef service lasts around 2-3 hours, during which the chef arrives before the scheduled time to start cooking, serves the food, and then cleans up the kitchen ",
+    },
+    {
+      question: "Allergies",
+      answer:
+        "If you have any allergies, kindly indicate them in the Note section. ",
+    },
+    {
+      question: "Payment",
+      answer:
+        "All payments shall be remitted upon confirmation through our platform. Currently, we accept payments in Cash (paid directly to the chef), Venmo, or Zelle. Please note that 100% of the tips will be allocated to the chef ",
+    },
+    {
+      question: " Cancellation Policy ",
+      answer:
+        "Cancellations made more than 24 hours prior to the scheduled service will be eligible for a full refund, while cancellations made less than 24 hours before the scheduled service will not be eligible for a refund. In the event that a chef cancels the service less than 24 hours before the scheduled time, a full refund will be issued.",
+    },
+  ];
+
+  return (
+    <div className=" max-w-6xl mx-auto w-full pb-8 px-4 md:px-0">
+      <Tabs
+        value={activeTab}
+        onValueChange={(value) => setActiveTab(value as "chef" | "user")}
+        className="w-full"
+      >
+        <TabsList className="grid w-full grid-cols-2 mb-4">
+          <TabsTrigger value="chef">Chef FAQs</TabsTrigger>
+          <TabsTrigger value="user">Customer FAQs</TabsTrigger>
+        </TabsList>
+        <TabsContent value="chef" className="w-full">
+          <FAQAccordion faqs={chefFAQs} />
+        </TabsContent>
+        <TabsContent value="user" className="w-full">
+          <FAQAccordion faqs={userFAQs} />
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+};
+
+export default Faq;
