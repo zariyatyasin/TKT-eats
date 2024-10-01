@@ -17,7 +17,7 @@ interface FAQ {
 interface FAQAccordionProps {
   faqs: FAQ[];
 }
-//
+
 const FAQAccordion: React.FC<FAQAccordionProps> = ({ faqs }) => {
   return (
     <Accordion type="single" collapsible className="w-full">
@@ -63,12 +63,12 @@ const Faq: React.FC = () => {
     {
       question: "How will the chef clean up once the meal is complete?",
       answer:
-        "Once the chef has finished cooking and the meal has been served, they will thoroughly clean the kitchen, including all pots and pans used, restoring it to its original condition prior to their arrival. The service concludes once the chef has completed the cleanup, provided there are no additional plates. Any extra plates and leftover food will be the responsibility of the customer",
+        "Once the chef has finished cooking and the meal has been served, they will thoroughly clean the kitchen, including all pots and pans used, restoring it to its original condition prior to their arrival. The service concludes once the chef has completed the cleanup, provided there are no additional plates. Any extra plates and leftover food will be the responsibility of the customer.",
     },
     {
       question: "How long does a typical private chef service last?",
       answer:
-        "A typical private chef service lasts around 2-3 hours, during which the chef arrives before the scheduled time to start cooking, serves the food, and then cleans up the kitchen ",
+        "A typical private chef service lasts around 2-3 hours, during which the chef arrives before the scheduled time to start cooking, serves the food, and then cleans up the kitchen. ",
     },
     {
       question: "Allergies",
@@ -78,7 +78,7 @@ const Faq: React.FC = () => {
     {
       question: "Payment",
       answer:
-        "All payments shall be remitted upon confirmation through our platform. Currently, we accept payments in Cash (paid directly to the chef), Venmo, or Zelle. Please note that 100% of the tips will be allocated to the chef ",
+        "All payments shall be remitted upon confirmation through our platform. Currently, we accept payments in Cash (paid directly to the chef), Venmo, or Zelle. Please note that 100% of the tips will be allocated to the chef. ",
     },
     {
       question: " Cancellation Policy ",
