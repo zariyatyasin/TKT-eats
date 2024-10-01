@@ -17,7 +17,7 @@ interface FAQ {
 interface FAQAccordionProps {
   faqs: FAQ[];
 }
-
+//
 const FAQAccordion: React.FC<FAQAccordionProps> = ({ faqs }) => {
   return (
     <Accordion type="single" collapsible className="w-full">
