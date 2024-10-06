@@ -88,15 +88,15 @@ const Faq: React.FC = () => {
   ];
 
   return (
-    <div className=" max-w-6xl mx-auto w-full pb-8 px-4 md:px-0">
+    <div id="faq" className=" max-w-6xl mx-auto w-full pb-8 px-4 md:px-0">
       <Tabs
         value={activeTab}
         onValueChange={(value) => setActiveTab(value as "chef" | "user")}
         className="w-full"
       >
         <TabsList className="grid w-full grid-cols-2 mb-4">
-          <TabsTrigger value="chef">Chef FAQs</TabsTrigger>
           <TabsTrigger value="user">Customer FAQs</TabsTrigger>
+          <TabsTrigger value="chef">Chef FAQs</TabsTrigger>
         </TabsList>
         <TabsContent value="chef" className="w-full">
           <FAQAccordion faqs={chefFAQs} />

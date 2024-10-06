@@ -70,13 +70,13 @@ export default function Component() {
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <Card className="border-none">
                     <CardContent className="p-0">
-                      <div className="relative aspect-video w-full">
+                      <div className="relative aspect-video h-48 md:h-72 border w-full">
                         <Image
                           src={src}
                           alt={`Image ${index + 1}`}
                           layout="fill"
                           objectFit="cover "
-                          className="rounded-lg"
+                          className="rounded-lg object-center h-full"
                         />
                       </div>
                     </CardContent>
