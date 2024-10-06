@@ -31,6 +31,7 @@ export default function Partners() {
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
           className="flex flex-wrap justify-center gap-8"
         >
+          {/* new */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <Card className="w-full max-w-sm">
               <CardContent className="p-6 space-y-4">
