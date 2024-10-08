@@ -12,9 +12,6 @@ export default async function Home() {
   return (
     <div>
       <HomeDemo1 result={result.data} />
-
-      {/* <LandingPage1 />
-      <SelectSection /> */}
     </div>
   );
 }
