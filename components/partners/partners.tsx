@@ -58,7 +58,10 @@ export default function Partners() {
             </Card>
             <Card className="w-full max-w-sm">
               <CardContent className="p-6 space-y-4">
-                <Link href="https://voyagedenver.com" className="block">
+                <Link
+                  href="https://voyagedenver.com/interview/community-highlights-meet-thekitchentable-of-thekitchentable"
+                  className="block"
+                >
                   <Image
                     src="https://res.cloudinary.com/ddrjnijut/image/upload/v1727365176/ngep287auj04ayeykfsf.png"
                     alt="VoyageDenver logo"
@@ -71,7 +74,7 @@ export default function Partners() {
                   Discover more about our journey and mission in this insightful
                   article written by VoyageDenver.Click{" "}
                   <Link
-                    href="https://voyagedenver.com"
+                    href="https://voyagedenver.com/interview/community-highlights-meet-thekitchentable-of-thekitchentable"
                     className="text-primary hover:underline"
                   >
                     here
