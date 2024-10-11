@@ -104,6 +104,7 @@ export function BookingDetails({
                 <Input id="email" type="email" {...field} />
               )}
             />
+
             {errors.email && (
               <span className="text-red-500 text-sm">
                 {errors.email.message}
