@@ -45,7 +45,7 @@ export default function ChefCard({
         <h3 className="text-xl font-bold">{name}</h3>
         <p className="text-muted-foreground">{cuisines.join(", ")}</p>
         <div className="flex items-center justify-between">
-          <Link href={"/findchef/" + name + "?_id=" + id}>
+          <Link href={"/findchef/" + "thekitchentable" + "?_id=" + id}>
             <Button size={"sm"} className=" text-xs gap-1">
               {" "}
               <ChefHat className=" h-4 w-4" />

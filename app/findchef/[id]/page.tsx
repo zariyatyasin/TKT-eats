@@ -8,6 +8,7 @@ import { BookingSummary } from "../_utils/booking-summary";
 import { BookingDetails } from "../_utils/booking-confirm";
 import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { usePathname } from "next/navigation";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import KnowTheChef from "../_utils/know-the-chef";
@@ -55,7 +56,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
   const [chefData, setChefData] = useState<any>(null);
-
+  const pathname = usePathname();
   const [menu, setMenu] = useState<MenuItem[]>([]);
   const [review, setReview] = useState<Review[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -182,6 +183,8 @@ export default function Page({ searchParams }: { searchParams: any }) {
   };
   const fetchChef = async () => {
     try {
+      console.log(searchParams);
+
       if (searchParams?._id) {
         const result = await GetSingleChef(searchParams?._id);
 
