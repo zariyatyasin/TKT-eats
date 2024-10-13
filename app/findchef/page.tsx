@@ -3,7 +3,6 @@ import ChefCard from "./_utils/chef-card";
 
 export default async function Page() {
   const result = await GetAllChef({ limit: "30" });
-  console.log("new here", result);
 
   if (result?.data?.length < 0) {
     return (

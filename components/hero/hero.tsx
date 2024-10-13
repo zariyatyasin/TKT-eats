@@ -42,10 +42,10 @@ export default function Hero() {
             <h1 className="text-3xl leading-relaxed font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
               DINE LUXURIOUSLY YOUR WAY
             </h1>
-            <p className="max-w-[600px] font-bold text-muted-foreground md:text-2xl">
-              <span className=" text-primary "> Affordable</span> private dining
-              experience in your kitchen
-            </p>
+            <h2 className="max-w-[600px] font-medium text-muted-foreground md:text-xl">
+              <span className=" text-primary ">Affordable</span> Private Chef –
+              A Better Alternative to Restaurants and Food Delivery
+            </h2>
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
             <Link
