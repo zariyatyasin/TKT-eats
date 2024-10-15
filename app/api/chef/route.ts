@@ -3,6 +3,7 @@
  
  
 import Chef from "@/model/chef";
+import ChefMenu from "@/model/chefmenu";
 import Review from "@/model/reviews";
 import connect from "@/utils/db";import { Types } from "mongoose";
 
@@ -35,7 +36,7 @@ interface ReviewCount {
 
 
 export const GET = async (request: Request) => {
-  await connect();  
+  await connect();
 
   try {
     const params = new URL(request.url);
@@ -44,29 +45,58 @@ export const GET = async (request: Request) => {
     const limitInt = parseInt(searchParams.get("limit") || "50");
     const pageInt = parseInt(searchParams.get("page") || "1");
     const searchQuery = searchParams.get("search") || "";
+    const locationQuery = searchParams.get("location") || "";
+    const cuisinesQuery = searchParams.get("cuisines") || "";
 
-    // Step 1: Get all chefs with pagination, sorting, and search functionality
+    const cuisinesArray = cuisinesQuery ? cuisinesQuery.split(",").map(cuisine => cuisine.trim()) : [];
+
+    const query: any = {};
+
+    if (searchQuery) {
+      query.$or = [
+        { name: { $regex: searchQuery, $options: "i" } },
+        { location: { $regex: searchQuery, $options: "i" } },
+        { cuisines: { $regex: searchQuery, $options: "i" } }
+      ];
+    }
+
+    if (locationQuery) {
+      query.location = { $regex: locationQuery, $options: "i" };
+    }
+
+    if (cuisinesArray.length > 0) {
+      query.cuisines = { $in: cuisinesArray.map(cuisine => new RegExp(cuisine, "i")) };
+    }
+
+    // Find chefs whose menus match the search query
+    const menuChefs = await ChefMenu.find({
+      name: { $regex: searchQuery, $options: "i" }
+    }).distinct("chef");
+
+   
+
+    if (menuChefs.length > 0) {
+      query.$or = query.$or || [];
+      query.$or.push({ _id: { $in: menuChefs } });
+    }
+
+    const totalChefs = await Chef.countDocuments(query);
+    const totalPages = Math.ceil(totalChefs / limitInt);
+
     const allChefs: Chef[] = await Chef.aggregate([
       {
         $addFields: {
-          // Assign null displayOrder to a high number so they go to the end of the list
           order: { $ifNull: ["$displayOrder", Number.MAX_SAFE_INTEGER] }
         }
       },
       {
-        $match: {
-          $or: [
-            { location: { $regex: searchQuery, $options: "i" } },
-            { "menus.name": { $regex: searchQuery, $options: "i" } }
-          ]
-        }
+        $match: query
       },
-      { $sort: { order: 1 } }, // Sort by the calculated `order` field
+      { $sort: { order: 1 } },
       { $skip: (pageInt - 1) * limitInt },
       { $limit: limitInt }
     ]);
 
-    // Step 2: Get the count of reviews for each chef
     const reviewCounts: ReviewCount[] = await Review.aggregate([
       {
         $group: {
@@ -76,7 +106,6 @@ export const GET = async (request: Request) => {
       }
     ]);
 
-    // Step 3: Map review counts to chefs
     const chefsWithReviewCounts = allChefs.map((chef) => {
       const chefReviews = reviewCounts.find(
         (review) => review._id.toString() === chef._id.toString()
@@ -87,12 +116,13 @@ export const GET = async (request: Request) => {
       };
     });
 
-    // Return the response with the chefs and their review counts
     return new NextResponse(
       JSON.stringify({
         data: chefsWithReviewCounts,
         currentPage: pageInt,
-        chefsPerPage: limitInt
+        chefsPerPage: limitInt,
+        totalChefs: totalChefs,
+        totalPages: totalPages
       }),
       { status: 200 }
     );
@@ -106,8 +136,6 @@ export const GET = async (request: Request) => {
     }
   }
 };
-
-
 
  
 export const POST = async (request: Request) => {

@@ -10,7 +10,7 @@ export const GetAllChef = async (query?: Record<string, string>) => {
 
     const result = await response.json();
 
-    console.log("reslet");
+ 
     
 
     return result;

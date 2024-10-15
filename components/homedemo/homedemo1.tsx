@@ -11,6 +11,8 @@ import { GetAllChef } from "@/app/findchef/_utils/action";
 import ChefCard from "@/app/findchef/_utils/chef-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import ImageGerally from "../home/image-garelly";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 interface Chef {
   _id: string;
@@ -50,6 +52,11 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
             ) : (
               <div>no data</div>
             )}
+          </div>
+          <div className="   flex   justify-center pt-8">
+            <Link href={"/findchef"} className=" text-center  ">
+              <Button size={"sm"}>View All</Button>
+            </Link>
           </div>
         </div>
 
