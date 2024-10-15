@@ -69,7 +69,7 @@ export default function Page({
         </section>
         <section className="py-12">
           <div className="container px-4 md:px-6">
-            <Filter />
+            {/* <Filter /> */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {Array.from({ length: 8 }).map((_, index) => (
                 <ChefCardSkeleton key={index} />
@@ -110,7 +110,7 @@ export default function Page({
 
       <section className="py-12">
         <div className="container px-4 md:px-6">
-          <Filter />
+          {/* <Filter /> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {result.data &&
               result.data.map((chef: any) => (
