@@ -46,9 +46,9 @@ export const GET = async (request: Request) => {
 
     const limitInt = parseInt(searchParams.get("limit") || "50");
     const pageInt = parseInt(searchParams.get("page") || "1");
-    const searchQuery = searchParams.get("search") || "";
-    const locationQuery = searchParams.get("location") || "";
-    const cuisinesQuery = searchParams.get("cuisines") || "";
+    const searchQuery = decodeURIComponent(searchParams.get("search") || "");
+    const locationQuery = decodeURIComponent(searchParams.get("location") || "");
+    const cuisinesQuery = decodeURIComponent(searchParams.get("cuisines") || "");
     
  
     
