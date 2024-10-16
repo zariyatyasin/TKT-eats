@@ -137,6 +137,7 @@ export default function Component() {
             type="submit"
             size="icon"
             className="absolute right-1 top-1 bg-[#B5D56A] hover:bg-[#9EBE5C]"
+            onClick={() => handleSearch}
           >
             <Search className="h-4 w-4" />
           </Button>

@@ -63,6 +63,7 @@ export const GET = async (request: Request) => {
     if (locationQuery) {
       query.location = { $regex: locationQuery, $options: "i" };
     }
+   
 
     if (cuisinesArray.length > 0) {
       query.cuisines = { $in: cuisinesArray.map(cuisine => new RegExp(cuisine, "i")) };
@@ -79,7 +80,7 @@ export const GET = async (request: Request) => {
       query.$or = query.$or || [];
       query.$or.push({ _id: { $in: menuChefs } });
     }
-
+    console.log("Query:", query);
     const totalChefs = await Chef.countDocuments(query);
     const totalPages = Math.ceil(totalChefs / limitInt);
 
