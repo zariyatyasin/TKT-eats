@@ -54,7 +54,15 @@ const categories = [
   { value: "fusion", label: "Fusion" },
 ];
 
-const locations = ["Los Angeles", "Chicago", "New York", "Miami"];
+const locations = [
+  "Florida",
+  "Texas",
+  "Connecticut",
+  "Colorado",
+  "Tennessee",
+  "Pennsylvania",
+  "Illinois",
+];
 
 export default function Component() {
   const router = useRouter();
@@ -194,7 +202,7 @@ export default function Component() {
               </Command>
             </PopoverContent>
           </Popover>
-          <Select value={location} onValueChange={setLocation}>
+          {/* <Select value={location} onValueChange={setLocation}>
             <SelectTrigger className="w-full h-12 md:w-[200px]">
               <SelectValue placeholder="Select location" />
             </SelectTrigger>
@@ -205,7 +213,7 @@ export default function Component() {
                 </SelectItem>
               ))}
             </SelectContent>
-          </Select>
+          </Select> */}
         </div>
         <div className="flex gap-4">
           <Button
@@ -288,7 +296,7 @@ export default function Component() {
                   )}
                 </div>
 
-                <Select value={location} onValueChange={setLocation}>
+                {/* <Select value={location} onValueChange={setLocation}>
                   <SelectTrigger className="w-full md:w-[200px]">
                     <SelectValue placeholder="Select location" />
                   </SelectTrigger>
@@ -299,7 +307,7 @@ export default function Component() {
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select>
+                </Select> */}
               </div>
             </SheetContent>
           </Sheet>
@@ -323,6 +331,15 @@ export default function Component() {
             />
           </span>
         ))}
+        {location && (
+          <span className="flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm">
+            {location}
+            <X
+              className="ml-2 h-4 w-4 cursor-pointer"
+              onClick={() => setLocation("")}
+            />
+          </span>
+        )}
       </div>
     </div>
   );
