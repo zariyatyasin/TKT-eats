@@ -5,7 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASEURL;
 export const GetAllChef = async (query?: Record<string, string>) => {
   try {
 
- 
+    console.log("i'm form midd",query);
     
     const response = await fetch(`${BASE_URL}/chef?${new URLSearchParams(query)}`, {
       cache: "no-store",
