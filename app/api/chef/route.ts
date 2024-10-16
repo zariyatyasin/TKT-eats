@@ -43,7 +43,9 @@ export const GET = async (request: Request) => {
     
     const params = new URL(request.url);
     const searchParams = new URLSearchParams(params.search);
-
+     console.log("this is",params.search);
+     console.log("this is seach",searchParams);
+     
     const limitInt = parseInt(searchParams.get("limit") || "50");
     const pageInt = parseInt(searchParams.get("page") || "1");
     const searchQuery = searchParams.get("search") || "";
