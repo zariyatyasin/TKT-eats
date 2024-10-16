@@ -46,10 +46,13 @@ export const GET = async (request: Request) => {
 
     const limitInt = parseInt(searchParams.get("limit") || "50");
     const pageInt = parseInt(searchParams.get("page") || "1");
-    const searchQuery = decodeURIComponent(searchParams.get("search") || "");
-    const locationQuery = decodeURIComponent(searchParams.get("location") || "");
-    const cuisinesQuery = decodeURIComponent(searchParams.get("cuisines") || "");
+    const searchQuery = searchParams.get("search") || "";
+    const locationQuery =  searchParams.get("location") || "" 
+    const cuisinesQuery = searchParams.get("cuisines") || "" 
     
+    console.log("Search Query: new", searchQuery);
+    console.log("Location Query: new", locationQuery);
+    console.log("Cuisines Query: new", cuisinesQuery);
  
     
     const cuisinesArray = cuisinesQuery ? cuisinesQuery.split(",").map(cuisine => cuisine.trim()) : [];
@@ -84,10 +87,7 @@ export const GET = async (request: Request) => {
       query.$or = query.$or || [];
       query.$or.push({ _id: { $in: menuChefs } });
     }
-    console.log("Search Query:", searchQuery);
-    console.log("Location Query:", locationQuery);
-    console.log("Cuisines Query:", cuisinesQuery);
-    console.log("Constructed Query:", query);
+   
     const totalChefs = await Chef.countDocuments(query);
     const totalPages = Math.ceil(totalChefs / limitInt);
 
