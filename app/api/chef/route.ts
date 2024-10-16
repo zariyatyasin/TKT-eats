@@ -39,6 +39,8 @@ export const GET = async (request: Request) => {
   await connect();
 
   try {
+   
+    
     const params = new URL(request.url);
     const searchParams = new URLSearchParams(params.search);
 
@@ -47,7 +49,9 @@ export const GET = async (request: Request) => {
     const searchQuery = searchParams.get("search") || "";
     const locationQuery = searchParams.get("location") || "";
     const cuisinesQuery = searchParams.get("cuisines") || "";
-
+    
+ 
+    
     const cuisinesArray = cuisinesQuery ? cuisinesQuery.split(",").map(cuisine => cuisine.trim()) : [];
 
     const query: any = {};
@@ -80,7 +84,10 @@ export const GET = async (request: Request) => {
       query.$or = query.$or || [];
       query.$or.push({ _id: { $in: menuChefs } });
     }
-    console.log("Query:", query);
+    console.log("Search Query:", searchQuery);
+    console.log("Location Query:", locationQuery);
+    console.log("Cuisines Query:", cuisinesQuery);
+    console.log("Constructed Query:", query);
     const totalChefs = await Chef.countDocuments(query);
     const totalPages = Math.ceil(totalChefs / limitInt);
 
