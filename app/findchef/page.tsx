@@ -40,7 +40,7 @@ export default function Page({
     async function fetchData() {
       setLoading(true);
       const data = await GetAllChef({
-        limit: "35",
+        limit: "16",
         page: searchParams.page || "1",
         search: searchParams.search || "",
         location: searchParams.location || "",
@@ -81,6 +81,8 @@ export default function Page({
       </div>
     );
   }
+
+  console.log(result);
 
   if (result?.data?.length < 0) {
     return (
@@ -126,7 +128,7 @@ export default function Page({
                 />
               ))}
           </div>
-          {/* <Pagination totalPages={totalPages} currentPage={currentPage} /> */}
+          <Pagination totalPages={totalPages} currentPage={currentPage} />
         </div>
       </section>
     </div>

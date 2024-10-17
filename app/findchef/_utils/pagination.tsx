@@ -17,6 +17,8 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
 
   useEffect(() => {
     const newParams = new URLSearchParams(window.location.search);
+
+    // Preserve existing query parameters
     Object.entries(filters).forEach(([key, value]) => {
       if (value) {
         if (Array.isArray(value)) {
@@ -26,12 +28,17 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
         }
       }
     });
+
+    // Set the current page
     newParams.set("page", current.toString());
-    router.push(`?${newParams.toString()}`, { scroll: false });
+
+    // Update the URL with the new query parameters
+    router.replace(`?${newParams.toString()}`, { scroll: false });
   }, [filters, current, router]);
 
   const handlePageClick = (page: number) => {
     setCurrent(page);
+    window.scrollTo(0, 0); // Scroll to the top of the page
   };
 
   const renderPageNumbers = () => {
@@ -67,9 +74,9 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center mt-6">
+    <div className="flex flex-col sm:flex-row justify-between items-center mt-6 py-12">
       <span className="text-sm text-gray-500 mb-2 sm:mb-0">
-        Showing 15 per page
+        Showing 16 per page
       </span>
       <div className="flex gap-2">
         {renderPageNumbers()}

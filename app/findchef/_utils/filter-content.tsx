@@ -2,7 +2,14 @@
 
 import * as React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Search, X, CheckCheck, ChevronDownIcon } from "lucide-react";
+import {
+  Search,
+  X,
+  CheckCheck,
+  ChevronDownIcon,
+  MapIcon,
+  MapPin,
+} from "lucide-react";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/button";
@@ -55,15 +62,14 @@ const categories = [
 ];
 
 const locations = [
-  "Florida",
-  "Texas",
-  "Connecticut",
-  "Colorado",
-  "Tennessee",
-  "Pennsylvania",
-  "Illinois",
+  { value: "FL", label: "Florida" },
+  { value: "TX", label: "Texas" },
+  { value: "CT", label: "Connecticut" },
+  { value: "CO", label: "Colorado" },
+  { value: "TN", label: "Tennessee" },
+  { value: "PA", label: "Pennsylvania" },
+  { value: "IL", label: "Illinois" },
 ];
-
 export default function Component() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -89,7 +95,9 @@ export default function Component() {
     if (selectedCategories.length)
       params.set("categories", selectedCategories.join(","));
     if (location) params.set("location", location);
-    router.push(`?${params.toString()}`, { scroll: false });
+
+    const currentPath = window.location.pathname; // Get the current pathname
+    router.push(`${currentPath}?${params.toString()}`, { scroll: false });
   }, [searchTerm, selectedCategories, location, router]);
 
   React.useEffect(() => {
@@ -136,8 +144,8 @@ export default function Component() {
         <div className="relative">
           <Input
             type="text"
-            placeholder="Search food"
-            className="w-ful md:w-72 pr-10"
+            placeholder="Search for Food, Location, Cuisine, or Chef Name"
+            className="w-ful md:w-96 pr-10 placeholder:text-xs"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -162,7 +170,7 @@ export default function Component() {
               >
                 {selectedCategories.length > 0
                   ? `${selectedCategories.length} selected`
-                  : "Select categories"}
+                  : "Select Cuisine"}
                 <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
@@ -202,18 +210,18 @@ export default function Component() {
               </Command>
             </PopoverContent>
           </Popover>
-          {/* <Select value={location} onValueChange={setLocation}>
+          <Select value={location} onValueChange={setLocation}>
             <SelectTrigger className="w-full h-12 md:w-[200px]">
-              <SelectValue placeholder="Select location" />
+              <SelectValue placeholder="Select Location" />
             </SelectTrigger>
             <SelectContent>
               {locations.map((loc) => (
-                <SelectItem key={loc} value={loc}>
-                  {loc}
+                <SelectItem key={loc.value} value={loc.value}>
+                  {loc.label}
                 </SelectItem>
               ))}
             </SelectContent>
-          </Select> */}
+          </Select>
         </div>
         <div className="flex gap-4">
           <Button
@@ -248,7 +256,7 @@ export default function Component() {
                     className="flex items-center justify-between cursor-pointer border rounded px-3 py-2"
                     onClick={() => setIsOpen((prev) => !prev)}
                   >
-                    <span>Select categories...</span>
+                    <span>Select Cuisine...</span>
                     <ChevronDownIcon
                       className={`h-4 w-4 transition-transform ${
                         isOpen ? "rotate-180" : ""
@@ -296,18 +304,18 @@ export default function Component() {
                   )}
                 </div>
 
-                {/* <Select value={location} onValueChange={setLocation}>
-                  <SelectTrigger className="w-full md:w-[200px]">
-                    <SelectValue placeholder="Select location" />
+                <Select value={location} onValueChange={setLocation}>
+                  <SelectTrigger className="w-full h-12 md:w-[200px]">
+                    <SelectValue placeholder="Select Location" />
                   </SelectTrigger>
                   <SelectContent>
                     {locations.map((loc) => (
-                      <SelectItem key={loc} value={loc}>
-                        {loc}
+                      <SelectItem key={loc.value} value={loc.value}>
+                        {loc.label}
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select> */}
+                </Select>
               </div>
             </SheetContent>
           </Sheet>
@@ -332,8 +340,11 @@ export default function Component() {
           </span>
         ))}
         {location && (
-          <span className="flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm">
-            {location}
+          <span className="flex items-center gap-1 bg-gray-200 rounded-full px-3 py-1 text-sm">
+            <span>
+              <MapPin className=" h-4 w-4" />
+            </span>{" "}
+            {locations.find((loc) => loc.value === location)?.label}
             <X
               className="ml-2 h-4 w-4 cursor-pointer"
               onClick={() => setLocation("")}
