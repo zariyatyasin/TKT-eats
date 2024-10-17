@@ -116,7 +116,6 @@ export default function Component() {
     router.push("", { scroll: false });
   };
 
-  // Close dropdown when clicking outside
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
