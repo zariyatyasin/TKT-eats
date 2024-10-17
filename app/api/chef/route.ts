@@ -67,9 +67,8 @@ export const GET = async (request: Request) => {
     }
 
     if (locationQuery) {
-      query.location = { $regex: locationQuery, $options: "i" };
+      query.location = { $regex: `\\b${locationQuery}\\b`, $options: "i" };
     }
-   
 
     if (cuisinesArray.length > 0) {
       query.cuisines = { $in: cuisinesArray.map(cuisine => new RegExp(cuisine, "i")) };
