@@ -255,7 +255,11 @@ export default function Component() {
                     className="flex items-center justify-between cursor-pointer border rounded px-3 py-2"
                     onClick={() => setIsOpen((prev) => !prev)}
                   >
-                    <span>Select Cuisine...</span>
+                    <span>
+                      {selectedCategories.length > 0
+                        ? `${selectedCategories.length} selected`
+                        : "Select Cuisine"}
+                    </span>
                     <ChevronDownIcon
                       className={`h-4 w-4 transition-transform ${
                         isOpen ? "rotate-180" : ""
@@ -267,11 +271,11 @@ export default function Component() {
                     <div className="absolute mt-2 bg-white border rounded shadow-lg z-10 w-full">
                       <Command>
                         <CommandInput
-                          placeholder="Search categories..."
+                          placeholder="Search Cuisine..."
                           className="h-9"
                         />
                         <CommandList>
-                          <CommandEmpty>No category found.</CommandEmpty>
+                          <CommandEmpty>No uisine found.</CommandEmpty>
                           <CommandGroup>
                             {categories.map((category) => (
                               <CommandItem
