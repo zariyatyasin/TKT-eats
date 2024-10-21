@@ -1,4 +1,5 @@
-import { model,models, Schema,Types } from 'mongoose';
+import { model, models, Schema, Types } from 'mongoose';
+
 // Interface for Item
 interface IItem {
   id: Types.ObjectId;
@@ -23,6 +24,7 @@ interface IOrder extends Document {
   totalCost: number;
   chefName: string;
   chefId: Types.ObjectId;
+  promocodeId?: Types.ObjectId; // Optional field for promocode ID
 }
 
 // Item Schema
@@ -83,7 +85,6 @@ const orderSchema = new Schema<IOrder>({
   },
   notes: {
     type: String,
- 
   },
   time: {
     type: String,
@@ -104,6 +105,11 @@ const orderSchema = new Schema<IOrder>({
   chefId: {
     type: Schema.Types.ObjectId,
     required: true
+  },
+  promocodeId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Promocode', // Reference to the Promocode model
+    required: false // Optional field
   }
 }, {
   timestamps: true,

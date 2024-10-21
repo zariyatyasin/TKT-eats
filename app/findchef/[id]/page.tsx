@@ -15,6 +15,7 @@ import KnowTheChef from "../_utils/know-the-chef";
 import { createOrder, GetSingleChef, sendemail } from "../_utils/action";
 import { useRouter } from "next/navigation";
 import Reviews from "../_utils/review";
+import CustomMenuForm from "../_utils/custom-menu-submission";
 // MenuItem interface now includes ingredients
 interface MenuItem {
   id: string; // Ensure 'id' is of type 'string'
@@ -49,6 +50,45 @@ interface Review {
   comment: string;
 }
 
+// export async function generateMetadata({
+//   searchParams,
+// }: {
+//   searchParams: any;
+// }) {
+//   const chefId = searchParams?._id;
+//   const location = searchParams?.location || "your area"; // Default to "your area" if no location is provided
+
+//   if (!chefId) return {};
+
+//   try {
+//     const result = await GetSingleChef(chefId);
+//     const chef = result.chef;
+//     console.log("this isloai", chef);
+
+//     return {
+//       title: `${chef.name} - The Kitchen Table in ${location}`,
+//       description: `${chef.description} - Available in ${location}`,
+//       openGraph: {
+//         title: `${chef.name} - The Kitchen Table in ${location}`,
+//         description: `${chef.description} - Available in ${location}`,
+//         images: [
+//           {
+//             url: chef.profileImage || chef.images[0]?.url,
+//             width: 800,
+//             height: 600,
+//             alt: `Image of Chef ${chef.name}`,
+//           },
+//         ],
+//         type: "website",
+//         locale: "en_US",
+//         site_name: "The Kitchen Table",
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Failed to generate metadata:", error);
+//     return {};
+//   }
+// }
 export default function Page({ searchParams }: { searchParams: any }) {
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [error, setError] = useState<string | null>(null);
@@ -61,6 +101,8 @@ export default function Page({ searchParams }: { searchParams: any }) {
   const [review, setReview] = useState<Review[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState("menu"); // Add state to track active tab
+
   const { toast } = useToast();
 
   const handleImageClick = (image: string) => {
@@ -119,7 +161,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
       time: details.time,
       items: selectedItems,
       notes: details.notes,
-      totalCost,
+
       chefName: chefData.name,
       chefId: chefData._id,
     };
@@ -181,6 +223,9 @@ export default function Page({ searchParams }: { searchParams: any }) {
       setIsSubmitting(false); // End loading
     }
   };
+
+  console.log(selectedItems);
+
   const fetchChef = async () => {
     try {
       console.log(searchParams);
@@ -230,10 +275,15 @@ export default function Page({ searchParams }: { searchParams: any }) {
             )}
           </div>
           <div className="grid gap-4">
-            <Tabs defaultValue="menu" className=" mt-5 ">
+            <Tabs
+              defaultValue="menu"
+              className=" mt-5 "
+              onValueChange={(value) => setActiveTab(value)} // Update activeTab on tab change
+            >
               <TabsList>
                 <TabsTrigger value="menu">Menu</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
+                {/* <TabsTrigger value="custom">Custom Menu</TabsTrigger> */}
               </TabsList>
               <TabsContent value="menu">
                 <h2 className="text-xl py-6 font-bold">Menu</h2>
@@ -291,6 +341,9 @@ export default function Page({ searchParams }: { searchParams: any }) {
                   <Reviews review={review} />
                 )}
               </TabsContent>
+              <TabsContent value="custom">
+                <CustomMenuForm />
+              </TabsContent>
             </Tabs>
 
             {/* Image Gallery */}
@@ -308,18 +361,20 @@ export default function Page({ searchParams }: { searchParams: any }) {
             )}
           </div>
         </div>
-        <div className="col-span-1  lg:sticky top-20  md:col-span-5 flex flex-col gap-6">
-          <BookingSummary
-            selectedItems={selectedItems}
-            totalCost={totalCost}
-            // @ts-ignore
-            handleRemoveFromBooking={handleRemoveFromBooking}
-          />
-          <BookingDetails
-            onSubmit={handleBookingSubmit}
-            isSubmitting={isSubmitting}
-          />
-        </div>
+        {activeTab !== "custom" && (
+          <div className="col-span-1 lg:sticky top-20 md:col-span-5 flex flex-col gap-6">
+            <BookingSummary
+              selectedItems={selectedItems}
+              totalCost={totalCost}
+              //@ts-ignore
+              handleRemoveFromBooking={handleRemoveFromBooking}
+            />
+            <BookingDetails
+              onSubmit={handleBookingSubmit}
+              isSubmitting={isSubmitting}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
