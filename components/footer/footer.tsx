@@ -49,6 +49,20 @@ export default function Footer() {
           >
             Terms & Conditions
           </Link>
+          <Link
+            href="/guideline"
+            className="text-base font-medium hover:underline"
+            prefetch={false}
+          >
+            Guideline
+          </Link>
+          <Link
+            href="/policy"
+            className="text-base font-medium hover:underline"
+            prefetch={false}
+          >
+            Policy
+          </Link>
         </nav>
       </div>
     </footer>

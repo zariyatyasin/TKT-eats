@@ -42,6 +42,7 @@ interface BookingDetails {
   date: string;
   time: string;
   notes?: string;
+  promocode?: string;
 }
 interface Review {
   _id: string;
@@ -161,7 +162,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
       time: details.time,
       items: selectedItems,
       notes: details.notes,
-
+      promocode: details.promocode,
       chefName: chefData.name,
       chefId: chefData._id,
     };

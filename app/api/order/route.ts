@@ -24,10 +24,10 @@ export const POST = async (request: Request) => {
         }
       }
       console.log("this is from backend", totalCost);
-     
+      const codeLowerCase = body.promocode.toLowerCase();
       // Apply promocode discount if applicable
       if (body.promocode) {
-        const promocode = await Promocode.findOne({ code: body.promocode, isActive: true });
+        const promocode = await Promocode.findOne({ code: codeLowerCase, isActive: true });
         if (!promocode) {
           return NextResponse.json(
             { message: "Promocode not found or not active" },

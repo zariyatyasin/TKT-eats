@@ -16,6 +16,7 @@ interface BookingDetailsForm {
   date: string;
   time: string;
   notes?: string;
+  promocode?: string;
 }
 
 interface BookingDetailsProps {
@@ -38,7 +39,7 @@ export function BookingDetails({
   };
 
   return (
-    <Card className=" lg:sticky top-20">
+    <Card className="   top-20">
       <CardHeader>
         <CardTitle>Booking Details</CardTitle>
       </CardHeader>
@@ -157,6 +158,14 @@ export function BookingDetails({
                   placeholder="Add any special requests or notes here..."
                 />
               )}
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="promocode">Promo code</Label>
+            <Controller
+              name="promocode"
+              control={control}
+              render={({ field }) => <Input id="promocode" {...field} />}
             />
           </div>
           <div className=" z-50  p-2 flex items-center  md:hidden   fixed bottom-0 left-0 w-full bg-white   justify-between  l   border-y-2  border-gray-200 border-2">

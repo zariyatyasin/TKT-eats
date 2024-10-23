@@ -34,7 +34,6 @@ export default function Page({
 }) {
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  console.log("I'M FROM FRON TEND", searchParams.categories);
 
   useEffect(() => {
     async function fetchData() {
@@ -82,9 +81,7 @@ export default function Page({
     );
   }
 
-  console.log(result);
-
-  if (result?.data?.length < 0) {
+  if (result?.data?.length === 0) {
     return (
       <div className="text-center text-xl text-red-500 mt-10">
         No Data Found!
