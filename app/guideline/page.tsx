@@ -6,6 +6,9 @@ export default function Page() {
       <h1 className="text-3xl font-bold text-center">
         Welcome to TheKitchenTable!
       </h1>
+      <h4 className="text-3xl font-bold mb-4">
+        Chef Guide for TheKitchenTable
+      </h4>
       <p>
         We are excited to have you on board. These detailed guidelines will help
         you deliver excellent services and ensure that every client has a

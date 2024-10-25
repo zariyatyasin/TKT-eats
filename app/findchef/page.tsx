@@ -35,6 +35,9 @@ export default function Page({
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  console.log("im qury", searchParams.search);
+  console.log("I'M FROM FRON TEND", searchParams.categories);
+
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
