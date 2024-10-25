@@ -84,14 +84,6 @@ export default function Page({
     );
   }
 
-  if (result?.data?.length === 0) {
-    return (
-      <div className="text-center text-xl text-red-500 mt-10">
-        No Data Found!
-      </div>
-    );
-  }
-
   const totalPages = result?.totalPages;
   const currentPage = result?.currentPage;
 
@@ -115,7 +107,7 @@ export default function Page({
         <div className="container px-4 md:px-6">
           <Filter />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {result.data &&
+            {result.data && result?.data?.length !== 0 ? (
               result.data.map((chef: any) => (
                 <ChefCard
                   location={chef.location}
@@ -126,7 +118,12 @@ export default function Page({
                   id={chef._id}
                   cuisines={chef.cuisines}
                 />
-              ))}
+              ))
+            ) : (
+              <div className="text-center w-full py-24 text-xl text-gray-500 mt-10">
+                No Chef Found!
+              </div>
+            )}
           </div>
           <Pagination totalPages={totalPages} currentPage={currentPage} />
         </div>
