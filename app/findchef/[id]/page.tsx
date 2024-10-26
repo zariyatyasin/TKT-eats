@@ -343,10 +343,14 @@ export default function Page({ searchParams }: { searchParams: any }) {
                 )}
               </TabsContent>
               <TabsContent value="custom">
-                <CustomMenuForm
-                  chefName={chefData.name}
-                  chefId={chefData._id}
-                />
+                {chefData ? (
+                  <CustomMenuForm
+                    chefName={chefData?.name}
+                    chefId={chefData?._id}
+                  />
+                ) : (
+                  <div>Loading...</div> // Or any other placeholder/loading indicator
+                )}
               </TabsContent>
             </Tabs>
 
