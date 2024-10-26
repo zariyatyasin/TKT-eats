@@ -275,13 +275,13 @@ export default function Page({ searchParams }: { searchParams: any }) {
               <ChefProfile chef={chefData} />
             )}
           </div>
-          <div className="grid gap-4">
+          <div className=" ">
             <Tabs
               defaultValue="menu"
-              className=" mt-5 "
+              className=" mt-5 w-full "
               onValueChange={(value) => setActiveTab(value)} // Update activeTab on tab change
             >
-              <TabsList>
+              <TabsList className="w-full flex justify-start overflow-x-auto">
                 <TabsTrigger value="menu">Menu</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
                 <TabsTrigger value="custom">Custom Menu</TabsTrigger>

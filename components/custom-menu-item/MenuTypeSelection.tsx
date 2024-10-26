@@ -17,38 +17,44 @@ export function MenuTypeSelection({
 }: MenuTypeSelectionProps) {
   return (
     <RadioGroup
-      className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6"
+      className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6"
       value={selectedType}
       onValueChange={(value: MenuType) => setSelectedType(value)}
     >
       <Label className="cursor-pointer" htmlFor="dietary">
         <Card className="flex flex-col h-full">
-          <CardContent className="flex flex-col items-center justify-center p-6 flex-grow">
-            <LeafIcon className="h-12 w-12 mb-2 text-green-500" />
+          <CardContent className="flex flex-col items-center justify-center flex-grow">
+            <LeafIcon className=" h-6 w-6 md:h-12 md:w-12 mb-2 text-green-500" />
             <RadioGroupItem value="dietary" id="dietary" className="sr-only" />
-            <span className="font-medium">Special Dietary Requests</span>
+            <span className="font-medium text-xs md:text-base">
+              Special Dietary Requests
+            </span>
           </CardContent>
         </Card>
       </Label>
       <Label className="cursor-pointer" htmlFor="mealprep">
         <Card className="flex flex-col h-full">
-          <CardContent className="flex flex-col items-center justify-center p-6 flex-grow">
-            <ChefHatIcon className="h-12 w-12 mb-2 text-blue-500" />
+          <CardContent className="flex flex-col items-center justify-center   flex-grow">
+            <ChefHatIcon className="h-6 w-6 md:h-12 md:w-12 mb-2 text-blue-500" />
             <RadioGroupItem
               value="mealprep"
               id="mealprep"
               className="sr-only"
             />
-            <span className="font-medium">Weekly Meal Prep</span>
+            <span className="font-medium text-xs md:text-base">
+              Weekly Meal Prep
+            </span>
           </CardContent>
         </Card>
       </Label>
       <Label className="cursor-pointer" htmlFor="custom">
         <Card className="flex flex-col h-full">
           <CardContent className="flex flex-col items-center justify-center p-6 flex-grow">
-            <ScrollIcon className="h-12 w-12 mb-2 text-purple-500" />
+            <ScrollIcon className="h-6 w-6 md:h-12 md:w-12 mb-2 text-purple-500" />
             <RadioGroupItem value="custom" id="custom" className="sr-only" />
-            <span className="font-medium">Custom Menu Creation</span>
+            <span className="font-medium text-xs md:text-base">
+              Custom Menu Creation
+            </span>
           </CardContent>
         </Card>
       </Label>
