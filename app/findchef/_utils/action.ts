@@ -69,6 +69,33 @@ export const createOrder = async (data: any) => {
     };
   }
 };
+export const customMenu = async (data: any) => {
+  try {
+    const response = await fetch(`${BASE_URL}/cumstommenu`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+  
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to create order");
+    }
+
+    return result;
+  } catch (error: any) {
+    console.error("Error in createOrder:", error.message);
+
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
+};
 export const sendemail = async (data: any) => {
   try {
 

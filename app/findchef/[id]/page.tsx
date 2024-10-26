@@ -284,7 +284,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
               <TabsList>
                 <TabsTrigger value="menu">Menu</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
-                {/* <TabsTrigger value="custom">Custom Menu</TabsTrigger> */}
+                <TabsTrigger value="custom">Custom Menu</TabsTrigger>
               </TabsList>
               <TabsContent value="menu">
                 <h2 className="text-xl py-6 font-bold">Menu</h2>
@@ -343,7 +343,10 @@ export default function Page({ searchParams }: { searchParams: any }) {
                 )}
               </TabsContent>
               <TabsContent value="custom">
-                <CustomMenuForm />
+                <CustomMenuForm
+                  chefName={chefData.name}
+                  chefId={chefData._id}
+                />
               </TabsContent>
             </Tabs>
 
