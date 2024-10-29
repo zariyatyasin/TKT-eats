@@ -110,7 +110,8 @@ export const sendemail = async (data: any) => {
     });
 
     const result = await response.json();
-
+    console.log(result);
+    
   
     if (!response.ok) {
       throw new Error(result.message || "Failed to create order");

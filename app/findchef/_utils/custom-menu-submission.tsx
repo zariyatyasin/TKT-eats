@@ -7,6 +7,7 @@ import { DietaryRequestForm } from "@/components/custom-menu-item/DietaryRequest
 import { MealPrepForm } from "@/components/custom-menu-item/MealPrepForm";
 import { CustomMenuForm } from "@/components/custom-menu-item/CustomMenuForm";
 import { customMenu, sendemail } from "@/app/findchef/_utils/action"; // Import the customMenu function
+import { Skeleton } from "@/components/ui/skeleton"; // Import the Skeleton component
 
 type MenuType = "dietary" | "mealprep" | "custom" | "";
 
@@ -22,6 +23,8 @@ export default function CustomMenuPage({
   const { toast } = useToast();
 
   const handleSubmit = async (data: any) => {
+    console.log("this is data", data);
+
     setIsLoading(true);
     data.chefId = chefId;
     data.chefName = chefName;
@@ -38,9 +41,11 @@ export default function CustomMenuPage({
           <li><strong>Name:</strong> ${data.name}</li>
           <li><strong>Address:</strong> ${data.address}</li>
           <li><strong>Phone:</strong> ${data.phone}</li>
-          <li><strong>Email:</strong> ${data.email}</li>
-          <li><strong>Request Type:</strong> ${data.requestType}</li>
-          <li><strong>Meal Type:</strong> ${data.mealType.join(", ")}</li>
+          <li><strong>Email:</strong> ${data.email || "N/A"}</li>
+          <li><strong>Request Type:</strong> ${data.requestType || "N/A"}</li>
+          <li><strong>Meal Type:</strong> ${
+            Array.isArray(data.mealType) ? data.mealType.join(", ") : "N/A"
+          }</li>
           <li><strong>Booking Date:</strong> ${data.bookingDate}</li>
           <li><strong>Booking Time:</strong> ${data.bookingTime}</li>
           <li><strong>Additional Notes:</strong> ${
@@ -114,7 +119,14 @@ export default function CustomMenuPage({
       />
 
       {isLoading ? (
-        <div>Loading...</div> // Show loading indicator
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-1/2" />
+          <Skeleton className="h-8 w-full" />
+          <Skeleton className="h-8 w-full" />
+          <Skeleton className="h-8 w-full" />
+          <Skeleton className="h-8 w-full" />
+          <Skeleton className="h-8 w-1/3" />
+        </div>
       ) : (
         <>
           {selectedType === "dietary" && (

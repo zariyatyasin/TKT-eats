@@ -69,6 +69,7 @@ const locations = [
   { value: "TN", label: "Tennessee" },
   { value: "PA", label: "Pennsylvania" },
   { value: "IL", label: "Illinois" },
+  { value: "HI", label: "Hawaii" },
 ];
 export default function Component() {
   const router = useRouter();
