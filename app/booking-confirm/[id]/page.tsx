@@ -1,4 +1,5 @@
 import { GetorderDetails } from "@/app/findchef/_utils/action";
+import GenerateInvoiceButton from "@/app/findchef/_utils/generateInvoiceButton";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 import Link from "next/link";
@@ -12,6 +13,7 @@ export default async function Page({ params }: { params: any }) {
       </div>
     );
   }
+  console.log("oreder details", result);
 
   return (
     <div className="w-full min-h-screen text-gray-950 flex flex-col  py-16 items-center justify-center">
@@ -20,6 +22,7 @@ export default async function Page({ params }: { params: any }) {
           <Link href="/" className="w-full  flex items-center gap-2">
             <Home className="h-4 w-4" /> <div className="text-sm">Home</div>
           </Link>
+          <GenerateInvoiceButton orderData={result.data} />
           <div className="text-gray-950 text-4xl font-bold">
             Booking Confirmed
           </div>

@@ -198,10 +198,6 @@ export function MealPrepForm({ onSubmit }: { onSubmit: (data: any) => void }) {
             control={control}
             rules={{
               required: "Please enter your phone number",
-              pattern: {
-                value: /^[0-9]{10}$/,
-                message: "Please enter a valid phone number",
-              },
             }}
             render={({ field }) => <Input {...field} type="tel" />}
           />

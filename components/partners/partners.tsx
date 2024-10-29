@@ -32,7 +32,7 @@ export default function Partners() {
           className="flex flex-wrap justify-center gap-8"
         >
           {/* new */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             <Card className="w-full max-w-sm">
               <CardContent className="p-6 space-y-4">
                 <Link href="https://entrepreneurship.wsu.edu" className="block">

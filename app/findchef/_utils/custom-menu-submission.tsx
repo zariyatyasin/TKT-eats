@@ -83,7 +83,6 @@ export default function CustomMenuPage({
       await sendemail(emailData);
 
       const result = await customMenu(data);
-      console.log("this is result", result);
 
       if (result.success) {
         toast({

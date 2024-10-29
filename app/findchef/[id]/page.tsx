@@ -278,10 +278,10 @@ export default function Page({ searchParams }: { searchParams: any }) {
           <div className=" ">
             <Tabs
               defaultValue="menu"
-              className=" mt-5  w-  "
+              className=" mt-5   "
               onValueChange={(value) => setActiveTab(value)} // Update activeTab on tab change
             >
-              <TabsList className=" flex justify-start overflow-x-auto">
+              <TabsList className=" flex justify-start overflow-x-auto max-w-[440px] ">
                 <TabsTrigger value="menu">Menu</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
                 <TabsTrigger value="custom">Custom Menu</TabsTrigger>
