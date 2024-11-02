@@ -85,12 +85,12 @@ export function BookingSummary({
             {discountInfo && discountInfo.value ? (
               <>
                 <span className="line-through text-sm text-gray-600">
-                  ${originalTotalCost.toFixed(1)}
+                  ${originalTotalCost.toFixed(2)}
                 </span>{" "}
-                <span>${discountedTotalCost.toFixed(1)}</span>
+                <span>${discountedTotalCost.toFixed(2)}</span>
               </>
             ) : (
-              <span>${originalTotalCost.toFixed(1)}</span>
+              <span>${originalTotalCost.toFixed(2)}</span>
             )}
           </span>
         </div>

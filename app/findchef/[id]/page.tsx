@@ -155,6 +155,15 @@ export default function Page({ searchParams }: { searchParams: any }) {
             <li><strong>Date:</strong> ${details.date}</li>
             <li><strong>Time:</strong> ${details.time}</li>
             <li><strong>Notes:</strong> ${details.notes || "N/A"}</li>
+            <li><strong>originalTotalCost:</strong> ${
+              originalTotalCost || "N/A"
+            }</li>
+            <li><strong>The discount price:</strong> ${
+              discountedTotalCost || "N/A"
+            }</li>
+            <li><strong>Marvin need to pay:</strong> ${
+              originalTotalCost - discountedTotalCost || "N/A"
+            }</li>
           </ul>
           <p><strong>Selected Items:</strong></p>
           <ul>
