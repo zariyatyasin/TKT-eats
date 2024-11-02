@@ -17,22 +17,71 @@ export default function Component() {
   const [count, setCount] = useState(0);
 
   const images = [
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1724638461/joe%202:%20joe%20cooking%20in%20kitchen.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1724638464/joe%201:%20Salmon%2C%20butter%20chicken%2C%20rice%20on%20cooking%20stove.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1724566437/rj7qnra4sqza79yonroj.png",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1726174699/Timothy%20Loaya%20-%20Nashville%2C%20TN/d7nsse3tbuo1xhwwxqn2.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1727298566/chef%20Jeamesha%20Stapleton%20-%20Bethlehem%2C%20Pennsylvania/cf5qwjxpdbdtqmwl7hq3.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/oen84na2gepifdhvyqu5.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/q88wyuf7ew18gyeml4fn.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1727214534/Cory%20Rapp%20-%20Plant%20City%2C%20FL/mfuaqb1ogunmgay5ckui.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/mr78z4rua952wk0dmrgz.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1726527240/Semin%20Vasquez/Supreme%20Dim%20Sum.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1726527240/Semin%20Vasquez/vegetable%20dim%20sum.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1726527240/Semin%20Vasquez/shumai.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1726527231/Semin%20Vasquez/GF%20dim%20sum.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1726527231/Semin%20Vasquez/har%20gao.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1725853368/Chef%20Ayo/d8peuexvhut4ulenrxml.jpg",
-    "https://res.cloudinary.com/deema2xo0/image/upload/v1724638460/pic%20of%20joe%20in%20kitchen.jpg",
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1724638461/joe%202:%20joe%20cooking%20in%20kitchen.jpg",
+      name: "Joe cooking in kitchen",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726174699/Timothy%20Loaya%20-%20Nashville%2C%20TN/d7nsse3tbuo1xhwwxqn2.jpg",
+      name: "Timothy Loaya - Nashville, TN",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/oen84na2gepifdhvyqu5.jpg",
+      name: "Cory Rapp - Plant City, FL",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214534/Cory%20Rapp%20-%20Plant%20City%2C%20FL/mfuaqb1ogunmgay5ckui.jpg",
+      name: "Cory Rapp - Plant City, FL",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/mr78z4rua952wk0dmrgz.jpg",
+      name: "Cory Rapp - Plant City, FL",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726527231/Semin%20Vasquez/har%20gao.jpg",
+      name: "Har Gao",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1724638460/pic%20of%20joe%20in%20kitchen.jpg",
+      name: "Joe in kitchen",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730265061/Home%20landing%20page/mxmmkwgjp6mygorojedo.jpg",
+      name: "Alexia cooking, 4 pots",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264849/Home%20landing%20page/hx6yshkipy6zmyu0xkib.jpg",
+      name: "Joe salmon",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264848/Home%20landing%20page/fxyyuuogwhi8hnwtw5z4.jpg",
+      name: "Chef tim cutting avocado",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264848/Home%20landing%20page/bczoij2lwyvhrxkmtdjr.jpg",
+      name: "Semin black dim sum",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264847/Home%20landing%20page/extca8rdke5zobckft2s.jpg",
+      name: "Nashville food blog ",
+    },
+
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264845/Home%20landing%20page/u0unyfangnwcbta92t87.jpg",
+      name: "Sushi avocado and cucumber",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730265879/Home%20landing%20page/hsyzmm14keakek8bhgfx.jpg",
+      name: "Chef tim with NFB gang",
+    },
   ];
 
   useEffect(() => {
@@ -66,19 +115,22 @@ export default function Component() {
         <div className="w-full">
           <Carousel setApi={setApi} className="relative">
             <CarouselContent>
-              {images.map((src, index) => (
+              {images.map((image, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <Card className="border-none">
+                  <Card className="border-none bg-none">
                     <CardContent className="p-0">
                       <div className="relative aspect-video h-48 md:h-72 border w-full">
                         <Image
-                          src={src}
-                          alt={`Image ${index + 1}`}
+                          src={image.src}
+                          alt={image.name}
                           layout="fill"
-                          objectFit="cover "
+                          objectFit="cover"
                           className="rounded-lg object-center h-full"
                         />
                       </div>
+                      <p className=" text-gray-500 text-sm py-2">
+                        {image.name}
+                      </p>
                     </CardContent>
                   </Card>
                 </CarouselItem>

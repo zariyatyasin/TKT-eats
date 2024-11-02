@@ -147,3 +147,21 @@ export const GetorderDetails = async (id:string) => {
     };
   }
 };
+export const LivePromocode = async (code:string,chefId:string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/promocode?code=${code}&chefId=${chefId}`, {
+      cache: "no-store",
+    });
+
+    const result = await response.json();
+
+  
+
+    return result;
+  } catch (error) {
+    return {
+      success: false,
+      message: "Something went wrong",
+    };
+  }
+};

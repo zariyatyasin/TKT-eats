@@ -55,7 +55,7 @@ const GenerateInvoiceButton = ({ orderData }: GenerateInvoiceButtonProps) => {
     doc.setFont("helvetica", "normal");
     const startX = 20; // Adjusted starting X position
     const lineHeight = 8; // Adjusted line height
-    doc.text(`Order ID: ${orderData._id}`, 15, 60);
+    doc.text(`Order ID: ${orderData._id.slice(-7)}`, 15, 60);
     doc.text(`Customer: ${orderData.name}`, 15, 60 + lineHeight);
     doc.text(`Email: ${orderData.email}`, 15, 60 + lineHeight * 2);
     doc.text(`Phone: ${orderData.phone}`, 15, 60 + lineHeight * 3);

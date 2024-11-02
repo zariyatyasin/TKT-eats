@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea"; // Assuming you have a Textarea component
 import { Button } from "@/components/ui/button";
-
 import { CircleDashedIcon } from "lucide-react";
 
 interface BookingDetailsForm {
@@ -16,17 +15,30 @@ interface BookingDetailsForm {
   date: string;
   time: string;
   notes?: string;
-  promocode?: string;
+  promocode?: string; // Add the promocode field
+}
+
+interface DiscountInfo {
+  type: string; // "percentage" or "fixed"
+  value: number;
 }
 
 interface BookingDetailsProps {
   onSubmit: (data: BookingDetailsForm) => void;
   isSubmitting: boolean;
+  isPromoLoading: boolean;
+  promoError: string; // Add the promo error field
+  onPromoCodeChange: (code: string) => void;
+  discountInfo?: DiscountInfo; // Add discountInfo as an optional prop
 }
 
 export function BookingDetails({
   onSubmit,
   isSubmitting,
+  isPromoLoading,
+  promoError,
+  onPromoCodeChange,
+  discountInfo,
 }: BookingDetailsProps) {
   const {
     control,
@@ -38,8 +50,14 @@ export function BookingDetails({
     onSubmit(data);
   };
 
+  const handlePromoCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const code = e.target.value;
+
+    onPromoCodeChange(code); // Call the function to validate promo code
+  };
+
   return (
-    <Card className="   top-20">
+    <Card className="top-20">
       <CardHeader>
         <CardTitle>Booking Details</CardTitle>
       </CardHeader>
@@ -105,7 +123,6 @@ export function BookingDetails({
                 <Input id="email" type="email" {...field} />
               )}
             />
-
             {errors.email && (
               <span className="text-red-500 text-sm">
                 {errors.email.message}
@@ -165,14 +182,43 @@ export function BookingDetails({
             <Controller
               name="promocode"
               control={control}
-              render={({ field }) => <Input id="promocode" {...field} />}
+              render={({ field }) => (
+                <div className="flex items-center space-x-2">
+                  <Input id="promocode" {...field} />
+                  <Button
+                    type="button"
+                    className="h-12"
+                    onClick={() => onPromoCodeChange(field.value || "")}
+                    disabled={isPromoLoading}
+                  >
+                    {isPromoLoading ? (
+                      <div className="flex items-center">
+                        <CircleDashedIcon className="mr-2 h-4 w-4 animate-spin" />
+                        <p>Loading</p>
+                      </div>
+                    ) : (
+                      "Apply"
+                    )}
+                  </Button>
+                </div>
+              )}
             />
+            {promoError && (
+              <span className="text-red-500 text-sm">{promoError}</span>
+            )}
+            {discountInfo && discountInfo.value > 0 && (
+              <span className="text-green-500 text-sm">
+                {discountInfo.type === "percentage"
+                  ? `${discountInfo.value}% discount applied`
+                  : `$${discountInfo.value} discount applied`}
+              </span>
+            )}
           </div>
-          <div className=" z-50  p-2 flex items-center  md:hidden   fixed bottom-0 left-0 w-full bg-white   justify-between  l   border-y-2  border-gray-200 border-2">
+          <div className="z-50 p-2 flex items-center md:hidden fixed bottom-0 left-0 w-full bg-white justify-between border-y-2 border-gray-200 border-2">
             <Button
               disabled={isSubmitting}
               size={"sm"}
-              className=" w-full md:hidden "
+              className="w-full md:hidden"
               type="submit"
             >
               {isSubmitting ? (
@@ -185,7 +231,6 @@ export function BookingDetails({
               )}
             </Button>
           </div>
-
           <Button
             disabled={isSubmitting}
             className="w-full hidden md:flex mt-4"

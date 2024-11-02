@@ -195,7 +195,7 @@ export default function Component() {
             className="w-full  lg:max-w-7xl"
             plugins={[
               Autoplay({
-                delay: 3000,
+                delay: 2000,
               }),
             ]}
           >
@@ -221,8 +221,8 @@ export default function Component() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
+            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
+            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
           </Carousel>
         </motion.div>
       </div>

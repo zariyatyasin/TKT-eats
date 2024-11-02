@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Trash, TrashIcon, XIcon } from "lucide-react";
+import { TrashIcon } from "lucide-react";
 
 interface SelectedItem {
   id: string;
@@ -12,16 +12,25 @@ interface SelectedItem {
   quantity: number;
 }
 
+interface DiscountInfo {
+  type: string; // "percentage" or "fixed"
+  value: number;
+}
+
 interface BookingSummaryProps {
   selectedItems: SelectedItem[];
-  totalCost: number;
+  originalTotalCost: number;
+  discountedTotalCost: number;
   handleRemoveFromBooking: (item: SelectedItem) => void;
+  discountInfo?: DiscountInfo; // Add discountInfo as an optional prop
 }
 
 export function BookingSummary({
   selectedItems,
-  totalCost,
+  originalTotalCost,
+  discountedTotalCost,
   handleRemoveFromBooking,
+  discountInfo,
 }: BookingSummaryProps) {
   return (
     <Card>
@@ -30,9 +39,9 @@ export function BookingSummary({
       </CardHeader>
       <CardContent className="grid gap-4">
         <div className="grid gap-2">
-          <div className="flex items-center justify-between  ">
+          <div className="flex items-center justify-between">
             <span>Item</span>
-            <span className=" font-bold">{selectedItems.length}</span>
+            <span className="font-bold">{selectedItems.length}</span>
           </div>
           <div className="grid gap-4">
             {selectedItems.map((item) => (
@@ -60,9 +69,30 @@ export function BookingSummary({
           </div>
         </div>
         <Separator />
+        {discountInfo && discountInfo.value > 0 && (
+          <div className="flex items-center justify-between">
+            <span>Discount</span>
+            <span className="font-bold text-green-600">
+              {discountInfo.type === "percentage"
+                ? `${discountInfo.value}%`
+                : `$${discountInfo.value.toFixed(2)}`}
+            </span>
+          </div>
+        )}
         <div className="flex items-center justify-between">
           <span>Total Cost</span>
-          <span className="font-bold">${totalCost.toFixed(2)}</span>
+          <span className="font-bold">
+            {discountInfo && discountInfo.value ? (
+              <>
+                <span className="line-through text-sm text-gray-600">
+                  ${originalTotalCost.toFixed(1)}
+                </span>{" "}
+                <span>${discountedTotalCost.toFixed(1)}</span>
+              </>
+            ) : (
+              <span>${originalTotalCost.toFixed(1)}</span>
+            )}
+          </span>
         </div>
       </CardContent>
     </Card>

@@ -52,3 +52,57 @@ export const POST = async (request: Request) => {
     );
   }
 };
+
+
+
+
+export const GET = async (request: Request) => {
+  await connect();
+
+  try {
+    const url = new URL(request.url);
+    const code = url.searchParams.get("code");
+    const chefId = url.searchParams.get("chefId");
+
+    if (!code || !chefId) {
+      return NextResponse.json(
+        { success: false, message: "Code and chefId are required" },
+        { status: 400 }
+      );
+    }
+
+    const codeLowerCase = code.toLowerCase();
+    const promocode = await Promocode.findOne({ code: codeLowerCase, isActive: true });
+
+    if (!promocode) {
+      return NextResponse.json(
+        { success: false, message: "Promocode not found or not active" },
+        { status: 400 }
+      );
+    }
+
+    if (promocode.expirationDate && promocode.expirationDate < new Date()) {
+      return NextResponse.json(
+        { success: false, message: "Promocode has expired" },
+        { status: 400 }
+      );
+    }
+
+    if (Array.isArray(promocode.chefs) && promocode.chefs.length > 0 && !promocode.chefs.includes(chefId)) {
+      return NextResponse.json(
+        { success: false, message: "Promocode not applicable for this chef" },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json(
+      { success: true, message: "Promocode is valid", data: promocode },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    return NextResponse.json(
+      { success: false, message: error.message },
+      { status: 500 }
+    );
+  }
+};

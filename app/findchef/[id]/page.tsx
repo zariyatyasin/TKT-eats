@@ -12,13 +12,18 @@ import { usePathname } from "next/navigation";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import KnowTheChef from "../_utils/know-the-chef";
-import { createOrder, GetSingleChef, sendemail } from "../_utils/action";
+import {
+  createOrder,
+  GetSingleChef,
+  LivePromocode,
+  sendemail,
+} from "../_utils/action";
 import { useRouter } from "next/navigation";
 import Reviews from "../_utils/review";
 import CustomMenuForm from "../_utils/custom-menu-submission";
-// MenuItem interface now includes ingredients
+
 interface MenuItem {
-  id: string; // Ensure 'id' is of type 'string'
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -44,6 +49,7 @@ interface BookingDetails {
   notes?: string;
   promocode?: string;
 }
+
 interface Review {
   _id: string;
   user: string;
@@ -51,47 +57,8 @@ interface Review {
   comment: string;
 }
 
-// export async function generateMetadata({
-//   searchParams,
-// }: {
-//   searchParams: any;
-// }) {
-//   const chefId = searchParams?._id;
-//   const location = searchParams?.location || "your area"; // Default to "your area" if no location is provided
-
-//   if (!chefId) return {};
-
-//   try {
-//     const result = await GetSingleChef(chefId);
-//     const chef = result.chef;
-//     console.log("this isloai", chef);
-
-//     return {
-//       title: `${chef.name} - The Kitchen Table in ${location}`,
-//       description: `${chef.description} - Available in ${location}`,
-//       openGraph: {
-//         title: `${chef.name} - The Kitchen Table in ${location}`,
-//         description: `${chef.description} - Available in ${location}`,
-//         images: [
-//           {
-//             url: chef.profileImage || chef.images[0]?.url,
-//             width: 800,
-//             height: 600,
-//             alt: `Image of Chef ${chef.name}`,
-//           },
-//         ],
-//         type: "website",
-//         locale: "en_US",
-//         site_name: "The Kitchen Table",
-//       },
-//     };
-//   } catch (error) {
-//     console.error("Failed to generate metadata:", error);
-//     return {};
-//   }
-// }
 export default function Page({ searchParams }: { searchParams: any }) {
-  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -102,7 +69,15 @@ export default function Page({ searchParams }: { searchParams: any }) {
   const [review, setReview] = useState<Review[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("menu"); // Add state to track active tab
+  const [activeTab, setActiveTab] = useState("menu");
+  const [promoCode, setPromoCode] = useState<string>("");
+  const [discount, setDiscount] = useState<number>(0);
+  const [promoError, setPromoError] = useState<string | null>(null);
+  const [discountInfo, setDiscountInfo] = useState<{
+    type: string | null;
+    value: number;
+  }>({ type: null, value: 0 });
+  const [isPromoLoading, setIsPromoLoading] = useState(false);
 
   const { toast } = useToast();
 
@@ -110,6 +85,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
     setSelectedImage(image);
     setIsModalOpen(true);
   };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedImage(null);
@@ -137,11 +113,6 @@ export default function Page({ searchParams }: { searchParams: any }) {
     setSelectedItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
   };
 
-  const totalCost = selectedItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
   const handleBookingSubmit = async (details: BookingDetails) => {
     if (selectedItems.length === 0) {
       toast({
@@ -151,7 +122,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
       return;
     }
 
-    setIsSubmitting(true); // Start loading
+    setIsSubmitting(true);
 
     const requestData = {
       name: details.name,
@@ -205,13 +176,11 @@ export default function Page({ searchParams }: { searchParams: any }) {
         throw new Error(res.message);
       }
 
-      // Notify the chef via email
-
       toast({
         title: "Booking Confirmed",
         description: "The chef has been successfully booked.",
       });
-      router.push("/booking-confirm/" + res?.data?._id); // Redirect to success page
+      router.push("/booking-confirm/" + res?.data?._id);
     } catch (error: any) {
       console.error("Booking submission failed:", error);
       toast({
@@ -221,16 +190,61 @@ export default function Page({ searchParams }: { searchParams: any }) {
         }`,
       });
     } finally {
-      setIsSubmitting(false); // End loading
+      setIsSubmitting(false);
     }
   };
 
-  console.log(selectedItems);
+  const totalCost =
+    selectedItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    ) - discount;
+
+  const originalTotalCost = selectedItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const discountedTotalCost = originalTotalCost - discount;
+
+  const handlePromoCodeChange = async (code: string) => {
+    setPromoCode(code);
+    setIsPromoLoading(true);
+
+    if (code) {
+      const result = await LivePromocode(code, chefData._id);
+
+      if (result.success) {
+        const { discountType, discountValue } = result.data;
+        setDiscountInfo({ type: discountType, value: discountValue });
+
+        if (discountType === "percentage") {
+          setDiscount((originalTotalCost * discountValue) / 100);
+        } else if (discountType === "fixed") {
+          setDiscount(discountValue);
+        }
+        setPromoError(null);
+      } else {
+        setDiscount(0);
+        setPromoError(result.message);
+        setDiscountInfo({ type: null, value: 0 });
+      }
+    } else {
+      setDiscount(0);
+      setPromoError(null);
+      setDiscountInfo({ type: null, value: 0 });
+    }
+    setIsPromoLoading(false);
+  };
+
+  useEffect(() => {
+    if (promoCode) {
+      handlePromoCodeChange(promoCode);
+    }
+  }, [selectedItems]);
 
   const fetchChef = async () => {
     try {
-      console.log(searchParams);
-
       if (searchParams?._id) {
         const result = await GetSingleChef(searchParams?._id);
 
@@ -260,7 +274,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
 
   return (
     <div className="container py-28">
-      <div className="relative   grid md:grid-cols-12 gap-12 md:gap-16 max-w-6xl mx-auto justify-between">
+      <div className="relative grid md:grid-cols-12 gap-12 md:gap-16 max-w-6xl mx-auto justify-between">
         <div className="col-span-1 md:col-span-7 flex flex-col gap-6">
           <div className="">
             {isLoading ? (
@@ -279,7 +293,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
             <Tabs
               defaultValue="menu"
               className=" mt-5   "
-              onValueChange={(value) => setActiveTab(value)} // Update activeTab on tab change
+              onValueChange={(value) => setActiveTab(value)}
             >
               <TabsList className=" flex justify-start overflow-x-auto max-w-[440px] ">
                 <TabsTrigger value="menu">Menu</TabsTrigger>
@@ -349,12 +363,11 @@ export default function Page({ searchParams }: { searchParams: any }) {
                     chefId={chefData?._id}
                   />
                 ) : (
-                  <div>Loading...</div> // Or any other placeholder/loading indicator
+                  <div>Loading...</div>
                 )}
               </TabsContent>
             </Tabs>
 
-            {/* Image Gallery */}
             {chefData && (
               <KnowTheChef
                 experience={chefData.experience}
@@ -373,13 +386,22 @@ export default function Page({ searchParams }: { searchParams: any }) {
           <div className="col-span-1 lg:sticky top-20 md:col-span-5 flex flex-col gap-6">
             <BookingSummary
               selectedItems={selectedItems}
+              originalTotalCost={originalTotalCost}
+              discountedTotalCost={discountedTotalCost}
               totalCost={totalCost}
+              //@ts-ignore
+              discountInfo={discountInfo}
               //@ts-ignore
               handleRemoveFromBooking={handleRemoveFromBooking}
             />
             <BookingDetails
+              promoError={promoError || ""}
               onSubmit={handleBookingSubmit}
+              isPromoLoading={isPromoLoading}
               isSubmitting={isSubmitting}
+              onPromoCodeChange={handlePromoCodeChange}
+              //@ts-ignore
+              discountInfo={discountInfo}
             />
           </div>
         )}
