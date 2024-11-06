@@ -13,6 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import ImageGerally from "../home/image-garelly";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import ImproveTkt from "../home/improve-tkt";
 
 interface Chef {
   _id: string;
@@ -61,7 +62,8 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
         </div>
 
         <Partners />
-        <Howitswork />
+        <ImproveTkt />
+        {/* <Howitswork /> */}
         <Whyus />
         <ImageGerally />
         <Faq />

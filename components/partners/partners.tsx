@@ -120,6 +120,24 @@ const partners = [
     ),
   },
   {
+    href: "https://www.instagram.com/coloradofoodenthusiast/",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1730889704/m3sfzgbstnec0pnyckhs.jpg",
+    imgAlt: "colorado food enthusiast",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/coloradofoodenthusiast/"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
+  {
     href: "https://www.youtube.com/@3cmpodcast",
     imgSrc:
       "https://res.cloudinary.com/ddrjnijut/image/upload/v1730372535/Screenshot_2024-10-31_at_4.54.39_PM_li0xsf.png",
