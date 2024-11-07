@@ -14,6 +14,7 @@ import ImageGerally from "../home/image-garelly";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import ImproveTkt from "../home/improve-tkt";
+import ReviewSection from "../home/review-section";
 
 interface Chef {
   _id: string;
@@ -62,8 +63,9 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
         </div>
 
         <Partners />
-        {/* <ImproveTkt /> */}
-        <Howitswork />
+        <ImproveTkt />
+        {/* <Howitswork /> */}
+        <ReviewSection />
         <Whyus />
         <ImageGerally />
         <Faq />
