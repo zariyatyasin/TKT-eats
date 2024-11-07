@@ -188,7 +188,7 @@ export default function ReviewSection() {
     <motion.section ref={ref} className="py-12 px-3 bg-white">
       <div className="max-w-7xl mx-auto">
         <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">
-          What Our Guests Say
+          Customer Testimonial
         </h3>
         <Carousel
           opts={{

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Utensils, Users, Book, Star } from "lucide-react";
+import { Utensils, Users, Book, Star, CookingPot, Soup } from "lucide-react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
 const CountUp = ({ end, duration = 1 }: { end: number; duration?: number }) => {
@@ -95,7 +95,7 @@ export default function ImproveTkt() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <StatCard icon={Users} end={42} label="Guests Served" />
           <StatCard icon={Utensils} end={72} label="Dishes Served" />
-          <StatCard icon={Book} end={674} label="Menu Items" />
+          <StatCard icon={Soup} end={674} label="UNIQUE MENU ITEMS " />
         </div>
       </div>
     </motion.section>
