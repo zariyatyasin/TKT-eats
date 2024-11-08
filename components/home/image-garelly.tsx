@@ -128,9 +128,9 @@ export default function Component() {
                           className="rounded-lg object-center h-full"
                         />
                       </div>
-                      <p className=" text-gray-500 text-sm py-2">
+                      {/* <p className=" text-gray-500 text-sm py-2">
                         {image.name}
-                      </p>
+                      </p> */}
                     </CardContent>
                   </Card>
                 </CarouselItem>
