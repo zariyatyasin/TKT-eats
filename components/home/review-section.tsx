@@ -83,7 +83,11 @@ function ReviewCard({
             className="flex items-center gap-3"
           >
             <Avatar className="w-12 h-12">
-              <AvatarImage src={chefImage} alt={chefName} />
+              <AvatarImage
+                src={chefImage}
+                alt={chefName}
+                className=" object-cover"
+              />
               <AvatarFallback>
                 {chefName
                   .split(" ")
