@@ -21,6 +21,7 @@ import {
 import { useRouter } from "next/navigation";
 import Reviews from "../_utils/review";
 import CustomMenuForm from "../_utils/custom-menu-submission";
+import DietaryRestrictionCom from "../_utils/dietary";
 
 interface MenuItem {
   id: string;
@@ -57,7 +58,13 @@ interface Review {
   comment: string;
 }
 
-export default function Page({ searchParams }: { searchParams: any }) {
+export default function Page({
+  searchParams,
+  params,
+}: {
+  searchParams: any;
+  params: any;
+}) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -254,8 +261,8 @@ export default function Page({ searchParams }: { searchParams: any }) {
 
   const fetchChef = async () => {
     try {
-      if (searchParams?._id) {
-        const result = await GetSingleChef(searchParams?._id);
+      if (params?.id) {
+        const result = await GetSingleChef(params?.id);
 
         setChefData(result.chef);
         setReview(result.allreviews);
@@ -311,6 +318,7 @@ export default function Page({ searchParams }: { searchParams: any }) {
               </TabsList>
               <TabsContent value="menu">
                 <h2 className="text-xl py-6 font-bold">Menu</h2>
+                {/* <DietaryRestrictionCom /> */}
                 {isLoading ? (
                   <div className=" space-y-4">
                     <div className="flex md:flex-row items-center space-x-4 flex-col space-y-4  ">
@@ -345,11 +353,14 @@ export default function Page({ searchParams }: { searchParams: any }) {
                 ) : menu.length === 0 ? (
                   <div>No items</div>
                 ) : (
-                  <Menu
-                    menu={menu}
-                    selectedItems={selectedItems}
-                    handleAddToBooking={handleAddToBooking}
-                  />
+                  <>
+                    {" "}
+                    <Menu
+                      menu={menu}
+                      selectedItems={selectedItems}
+                      handleAddToBooking={handleAddToBooking}
+                    />
+                  </>
                 )}
               </TabsContent>
               <TabsContent value="reviews">

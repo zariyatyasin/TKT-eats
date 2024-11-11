@@ -138,6 +138,41 @@ const partners = [
     ),
   },
   {
+    href: "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fdenverfoodiecouple%2F%3Futm_source%3Dig_web_button_share_sheet%26igsh%3DZDNlZDc0MzIxNw%253D%253D&is_from_rle",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1731308573/xpcyoxxyfvmvnehbvjyv.jpg",
+    imgAlt: "colorado food enthusiast",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fdenverfoodiecouple%2F%3Futm_source%3Dig_web_button_share_sheet%26igsh%3DZDNlZDc0MzIxNw%253D%253D&is_from_rle"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
+  {
+    href: "https://www.rockymountainchefs.com/",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1731308667/yp4anrbdjzdfq89e0noz.jpg",
+    imgAlt: "colorado food enthusiast",
+    description: (
+      <>
+        To learn more about becoming a chef with RMCC Click{" "}
+        <Link
+          href="https://www.rockymountainchefs.com/"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>
+      </>
+    ),
+  },
+  {
     href: "https://www.youtube.com/@3cmpodcast",
     imgSrc:
       "https://res.cloudinary.com/ddrjnijut/image/upload/v1730372535/Screenshot_2024-10-31_at_4.54.39_PM_li0xsf.png",

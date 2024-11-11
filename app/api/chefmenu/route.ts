@@ -5,7 +5,10 @@ import { Types } from "mongoose";
 import Chef from "@/model/chef";  // Import the Chef model
 import ChefMenu from "@/model/chefmenu";
 
+ 
+
 const ObjectId = Types.ObjectId;
+
 export const POST = async (request: Request) => {
   // Connect to the database
   await connect();
@@ -22,8 +25,9 @@ export const POST = async (request: Request) => {
       price: body.price, // Price of the menu item
       ingredients: body.ingredients, // Array of ingredients
       category: body.category,
-      
-      menuImage:body.menuImage // Category of the menu item
+      menuImage: body.menuImage, // Image of the menu item
+      dietaryPreferences: body.dietaryPreferences, // Array of dietary preferences
+      mealType: body.mealType, // Type of meal
     });
 
     // Save the ChefMenu to the database
@@ -36,8 +40,9 @@ export const POST = async (request: Request) => {
         data: savedChefMenu,
       }),
       { status: 201 }
-    );  } catch (error: any) {
-     return new NextResponse(
+    );
+  } catch (error: any) {
+    return new NextResponse(
       JSON.stringify({
         message: "Error creating chef menu",
         error: error.message,

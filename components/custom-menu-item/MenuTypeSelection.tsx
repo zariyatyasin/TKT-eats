@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChefHatIcon, LeafIcon, ScrollIcon } from "lucide-react";
+import clsx from "clsx";
 
 type MenuType = "dietary" | "mealprep" | "custom" | "";
 
@@ -22,7 +23,12 @@ export function MenuTypeSelection({
       onValueChange={(value: MenuType) => setSelectedType(value)}
     >
       <Label className="cursor-pointer" htmlFor="dietary">
-        <Card className="flex flex-col h-full">
+        <Card
+          className={clsx(
+            "flex flex-col h-full",
+            selectedType === "dietary" ? "border-2 border-green-500" : "border"
+          )}
+        >
           <CardContent className="flex flex-col items-center justify-center flex-grow">
             <LeafIcon className=" h-6 w-6 md:h-12 md:w-12 mb-2 text-green-500" />
             <RadioGroupItem value="dietary" id="dietary" className="sr-only" />
@@ -33,8 +39,13 @@ export function MenuTypeSelection({
         </Card>
       </Label>
       <Label className="cursor-pointer" htmlFor="mealprep">
-        <Card className="flex flex-col h-full">
-          <CardContent className="flex flex-col items-center justify-center   flex-grow">
+        <Card
+          className={clsx(
+            "flex flex-col h-full",
+            selectedType === "mealprep" ? "border-2 border-green-500" : "border"
+          )}
+        >
+          <CardContent className="flex flex-col items-center justify-center flex-grow">
             <ChefHatIcon className="h-6 w-6 md:h-12 md:w-12 mb-2 text-blue-500" />
             <RadioGroupItem
               value="mealprep"
@@ -48,7 +59,12 @@ export function MenuTypeSelection({
         </Card>
       </Label>
       <Label className="cursor-pointer" htmlFor="custom">
-        <Card className="flex flex-col h-full">
+        <Card
+          className={clsx(
+            "flex flex-col h-full",
+            selectedType === "custom" ? "border-2 border-green-500" : "border"
+          )}
+        >
           <CardContent className="flex flex-col items-center justify-center p-6 flex-grow">
             <ScrollIcon className="h-6 w-6 md:h-12 md:w-12 mb-2 text-purple-500" />
             <RadioGroupItem value="custom" id="custom" className="sr-only" />

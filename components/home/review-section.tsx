@@ -79,7 +79,7 @@ function ReviewCard({
             )}
           </blockquote>
           <Link
-            href={`/findchef/thekitchentable?_id=${chefId}`}
+            href={`/findchef/${chefId}+${name}`}
             className="flex items-center gap-3"
           >
             <Avatar className="w-12 h-12">
@@ -114,7 +114,7 @@ function ReviewCard({
           </div>
           <p className="text-gray-600 ">{reviewText}</p>
           <Link
-            href={`/findchef/thekitchentable?_id=${chefId}`}
+            href={`/findchef/${chefId}?name=${chefName}`}
             className="flex items-center gap-3 mt-3"
           >
             <Avatar className="w-12 h-12">

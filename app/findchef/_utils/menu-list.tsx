@@ -21,6 +21,7 @@ import {
   DrawerClose,
 } from "@/components/ui/drawer";
 import { useMediaQuery } from "@/components/hooks/use-media-query";
+import DietaryRestrictionCom from "./dietary";
 
 interface MenuItem {
   id: string;
