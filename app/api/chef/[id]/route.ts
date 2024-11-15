@@ -83,7 +83,7 @@ export const PATCH = async (request: Request, { params }: { params: { id: string
         const { id } = params;  // Extract `id` from `params`
   
         // Fetch the chef's details by ID
-        const GetChef = await Chef.findById(id);
+        const GetChef = await Chef.findById(id).select('-contact');;
 
         // Fetch all menus associated with the chef by ID
         const menus = await ChefMenu.find({ chef: id });

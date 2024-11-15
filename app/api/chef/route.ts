@@ -100,7 +100,12 @@ export const GET = async (request: Request) => {
       },
       { $sort: { order: 1 } },
       { $skip: (pageInt - 1) * limitInt },
-      { $limit: limitInt }
+      { $limit: limitInt },
+      {
+        $project: {
+          contact: 0 // Exclude the contact field
+        }
+      }
     ]);
 
     const reviewCounts: ReviewCount[] = await Review.aggregate([

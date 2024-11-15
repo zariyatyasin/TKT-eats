@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -18,9 +21,70 @@ import {
   MessageCircle,
   Utensils,
 } from "lucide-react";
-import Image from "next/image";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  DirectionsRenderer,
+} from "@react-google-maps/api";
+
+// You would need to replace this with your actual Google Maps API key
+const GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY";
 
 export default function Component() {
+  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
+  const [directions, setDirections] = useState(null);
+
+  const destination = { lat: 40.7128, lng: -74.006 }; // New York City coordinates as an example
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
+  });
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCurrentLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        () => {
+          console.error("Error: The Geolocation service failed.");
+        }
+      );
+    } else {
+      console.error("Error: Your browser doesn't support geolocation.");
+    }
+  }, []);
+
+  const onMapLoad = useCallback(
+    (map: any) => {
+      const directionsService = new google.maps.DirectionsService();
+
+      directionsService.route(
+        {
+          origin: currentLocation,
+          destination: destination,
+          travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (result: any, status) => {
+          if (status === google.maps.DirectionsStatus.OK) {
+            setDirections(result);
+          } else {
+            console.error(`error fetching directions ${result}`);
+          }
+        }
+      );
+    },
+    [currentLocation]
+  );
+
+  if (loadError) return <div>Error loading maps</div>;
+  if (!isLoaded) return <div>Loading maps</div>;
+
   return (
     <div className="grid h-screen lg:grid-cols-[550px,1fr] pt-20">
       {/* Left Panel */}
@@ -137,15 +201,18 @@ export default function Component() {
         </div>
       </div>
 
-      {/* Right Panel - Map */}
+      {/* Right Panel - Google Map */}
       <div className="relative">
-        <img
-          src="https://simonpan.com/wp-content/themes/sp_portfolio/assets/uber-challenge.jpg"
-          alt="Map"
-          className="h-full w-full object-cover"
-          width={1920}
-          height={1080}
-        />
+        <GoogleMap
+          mapContainerStyle={{ width: "100%", height: "100%" }}
+          center={currentLocation}
+          zoom={10}
+          onLoad={onMapLoad}
+        >
+          {currentLocation.lat !== 0 && <Marker position={currentLocation} />}
+          <Marker position={destination} />
+          {directions && <DirectionsRenderer directions={directions} />}
+        </GoogleMap>
         <div className="absolute bottom-6 left-6 bg-background/90 p-4 rounded-lg backdrop-blur-sm">
           <div className="flex items-center gap-2 text-sm font-medium">
             <ChefHat className="h-5 w-5 text-primary" />
