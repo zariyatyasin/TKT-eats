@@ -66,7 +66,7 @@ export default function DietaryPreferences({
   };
 
   return (
-    <div className="w-full max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto">
+    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto">
       <Carousel
         opts={{
           align: "start",
@@ -103,8 +103,10 @@ export default function DietaryPreferences({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
-        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
+        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 md:hidden -translate-x-1/2" />
+        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 md:hidden translate-x-1/2" />
+        <CarouselPrevious className="hidden md:flex left-0 top-1/2 -translate-x-1/4" />
+        <CarouselNext className="hidden md:flex right-0 top-1/2   translate-x-1/4 " />
       </Carousel>
 
       <div className="mt-2 sm:mt-4">
