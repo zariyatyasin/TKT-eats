@@ -12,12 +12,13 @@ import {
   sendemail,
 } from "../_utils/action";
 import { ChefProfile } from "./chef-profile";
-import { Menu } from "./menu-list";
+import Menu from "./menu-list";
 import Reviews from "./review";
 import KnowTheChef from "./know-the-chef";
 import { BookingSummary } from "./booking-summary";
 import { BookingDetails } from "./booking-confirm";
 import CustomMenuForm from "./custom-menu-submission";
+import DietaryPreferences from "./dietary";
 interface ChefBookingProps {
   initialChefData: any;
   initialReviews: any[];
@@ -42,6 +43,8 @@ export default function ChefBooking({
   const [promoCode, setPromoCode] = useState<string>("");
   const [discount, setDiscount] = useState<number>(0);
   const [promoError, setPromoError] = useState<string | null>(null);
+  const [dietaryFilters, setDietaryFilters] = useState<string[]>([]);
+
   const [discountInfo, setDiscountInfo] = useState<{
     type: string | null;
     value: number;
@@ -221,6 +224,7 @@ export default function ChefBooking({
       handlePromoCodeChange(promoCode);
     }
   }, [selectedItems]);
+  console.log("new", dietaryFilters);
 
   return (
     <div className="container py-28">
@@ -242,11 +246,17 @@ export default function ChefBooking({
               </TabsList>
               <TabsContent value="menu">
                 <h2 className="text-xl py-6 font-bold">Menu</h2>
-                {/* <DietaryRestrictionCom /> */}
+
+                <DietaryPreferences
+                  activeFilters={dietaryFilters}
+                  setActiveFilters={setDietaryFilters}
+                />
+
                 <Menu
                   menu={menu}
                   selectedItems={selectedItems}
                   handleAddToBooking={handleAddToBooking}
+                  dietaryFilters={dietaryFilters}
                 />
               </TabsContent>
               <TabsContent value="reviews">

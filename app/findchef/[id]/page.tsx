@@ -53,7 +53,6 @@ export async function generateMetadata({
 export default async function ChefPage({ params }: PageProps) {
   try {
     const result = await GetSingleChef(params.id);
-    console.log(result);
 
     if (!result?.chef) {
       return (
@@ -79,6 +78,7 @@ export default async function ChefPage({ params }: PageProps) {
       price: menu.price,
       ingredients: menu.ingredients,
       menuImage: menu.menuImage,
+      dietaryPreferences: menu.dietaryPreferences,
     }));
 
     return (
