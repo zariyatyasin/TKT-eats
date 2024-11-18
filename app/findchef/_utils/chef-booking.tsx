@@ -257,6 +257,7 @@ export default function ChefBooking({
                   selectedItems={selectedItems}
                   handleAddToBooking={handleAddToBooking}
                   dietaryFilters={dietaryFilters}
+                  setDietaryFilters={setDietaryFilters}
                 />
               </TabsContent>
               <TabsContent value="reviews">

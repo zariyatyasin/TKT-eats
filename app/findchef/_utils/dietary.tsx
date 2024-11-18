@@ -26,7 +26,7 @@ interface DietaryPreferencesProps {
 const dietaryRestrictions: DietaryRestriction[] = [
   { name: "Vegan", icon: Carrot, description: "No animal products" },
   { name: "Vegetarian", icon: Leaf, description: "No meat products" },
-  { name: "Lactose-Free", icon: Milk, description: "No dairy products" },
+
   {
     name: "Gluten-Free",
     icon: Wheat,
@@ -66,7 +66,7 @@ export default function DietaryPreferences({
   };
 
   return (
-    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto">
+    <div className="w-fu max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto">
       <Carousel
         opts={{
           align: "start",
@@ -78,7 +78,7 @@ export default function DietaryPreferences({
           {dietaryRestrictions.map((restriction) => (
             <CarouselItem
               key={restriction.name}
-              className="pl-1 sm:pl-2 md:pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6"
+              className="pl-1 sm:pl-2 md:pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/5"
             >
               <button
                 onClick={() => toggleFilter(restriction.name)}
@@ -95,7 +95,7 @@ export default function DietaryPreferences({
                   >
                     <restriction.icon className="h-4 w-4 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                   </div>
-                  <span className="text-xs sm:text-sm font-medium text-center line-clamp-2">
+                  <span className="text-xs  font-medium text-center line-clamp-2">
                     {restriction.name}
                   </span>
                 </div>
@@ -103,10 +103,8 @@ export default function DietaryPreferences({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 md:hidden -translate-x-1/2" />
-        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 md:hidden translate-x-1/2" />
-        <CarouselPrevious className="hidden md:flex left-0 top-1/2 -translate-x-1/4" />
-        <CarouselNext className="hidden md:flex right-0 top-1/2   translate-x-1/4 " />
+        <CarouselPrevious className="left-0 text-primary top-1/2 -translate-y-1/2 -translate-x-1/2 absolute md:left-0 md:-translate-x-1/2 md:flex" />
+        <CarouselNext className="right-0 top-1/2 -translate-y-1/2 text-primary translate-x-1/2 absolute md:right-0 md:translate-x-1/2 md:flex" />
       </Carousel>
 
       <div className="mt-2 sm:mt-4">
