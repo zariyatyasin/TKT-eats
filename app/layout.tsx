@@ -13,6 +13,9 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "The Kitchen Table",
   description: "DINE LUXURIOUSLY, YOUR WAY",
+  metadataBase: new URL(
+    "https://res.cloudinary.com/ddrjnijut/image/upload/v1731948968/qafhp0whircrvs1ypfo3.png"
+  ),
 };
 
 export default function RootLayout({
