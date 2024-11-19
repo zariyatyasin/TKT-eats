@@ -79,6 +79,7 @@ export default async function ChefPage({ params }: PageProps) {
       ingredients: menu.ingredients,
       menuImage: menu.menuImage,
       dietaryPreferences: menu.dietaryPreferences,
+      mealType: menu.mealType,
     }));
 
     return (

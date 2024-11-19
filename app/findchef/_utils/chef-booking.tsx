@@ -175,6 +175,7 @@ export default function ChefBooking({
       setIsSubmitting(false);
     }
   };
+  console.log(initialMenu);
 
   const totalCost =
     selectedItems.reduce(
@@ -274,19 +275,6 @@ export default function ChefBooking({
                 )}
               </TabsContent>
             </Tabs>
-
-            {chefData && (
-              <KnowTheChef
-                experience={chefData.experience}
-                location={chefData.location}
-                description={chefData.description}
-                images={chefData.images.map((img: any) => img.url)}
-                onImageClick={handleImageClick}
-                isModalOpen={isModalOpen}
-                selectedImage={selectedImage}
-                onModalClose={handleModalClose}
-              />
-            )}
           </div>
         </div>
         {activeTab !== "custom" && (
@@ -312,6 +300,18 @@ export default function ChefBooking({
           </div>
         )}
       </div>
+      {chefData && (
+        <KnowTheChef
+          experience={chefData.experience}
+          location={chefData.location}
+          description={chefData.description}
+          images={chefData.images.map((img: any) => img.url)}
+          onImageClick={handleImageClick}
+          isModalOpen={isModalOpen}
+          selectedImage={selectedImage}
+          onModalClose={handleModalClose}
+        />
+      )}
     </div>
   );
 }
