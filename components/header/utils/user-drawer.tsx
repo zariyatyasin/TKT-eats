@@ -1,13 +1,15 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { User } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { LoginForm } from "./login-form";
+import { SignupForm } from "./signup-form";
+import { Skeleton } from "@/components/ui/skeleton";
+
 import {
   Dialog,
   DialogContent,
@@ -17,21 +19,25 @@ import {
 } from "@/components/ui/dialog";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function UserDrawer() {
+  const { data: session, status } = useSession();
   const [open, setOpen] = React.useState(false);
   const [isDesktop, setIsDesktop] = React.useState(false);
   const [showLogin, setShowLogin] = React.useState(false);
   const [showSignup, setShowSignup] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [name, setName] = React.useState("");
 
   React.useEffect(() => {
     const checkScreenSize = () => {
@@ -44,15 +50,17 @@ export function UserDrawer() {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async (email: string, password: string) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
       });
-      if (response.ok) {
+
+      console.log(result);
+
+      if (result?.ok) {
         console.log("Login successful");
         setOpen(false);
         setShowLogin(false);
@@ -64,19 +72,20 @@ export function UserDrawer() {
     }
   };
 
-  const handleSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleSignup = async (
+    name: string,
+    email: string,
+    password: string
+  ) => {
     try {
-      const response = await fetch("/api/signup", {
+      const response = await fetch("/api/user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       });
       if (response.ok) {
         console.log("Signup successful");
-        setOpen(false);
-        setShowSignup(false);
+        await handleLogin(email, password);
       } else {
         console.error("Signup failed");
       }
@@ -93,6 +102,10 @@ export function UserDrawer() {
     }
   };
 
+  const handleLogout = async () => {
+    await signOut();
+  };
+
   const content = (
     <div className="mx-auto w-full max-w-sm">
       <DrawerHeader className="text-center">
@@ -102,33 +115,28 @@ export function UserDrawer() {
       <div className="p-4 pb-8">
         <div className="flex flex-col gap-4">
           {!showLogin && !showSignup && (
-            <Button variant="outline" className="flex items-center gap-2 h-12">
-              <Image
-                src="/google.webp?height=24&width=24"
-                height={24}
-                width={24}
-                alt="Google logo"
-                className="h-6 w-6"
-              />
-              Continue with Google
-            </Button>
-          )}
-
-          {!showLogin && !showSignup && (
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <Separator />
+            <>
+              <Button
+                onClick={() => signIn("google")}
+                variant="outline"
+                className="flex items-center gap-2 h-12"
+              >
+                <Avatar className="h-6 w-6">
+                  <AvatarImage src="/google.webp" alt="Google logo" />
+                  <AvatarFallback>G</AvatarFallback>
+                </Avatar>
+                Continue with Google
+              </Button>
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <Separator />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    or
+                  </span>
+                </div>
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
-                  or
-                </span>
-              </div>
-            </div>
-          )}
-
-          <div className="space-y-4 transition-all duration-300 ease-in-out">
-            {!showLogin && !showSignup && (
               <div className="space-y-4 animate-fadeIn">
                 <Button
                   className="w-full h-12 bg-primary"
@@ -144,103 +152,28 @@ export function UserDrawer() {
                   Sign up
                 </Button>
               </div>
-            )}
+            </>
+          )}
 
-            {showLogin && (
-              <form onSubmit={handleLogin} className="space-y-4 animate-fadeIn">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full h-12 bg-primary">
-                  Log in
-                </Button>
-                <Button
-                  variant="link"
-                  className="w-full"
-                  onClick={() => {
-                    setShowLogin(false);
-                    setShowSignup(true);
-                  }}
-                >
-                  Don&apos;t have an account? Sign up
-                </Button>
-              </form>
-            )}
+          {showLogin && (
+            <LoginForm
+              onSubmit={handleLogin}
+              onSwitchToSignup={() => {
+                setShowLogin(false);
+                setShowSignup(true);
+              }}
+            />
+          )}
 
-            {showSignup && (
-              <form
-                onSubmit={handleSignup}
-                className="space-y-4 animate-fadeIn"
-              >
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <Button type="submit" className="w-full h-12 bg-primary">
-                  Sign up
-                </Button>
-                <Button
-                  variant="link"
-                  className="w-full"
-                  onClick={() => {
-                    setShowSignup(false);
-                    setShowLogin(true);
-                  }}
-                >
-                  Already have an account? Log in
-                </Button>
-              </form>
-            )}
-          </div>
+          {showSignup && (
+            <SignupForm
+              onSubmit={handleSignup}
+              onSwitchToLogin={() => {
+                setShowSignup(false);
+                setShowLogin(true);
+              }}
+            />
+          )}
 
           <p className="text-center text-sm text-muted-foreground">
             By signing up, you agree to our{" "}
@@ -257,6 +190,46 @@ export function UserDrawer() {
       </div>
     </div>
   );
+
+  if (status === "loading") {
+    return (
+      <div className="flex items-center justify-center">
+        <Skeleton className="h-10 w-10 rounded-full" />
+      </div>
+    );
+  }
+
+  if (session?.user) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+            <Avatar className="h-10 w-10">
+              <AvatarImage
+                src={session.user.image || undefined}
+                alt={session.user.name || "User profile"}
+              />
+              <AvatarFallback>
+                {session.user.name ? session.user.name[0].toUpperCase() : "U"}
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56" align="end" forceMount>
+          <DropdownMenuItem asChild>
+            <Link href="/profile" className="flex items-center">
+              <User className="mr-2 h-4 w-4" />
+              <span>{session.user.name || "Profile"}</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>Log out</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
 
   if (isDesktop) {
     return (
@@ -280,7 +253,7 @@ export function UserDrawer() {
   return (
     <Drawer open={open} onOpenChange={handleOpenChange}>
       <DrawerTrigger asChild>
-        <Button variant="outline" size="icon" className="rounded-full   p-2">
+        <Button variant="outline" size="icon" className="rounded-full p-2">
           <User className="h-5 w-5" />
           <span className="sr-only">Open user menu</span>
         </Button>

@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import { NextAuthProvider } from "./auth/_utils/session-warpper";
 
 export const metadata: Metadata = {
   title: "The Kitchen Table",
@@ -49,8 +50,12 @@ export default function RootLayout({
           />
         </noscript>
         {/* <Navbar /> */}
-        <Header />
-        {children}
+
+        <NextAuthProvider>
+          <Header />
+          {children}
+        </NextAuthProvider>
+
         <Toaster />
         <SpeedInsights />
         <Analytics />
