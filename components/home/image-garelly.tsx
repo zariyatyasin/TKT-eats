@@ -18,69 +18,60 @@ export default function Component() {
 
   const images = [
     {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1724638461/joe%202:%20joe%20cooking%20in%20kitchen.jpg",
-      name: "Joe cooking in kitchen",
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1732075800/11:19%20weekly%20meal%20plan/oloqvdios3wim6ig0gfb.jpg",
+      name: "Chef cutting vegetables",
     },
-
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1732075795/11:19%20weekly%20meal%20plan/zhbyj9zaphnmpyuo8cvm.jpg",
+      name: "Weekly menu all item",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1724638461/joe%202:%20joe%20cooking%20in%20kitchen.jpg",
+      name: "Joe in the kitchen cooking",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726527240/Semin%20Vasquez/vegetable%20dim%20sum.jpg",
+      name: "Dim sum",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726174701/Timothy%20Loaya%20-%20Nashville%2C%20TN/qfmrpnpfycmqs45rlxig.jpg",
+      name: "Chef time",
+    },
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726174699/Timothy%20Loaya%20-%20Nashville%2C%20TN/d7nsse3tbuo1xhwwxqn2.jpg",
-      name: "Timothy Loaya - Nashville, TN",
-    },
-
-    {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/oen84na2gepifdhvyqu5.jpg",
-      name: "Cory Rapp - Plant City, FL",
-    },
-
-    {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214534/Cory%20Rapp%20-%20Plant%20City%2C%20FL/mfuaqb1ogunmgay5ckui.jpg",
-      name: "Cory Rapp - Plant City, FL",
+      name: "Chef tim",
     },
     {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/mr78z4rua952wk0dmrgz.jpg",
-      name: "Cory Rapp - Plant City, FL",
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730783586/Timothy%20jordan%20-%20Denver%2C%20CO/tmeephss9drv21p5aijl.jpg",
+      name: "Time jordan and guest",
     },
-
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/q88wyuf7ew18gyeml4fn.jpg",
+      name: "Chef coory satay",
+    },
+    {
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214534/Cory%20Rapp%20-%20Plant%20City%2C%20FL/izwlygspil1uuqwwehqz.jpg",
+      name: "Cory preparing food",
+    },
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726527231/Semin%20Vasquez/har%20gao.jpg",
-      name: "Har Gao",
-    },
-
-    {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1724638460/pic%20of%20joe%20in%20kitchen.jpg",
-      name: "Joe in kitchen",
-    },
-
-    {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730265061/Home%20landing%20page/mxmmkwgjp6mygorojedo.jpg",
-      name: "Alexia cooking, 4 pots",
+      name: "Dim sum",
     },
     {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264849/Home%20landing%20page/hx6yshkipy6zmyu0xkib.jpg",
-      name: "Joe salmon",
-    },
-
-    {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264848/Home%20landing%20page/fxyyuuogwhi8hnwtw5z4.jpg",
-      name: "Chef tim cutting avocado",
+      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730783005/Timothy%20jordan%20-%20Denver%2C%20CO/pdskph8z9mmmekwdw2ez.jpg",
+      name: "Timothy jordan",
     },
     {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264848/Home%20landing%20page/bczoij2lwyvhrxkmtdjr.jpg",
-      name: "Semin black dim sum",
-    },
-
-    {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264847/Home%20landing%20page/extca8rdke5zobckft2s.jpg",
-      name: "Nashville food blog ",
-    },
-
-    {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730264845/Home%20landing%20page/u0unyfangnwcbta92t87.jpg",
-      name: "Sushi avocado and cucumber",
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1731888881/NFB%20pictures/ggmqirrbrcwilcs5ugzf.jpg",
+      name: "NFB picture 1",
     },
     {
-      src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730265879/Home%20landing%20page/hsyzmm14keakek8bhgfx.jpg",
-      name: "Chef tim with NFB gang",
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1731888874/NFB%20pictures/qnpfocfib93y7eobj1qa.jpg",
+      name: "NFB picture 2",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1731888833/11:10%20-%20Influencers/jkumhtflyzqz1obszmvm.jpg",
+      name: "Influencers",
     },
   ];
 

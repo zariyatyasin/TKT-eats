@@ -217,7 +217,7 @@ export function UserDrawer() {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuItem asChild>
-            <Link href="/profile" className="flex items-center">
+            <Link href="/customer" className="flex items-center">
               <User className="mr-2 h-4 w-4" />
               <span>{session.user.name || "Profile"}</span>
             </Link>
