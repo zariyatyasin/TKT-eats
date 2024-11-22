@@ -69,6 +69,7 @@ export const POST = async (request: Request) => {
         totalCost: totalCost,
         chefName: body.chefName,
         chefId: body.chefId,
+        ...(body.userId && { userId: body.userId }), // Add userId if it exists
       });
   
       const savedOrder = await newOrder.save();
@@ -84,3 +85,40 @@ export const POST = async (request: Request) => {
       );
     }
   };
+
+export const GET = async (request: Request) => {
+  // Connect to the database
+  await connect();
+
+  try {
+    const url = new URL(request.url);
+    const userId = url.searchParams.get('userId');
+    
+    if (!userId) {
+      return NextResponse.json(
+        { message: "User ID query parameter is required" },
+        { status: 400 }
+      );
+    }
+
+    // Find orders by userId
+    const orders = await Order.find({ userId });
+
+    if (orders.length === 0) {
+      return NextResponse.json(
+        { message: "No orders found for this user ID" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      message: "Orders fetched successfully",
+      data: orders,
+    }, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: error.message },
+      { status: 500 }
+    );
+  }
+};

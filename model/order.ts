@@ -24,6 +24,7 @@ interface IOrder extends Document {
   totalCost: number;
   chefName: string;
   chefId: Types.ObjectId;
+  userId: Types.ObjectId;
   promocodeId?: Types.ObjectId; // Optional field for promocode ID
 }
 
@@ -105,6 +106,10 @@ const orderSchema = new Schema<IOrder>({
   chefId: {
     type: Schema.Types.ObjectId,
     required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+ 
   },
   promocodeId: {
     type: Schema.Types.ObjectId,

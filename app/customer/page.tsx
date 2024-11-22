@@ -2,33 +2,48 @@ import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import { ProfileSection } from "./_utils/profile";
 import { BookingHistory } from "./_utils/booking-history";
-
-// Mock data (replace with actual data fetching in a real application)
-const customerData = {
-  name: "John Doe",
-  email: "john.doe@example.com",
-  avatarUrl: "/placeholder.svg?height=80&width=80",
-  bookings: [
-    { id: "1", date: "2023-05-15", service: "Haircut", status: "Completed" },
-    { id: "2", date: "2023-06-02", service: "Massage", status: "Upcoming" },
-    { id: "3", date: "2023-04-20", service: "Manicure", status: "Cancelled" },
-  ],
-};
+import { getUser, getUserOrder } from "./_utils/action";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function CustomerBookingDetails() {
   const session = await getServerSession();
-  console.log(session?.user?.name);
-
   if (!session) {
     redirect("/");
+    return null;
+  }
+
+  let error = null;
+  let bookings = [];
+
+  try {
+    const getUserInfor = await getUser(session?.user?.email);
+    if (!getUserInfor || !getUserInfor._id) {
+      throw new Error("Failed to fetch user information.");
+    }
+
+    const customerOrder = await getUserOrder(getUserInfor._id);
+
+    if (
+      !customerOrder ||
+      customerOrder.message === "No orders found for this user ID"
+    ) {
+      error = "No bookings found.";
+    } else if (customerOrder.data) {
+      bookings = customerOrder.data;
+    } else {
+      throw new Error("Failed to fetch customer orders.");
+    }
+  } catch (err: any) {
+    error = err.message || "An unexpected error occurred.";
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-8 mt-24">
+    <div className="max-w-7xl h-screen mx-auto py-8 mt-24">
       <h1 className="text-3xl font-bold mb-8">
-        Hi,{session?.user?.name || "Guest"}
+        Hi, {session?.user?.name || "Guest"}
       </h1>
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-1">
         <ProfileSection
           name={session?.user?.name || "Guest"}
           email={session?.user?.email || "No email provided"}
@@ -36,7 +51,18 @@ export default async function CustomerBookingDetails() {
             session?.user?.image || "/placeholder.svg?height=80&width=80"
           }
         />
-        <BookingHistory bookings={customerData.bookings} />
+        {error ? (
+          <div className="text-center py-8">
+            <h2 className="text-2xl font-semibold mb-4">{error}</h2>
+            <Button asChild>
+              <Link href="/findchef">Book Chef Now</Link>
+            </Button>
+          </div>
+        ) : bookings.length > 0 ? (
+          <BookingHistory bookings={bookings} />
+        ) : (
+          <div>No bookings found.</div>
+        )}
       </div>
     </div>
   );

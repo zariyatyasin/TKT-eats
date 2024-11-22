@@ -19,6 +19,9 @@ import { BookingSummary } from "./booking-summary";
 import { BookingDetails } from "./booking-confirm";
 import CustomMenuForm from "./custom-menu-submission";
 import DietaryPreferences from "./dietary";
+import { getServerSession } from "next-auth";
+import { getUser } from "@/app/customer/_utils/action";
+import { useSession } from "next-auth/react";
 interface ChefBookingProps {
   initialChefData: any;
   initialReviews: any[];
@@ -44,6 +47,26 @@ export default function ChefBooking({
   const [discount, setDiscount] = useState<number>(0);
   const [promoError, setPromoError] = useState<string | null>(null);
   const [dietaryFilters, setDietaryFilters] = useState<string[]>([]);
+  const { data: session, status } = useSession();
+
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (session?.user?.email) {
+        try {
+          const getUserInfor = await getUser(session.user.email);
+          console.log("this is user info", getUserInfor);
+          setUserId(getUserInfor?._id);
+        } catch (error) {
+          console.error("Failed to fetch user details:", error);
+        }
+      }
+    };
+
+    fetchUserDetails();
+  }, [session]);
+  console.log(userId);
 
   const [discountInfo, setDiscountInfo] = useState<{
     type: string | null;
@@ -108,6 +131,7 @@ export default function ChefBooking({
       notes: details.notes,
       promocode: details.promocode,
       chefName: chefData.name,
+      userId: userId && userId,
       chefId: chefData._id,
     };
 
@@ -225,7 +249,6 @@ export default function ChefBooking({
       handlePromoCodeChange(promoCode);
     }
   }, [selectedItems]);
-  console.log("new", dietaryFilters);
 
   return (
     <div className="container py-28">

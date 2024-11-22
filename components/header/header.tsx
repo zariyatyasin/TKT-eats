@@ -11,9 +11,8 @@ import { MobileMenu } from "./utils/mobile-menu";
 const navItems = [
   { href: "/#partners", label: "Our Partners" },
   { href: "/findchef", label: "Find A Chef" },
-  { href: "/#about", label: "About" },
+  { href: "/about", label: "About & Faq" },
   { href: "/#contact", label: "Contact" },
-  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Header() {
@@ -62,7 +61,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          {/* <UserDrawer /> */}
+          <UserDrawer />
 
           <Link
             href="https://docs.google.com/forms/d/e/1FAIpQLSd7Vxv1DLXIVBHjbUMyj_rVuaM1fuCYqUtJRpzqYX_efEWRRA/viewform?pli=1"

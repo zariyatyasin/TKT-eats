@@ -6,11 +6,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface SignupFormProps {
+  loading: boolean;
   onSubmit: (name: string, email: string, password: string) => Promise<void>;
   onSwitchToLogin: () => void;
 }
 
-export function SignupForm({ onSubmit, onSwitchToLogin }: SignupFormProps) {
+export function SignupForm({
+  loading,
+  onSubmit,
+  onSwitchToLogin,
+}: SignupFormProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -55,8 +60,12 @@ export function SignupForm({ onSubmit, onSwitchToLogin }: SignupFormProps) {
           required
         />
       </div>
-      <Button type="submit" className="w-full h-12 bg-primary">
-        Sign up
+      <Button
+        type="submit"
+        className="w-full h-12 bg-primary"
+        disabled={loading}
+      >
+        {loading ? "Signing up..." : "Sign up"}
       </Button>
       <Button variant="link" className="w-full" onClick={onSwitchToLogin}>
         Already have an account? Log in

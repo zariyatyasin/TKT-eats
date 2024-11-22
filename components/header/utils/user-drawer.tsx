@@ -38,6 +38,8 @@ export function UserDrawer() {
   const [isDesktop, setIsDesktop] = React.useState(false);
   const [showLogin, setShowLogin] = React.useState(false);
   const [showSignup, setShowSignup] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     const checkScreenSize = () => {
@@ -51,6 +53,8 @@ export function UserDrawer() {
   }, []);
 
   const handleLogin = async (email: string, password: string) => {
+    setLoading(true);
+    setError(null);
     try {
       const result = await signIn("credentials", {
         redirect: false,
@@ -58,17 +62,16 @@ export function UserDrawer() {
         password,
       });
 
-      console.log(result);
-
       if (result?.ok) {
-        console.log("Login successful");
         setOpen(false);
         setShowLogin(false);
       } else {
-        console.error("Login failed");
+        setError(result?.error || "Login failed");
       }
     } catch (error) {
-      console.error("Login error:", error);
+      setError("Login error");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,6 +80,8 @@ export function UserDrawer() {
     email: string,
     password: string
   ) => {
+    setLoading(true);
+    setError(null);
     try {
       const response = await fetch("/api/user", {
         method: "POST",
@@ -84,13 +89,16 @@ export function UserDrawer() {
         body: JSON.stringify({ name, email, password }),
       });
       if (response.ok) {
-        console.log("Signup successful");
         await handleLogin(email, password);
+      } else if (response.status === 409) {
+        setError("Email already exists");
       } else {
-        console.error("Signup failed");
+        setError("Signup failed");
       }
     } catch (error) {
-      console.error("Signup error:", error);
+      setError("Signup error");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -99,6 +107,7 @@ export function UserDrawer() {
     if (!newOpen) {
       setShowLogin(false);
       setShowSignup(false);
+      setError(null);
     }
   };
 
@@ -114,12 +123,14 @@ export function UserDrawer() {
       </DrawerHeader>
       <div className="p-4 pb-8">
         <div className="flex flex-col gap-4">
+          {error && <p className="text-red-500 text-center">{error}</p>}
           {!showLogin && !showSignup && (
             <>
               <Button
                 onClick={() => signIn("google")}
                 variant="outline"
                 className="flex items-center gap-2 h-12"
+                disabled={loading}
               >
                 <Avatar className="h-6 w-6">
                   <AvatarImage src="/google.webp" alt="Google logo" />
@@ -141,6 +152,7 @@ export function UserDrawer() {
                 <Button
                   className="w-full h-12 bg-primary"
                   onClick={() => setShowLogin(true)}
+                  disabled={loading}
                 >
                   Log in
                 </Button>
@@ -148,6 +160,7 @@ export function UserDrawer() {
                   variant="outline"
                   className="w-full h-12"
                   onClick={() => setShowSignup(true)}
+                  disabled={loading}
                 >
                   Sign up
                 </Button>
@@ -158,6 +171,7 @@ export function UserDrawer() {
           {showLogin && (
             <LoginForm
               onSubmit={handleLogin}
+              loading={loading}
               onSwitchToSignup={() => {
                 setShowLogin(false);
                 setShowSignup(true);
@@ -167,6 +181,7 @@ export function UserDrawer() {
 
           {showSignup && (
             <SignupForm
+              loading={loading}
               onSubmit={handleSignup}
               onSwitchToLogin={() => {
                 setShowSignup(false);
@@ -177,11 +192,11 @@ export function UserDrawer() {
 
           <p className="text-center text-sm text-muted-foreground">
             By signing up, you agree to our{" "}
-            <Link href="#" className="text-primary hover:underline">
+            <Link href="/terms" className="text-primary hover:underline">
               Terms and Conditions
             </Link>{" "}
             and{" "}
-            <Link href="#" className="text-primary hover:underline">
+            <Link href="/policy" className="text-primary hover:underline">
               Privacy Policy
             </Link>
             .
@@ -191,20 +206,12 @@ export function UserDrawer() {
     </div>
   );
 
-  if (status === "loading") {
-    return (
-      <div className="flex items-center justify-center">
-        <Skeleton className="h-10 w-10 rounded-full" />
-      </div>
-    );
-  }
-
   if (session?.user) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-            <Avatar className="h-10 w-10">
+            <Avatar className="h-12 w-12  border-2">
               <AvatarImage
                 src={session.user.image || undefined}
                 alt={session.user.name || "User profile"}
@@ -235,7 +242,11 @@ export function UserDrawer() {
     return (
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full">
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-full  h-11 w-11"
+          >
             <User className="h-5 w-5" />
             <span className="sr-only">Open user menu</span>
           </Button>

@@ -22,11 +22,11 @@ export default function Footer() {
             Join Now
           </Link>
           <Link
-            href="#about"
+            href="/about"
             className="text-base font-medium hover:underline"
             prefetch={false}
           >
-            About
+            About & FAQ
           </Link>
           <Link
             href="#contact"
@@ -35,13 +35,7 @@ export default function Footer() {
           >
             Contact
           </Link>
-          <Link
-            href="#faq"
-            className="text-base font-medium hover:underline"
-            prefetch={false}
-          >
-            FAQ
-          </Link>
+
           <Link
             href="/terms"
             className="text-base font-medium hover:underline"

@@ -66,9 +66,9 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
         <ImproveTkt />
         {/* <Howitswork /> */}
         <ReviewSection />
-        <Whyus />
+        {/* <Whyus /> */}
         <ImageGerally />
-        <Faq />
+        {/* <Faq /> */}
 
         <Contact />
       </main>

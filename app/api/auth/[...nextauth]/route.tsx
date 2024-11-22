@@ -6,8 +6,9 @@ import User from "@/model/user";
 import bcrypt from "bcryptjs";
 
 import { Account, User as AuthUser } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 
-export const authOptions: any = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -49,7 +50,14 @@ export const authOptions: any = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account }: { user: AuthUser; account: Account }) {
+    async signIn({
+      user,
+      account,
+    }: {
+      user: AuthUser;
+      account: Account | null;
+    }) {
+      console.log("this is user", user);
       if (account?.provider == "credentials") {
         return true;
       }
@@ -57,6 +65,7 @@ export const authOptions: any = {
         await connect();
         try {
           const existingUser = await User.findOne({ email: user.email });
+
           if (!existingUser) {
             const newUser = new User({
               email: user.email,
@@ -71,9 +80,11 @@ export const authOptions: any = {
           return false;
         }
       }
+      return false;
     },
   },
 };
 
-export const handler = NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+
 export { handler as GET, handler as POST };
