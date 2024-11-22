@@ -39,10 +39,10 @@ export default async function CustomerBookingDetails() {
   }
 
   return (
-    <div className="max-w-7xl h-screen mx-auto py-8 mt-24">
-      <h1 className="text-3xl font-bold mb-8">
+    <div className="max-w-4xl mx-  h-screen mx-auto py-8 mt-24">
+      {/* <h1 className="text-xl md:text-3xl font-bold  px-8">
         Hi, {session?.user?.name || "Guest"}
-      </h1>
+      </h1> */}
       <div className="grid gap-8 md:grid-cols-1">
         <ProfileSection
           name={session?.user?.name || "Guest"}

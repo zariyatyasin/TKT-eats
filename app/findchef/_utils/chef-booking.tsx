@@ -66,7 +66,6 @@ export default function ChefBooking({
 
     fetchUserDetails();
   }, [session]);
-  console.log(userId);
 
   const [discountInfo, setDiscountInfo] = useState<{
     type: string | null;

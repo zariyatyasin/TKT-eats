@@ -26,7 +26,10 @@ export function SignupForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 animate-fadeIn">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 animate-fadeIn min-h-screen md:min-h-fit p-4 text-base"
+    >
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input
@@ -36,6 +39,7 @@ export function SignupForm({
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          className="text-base"
         />
       </div>
       <div className="space-y-2">
@@ -47,6 +51,7 @@ export function SignupForm({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="text-base"
         />
       </div>
       <div className="space-y-2">
@@ -58,18 +63,27 @@ export function SignupForm({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="text-base"
         />
       </div>
-      <Button
-        type="submit"
-        className="w-full h-12 bg-primary"
-        disabled={loading}
-      >
-        {loading ? "Signing up..." : "Sign up"}
-      </Button>
-      <Button variant="link" className="w-full" onClick={onSwitchToLogin}>
-        Already have an account? Log in
-      </Button>
+      <div className="pt-4">
+        <Button
+          type="submit"
+          className="w-full h-12 bg-primary text-base"
+          disabled={loading}
+        >
+          {loading ? "Signing up..." : "Sign up"}
+        </Button>
+      </div>
+      <div className="pt-2">
+        <Button
+          variant="link"
+          className="w-full text-base"
+          onClick={onSwitchToLogin}
+        >
+          Already have an account? Log in
+        </Button>
+      </div>
     </form>
   );
 }

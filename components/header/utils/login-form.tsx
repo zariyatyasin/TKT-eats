@@ -25,7 +25,10 @@ export function LoginForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 animate-fadeIn">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 animate-fadeIn min-h-screen md:min-h-fit p-4 text-base"
+    >
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input
@@ -35,6 +38,7 @@ export function LoginForm({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="text-base"
         />
       </div>
       <div className="space-y-2">
@@ -46,16 +50,21 @@ export function LoginForm({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="text-base"
         />
       </div>
       <Button
         type="submit"
-        className="w-full h-12 bg-primary"
+        className="w-full h-12 bg-primary text-base"
         disabled={loading}
       >
-        {loading ? "  Log in..." : "  Log in"}
+        {loading ? "Log in..." : "Log in"}
       </Button>
-      <Button variant="link" className="w-full" onClick={onSwitchToSignup}>
+      <Button
+        variant="link"
+        className="w-full text-base"
+        onClick={onSwitchToSignup}
+      >
         Don&apos;t have an account? Sign up
       </Button>
     </form>

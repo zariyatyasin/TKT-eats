@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -121,7 +121,7 @@ export function UserDrawer() {
         <DrawerTitle className="text-2xl font-bold">Welcome!</DrawerTitle>
         <p className="text-muted-foreground">Sign up or log in to continue</p>
       </DrawerHeader>
-      <div className="p-4 pb-8">
+      <div className="p-4 pb-8 overflow-y-auto max-h-[calc(100vh-200px)]">
         <div className="flex flex-col gap-4">
           {error && <p className="text-red-500 text-center">{error}</p>}
           {!showLogin && !showSignup && (
@@ -251,12 +251,7 @@ export function UserDrawer() {
             <span className="sr-only">Open user menu</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle className="sr-only">User menu</DialogTitle>
-          </DialogHeader>
-          {content}
-        </DialogContent>
+        <DialogContent className="sm:max-w-[425px]">{content}</DialogContent>
       </Dialog>
     );
   }
@@ -269,7 +264,18 @@ export function UserDrawer() {
           <span className="sr-only">Open user menu</span>
         </Button>
       </DrawerTrigger>
-      <DrawerContent>{content}</DrawerContent>
+      <DrawerContent className="h-[88vh]">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute right-4 top-4"
+          onClick={() => setOpen(false)}
+        >
+          <X className="h-4 w-4" />
+          <span className="sr-only">Close</span>
+        </Button>
+        <div className="h-[88ßvh]">{content}</div>
+      </DrawerContent>
     </Drawer>
   );
 }
