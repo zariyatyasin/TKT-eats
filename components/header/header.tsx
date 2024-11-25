@@ -9,9 +9,10 @@ import { UserDrawer } from "./utils/user-drawer";
 import { MobileMenu } from "./utils/mobile-menu";
 
 const navItems = [
-  { href: "/#partners", label: "Our Partners" },
+  { href: "/partner", label: "Our Partners" },
   { href: "/findchef", label: "Find A Chef" },
-  { href: "/about", label: "About & Faq" },
+  { href: "/about", label: "About Us" },
+  { href: "/faq", label: "Faq" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -34,7 +35,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 z-40 w-full transition-colors duration-300 ${
+      className={`fixed top-0 z-40 w-full  py-1 transition-colors duration-300 ${
         isScrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
@@ -64,7 +65,7 @@ export default function Header() {
           <UserDrawer />
 
           <Link
-            href="https://docs.google.com/forms/d/e/1FAIpQLSd7Vxv1DLXIVBHjbUMyj_rVuaM1fuCYqUtJRpzqYX_efEWRRA/viewform?pli=1"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc3SBIBXTxIUWoQbtm74b_7CV2GgeUw2E7OumpieY0gsaxtBA/viewform"
             className="hidden md:block"
           >
             <Button size="lg" className="rounded-full">

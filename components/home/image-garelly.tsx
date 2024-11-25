@@ -25,6 +25,11 @@ export default function Component() {
       src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1732075795/11:19%20weekly%20meal%20plan/zhbyj9zaphnmpyuo8cvm.jpg",
       name: "Weekly menu all item",
     },
+
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1732075782/11:19%20weekly%20meal%20plan/s6sbpuptfrwugzm5975e.jpg",
+      name: "Weekly menu all item",
+    },
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1724638461/joe%202:%20joe%20cooking%20in%20kitchen.jpg",
       name: "Joe in the kitchen cooking",
@@ -35,19 +40,25 @@ export default function Component() {
     },
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726174701/Timothy%20Loaya%20-%20Nashville%2C%20TN/qfmrpnpfycmqs45rlxig.jpg",
-      name: "Chef time",
+      name: "Chef tim",
     },
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726174699/Timothy%20Loaya%20-%20Nashville%2C%20TN/d7nsse3tbuo1xhwwxqn2.jpg",
       name: "Chef tim",
     },
+
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1731888785/11-2%20event/11:2%20event/fa6uxnemuphsvswimije.jpg",
+      name: "Event image",
+    },
+
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730783586/Timothy%20jordan%20-%20Denver%2C%20CO/tmeephss9drv21p5aijl.jpg",
-      name: "Time jordan and guest",
+      name: "Tim jordan and guest",
     },
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214535/Cory%20Rapp%20-%20Plant%20City%2C%20FL/q88wyuf7ew18gyeml4fn.jpg",
-      name: "Chef coory satay",
+      name: "Chef cory satay",
     },
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1727214534/Cory%20Rapp%20-%20Plant%20City%2C%20FL/izwlygspil1uuqwwehqz.jpg",
@@ -74,7 +85,6 @@ export default function Component() {
       name: "Influencers",
     },
   ];
-
   useEffect(() => {
     if (!api) {
       return;

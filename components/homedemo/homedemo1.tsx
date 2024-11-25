@@ -62,7 +62,7 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
           </div>
         </div>
 
-        <Partners />
+        {/* <Partners /> */}
         <ImproveTkt />
         {/* <Howitswork /> */}
         <ReviewSection />

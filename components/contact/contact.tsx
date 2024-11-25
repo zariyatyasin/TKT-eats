@@ -27,7 +27,9 @@ export default function Contact() {
             <div className="space-y-4 md:space-y-6">
               <div className="flex items-center  space-x-4  justify-center">
                 <Link
-                  href={" https://www.facebook.com/share/1oty7mFZcgvYkeQE/"}
+                  href={
+                    " https://www.facebook.com/profile.php?id=61567215235144"
+                  }
                 >
                   <Facebook className=" w-6 h-6 text-blue-600" />
                 </Link>
