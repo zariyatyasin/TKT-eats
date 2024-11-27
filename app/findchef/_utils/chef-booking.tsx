@@ -22,11 +22,18 @@ import DietaryPreferences from "./dietary";
 import { getServerSession } from "next-auth";
 import { getUser } from "@/app/customer/_utils/action";
 import { useSession } from "next-auth/react";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import PaymentForm from "./payment-form";
+import { Loader2 } from "lucide-react";
 interface ChefBookingProps {
   initialChefData: any;
   initialReviews: any[];
   initialMenu: any[];
 }
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
 export default function ChefBooking({
   initialChefData,
@@ -48,6 +55,10 @@ export default function ChefBooking({
   const [promoError, setPromoError] = useState<string | null>(null);
   const [dietaryFilters, setDietaryFilters] = useState<string[]>([]);
   const { data: session, status } = useSession();
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState<any>(null);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [isStripeLoading, setIsStripeLoading] = useState(false);
 
   const [userId, setUserId] = useState<string | null>(null);
 
@@ -66,7 +77,22 @@ export default function ChefBooking({
 
     fetchUserDetails();
   }, [session]);
-
+  const createPaymentIntent = async (amount: number) => {
+    try {
+      const response = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount }),
+      });
+      const data = await response.json();
+      return data.clientSecret;
+    } catch (error) {
+      console.error("Error creating payment intent:", error);
+      throw error;
+    }
+  };
   const [discountInfo, setDiscountInfo] = useState<{
     type: string | null;
     value: number;
@@ -108,6 +134,7 @@ export default function ChefBooking({
     setSelectedItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
   };
 
+  console.log(initialMenu);
   const handleBookingSubmit = async (details: any) => {
     if (selectedItems.length === 0) {
       toast({
@@ -117,18 +144,34 @@ export default function ChefBooking({
       return;
     }
 
+    setBookingDetails(details);
+    setIsStripeLoading(true);
+    try {
+      const secret = await createPaymentIntent(totalCost);
+      setClientSecret(secret);
+      setIsPaymentModalOpen(true);
+    } catch (error) {
+      toast({
+        title: "Payment Error",
+        description: "Unable to initiate payment. Please try again.",
+      });
+    } finally {
+      setIsStripeLoading(false);
+    }
+  };
+  const handlePaymentSuccess = async () => {
     setIsSubmitting(true);
 
     const requestData = {
-      name: details.name,
-      address: details.address,
-      phone: details.phone,
-      email: details.email,
-      date: details.date,
-      time: details.time,
+      name: bookingDetails.name,
+      address: bookingDetails.address,
+      phone: bookingDetails.phone,
+      email: bookingDetails.email,
+      date: bookingDetails.date,
+      time: bookingDetails.time,
       items: selectedItems,
-      notes: details.notes,
-      promocode: details.promocode,
+      notes: bookingDetails.notes,
+      promocode: bookingDetails.promocode,
       chefName: chefData.name,
       userId: userId && userId,
       chefId: chefData._id,
@@ -138,19 +181,21 @@ export default function ChefBooking({
       const emailData = {
         to: "tkteats@gmail.com",
         subject: "New Booking Confirmed",
-        text: `You have a new booking from ${details.name}.`,
+        text: `You have a new booking from ${bookingDetails.name}.`,
         html: `
           <h1>New Booking Confirmed</h1>
-          <p>You have a new booking from <strong>${details.name}</strong>.</p>
-          <p><strong>Booking Details:</strong></p>
+          <p>You have a new booking from <strong>${
+            bookingDetails.name
+          }</strong>.</p>
+          <p><strong>Booking bookingDetails:</strong></p>
           <ul>
-            <li><strong>Name:</strong> ${details.name}</li>
-            <li><strong>Address:</strong> ${details.address}</li>
-            <li><strong>Phone:</strong> ${details.phone}</li>
-            <li><strong>Email:</strong> ${details.email}</li>
-            <li><strong>Date:</strong> ${details.date}</li>
-            <li><strong>Time:</strong> ${details.time}</li>
-            <li><strong>Notes:</strong> ${details.notes || "N/A"}</li>
+            <li><strong>Name:</strong> ${bookingDetails.name}</li>
+            <li><strong>Address:</strong> ${bookingDetails.address}</li>
+            <li><strong>Phone:</strong> ${bookingDetails.phone}</li>
+            <li><strong>Email:</strong> ${bookingDetails.email}</li>
+            <li><strong>Date:</strong> ${bookingDetails.date}</li>
+            <li><strong>Time:</strong> ${bookingDetails.time}</li>
+            <li><strong>Notes:</strong> ${bookingDetails.notes || "N/A"}</li>
             <li><strong>originalTotalCost:</strong> ${
               originalTotalCost || "N/A"
             }</li>
@@ -174,7 +219,7 @@ export default function ChefBooking({
           <p><strong>Total Cost:</strong> $${totalCost}</p>
         `,
       };
-      await sendemail(emailData);
+      // await sendemail(emailData);
       const res = await createOrder(requestData);
 
       if (res.success === false) {
@@ -196,9 +241,9 @@ export default function ChefBooking({
       });
     } finally {
       setIsSubmitting(false);
+      setIsPaymentModalOpen(false);
     }
   };
-  console.log(initialMenu);
 
   const totalCost =
     selectedItems.reduce(
@@ -333,6 +378,23 @@ export default function ChefBooking({
           selectedImage={selectedImage}
           onModalClose={handleModalClose}
         />
+      )}
+      {isStripeLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <p className="text-lg font-semibold">Preparing payment...</p>
+          </div>
+        </div>
+      )}
+      {isPaymentModalOpen && clientSecret && (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <PaymentForm
+            amount={totalCost}
+            onSuccess={handlePaymentSuccess}
+            onCancel={() => setIsPaymentModalOpen(false)}
+          />
+        </Elements>
       )}
     </div>
   );

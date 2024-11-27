@@ -95,7 +95,7 @@ export default function ImproveTkt() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <StatCard icon={Users} end={42} label="Guests Served" />
           <StatCard icon={Utensils} end={98} label="Dishes Served" />
-          <StatCard icon={Soup} end={674} label="UNIQUE MENU ITEMS " />
+          <StatCard icon={Soup} end={734} label="UNIQUE MENU ITEMS " />
         </div>
       </div>
     </motion.section>

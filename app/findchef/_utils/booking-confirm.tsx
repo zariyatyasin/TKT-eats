@@ -55,6 +55,7 @@ export function BookingDetails({
 
     onPromoCodeChange(code); // Call the function to validate promo code
   };
+  console.log(isSubmitting);
 
   return (
     <Card className="top-20">
