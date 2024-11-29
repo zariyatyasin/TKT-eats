@@ -81,6 +81,9 @@ export default function PaymentForm({
         </CardTitle>
         <p className="text-gray-600">Thank you for your payment.</p>
       </CardContent>
+      <CardFooter className="justify-center">
+        <p className="text-sm text-gray-500">Powered by Stripe</p>
+      </CardFooter>
     </Card>
   ) : (
     <Card className="w-full max-w-md">
@@ -99,20 +102,25 @@ export default function PaymentForm({
           )}
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button type="button" variant="outline" onClick={onCancel}>
-          Cancel
-        </Button>
-        <Button type="submit" disabled={isProcessing} onClick={handleSubmit}>
-          {isProcessing ? "Processing..." : `Pay $${amount.toFixed(2)}`}
-        </Button>
+      <CardFooter className="flex flex-col gap-4">
+        <div className="flex justify-between w-full">
+          <Button type="button" variant="outline" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button type="submit" disabled={isProcessing} onClick={handleSubmit}>
+            {isProcessing ? "Processing..." : `Pay $${amount.toFixed(2)}`}
+          </Button>
+        </div>
+        <p className="text-sm text-blue-600 text-center">Powered by Stripe</p>
       </CardFooter>
     </Card>
   );
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="w-full max-w-md">{modalContent}</div>
+      <div className="w-full max-w-md max-h-[90vh] overflow-y-auto">
+        {modalContent}
+      </div>
     </div>
   );
 }

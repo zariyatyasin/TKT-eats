@@ -32,9 +32,7 @@ interface ChefBookingProps {
   initialReviews: any[];
   initialMenu: any[];
 }
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-);
+const stripePromise = loadStripe(process.env.PUBLI_STRIP!);
 
 export default function ChefBooking({
   initialChefData,
@@ -88,6 +86,8 @@ export default function ChefBooking({
         },
         body: JSON.stringify({ amount }),
       });
+      console.log("tjos res", response);
+
       const data = await response.json();
       return data.clientSecret;
     } catch (error) {
@@ -138,10 +138,10 @@ export default function ChefBooking({
 
   console.log(initialMenu);
   const handleBookingSubmit = async (details: any) => {
-    if (!session) {
-      openDrawer();
-      return;
-    }
+    // if (!session) {
+    //   openDrawer();
+    //   return;
+    // }
     if (selectedItems.length === 0) {
       toast({
         title: "Booking Error",
