@@ -10,7 +10,7 @@ export function usePromoModal() {
       const timer = setTimeout(() => {
         setIsOpen(true)
         localStorage.setItem('hasSeenPromo', 'true')
-      }, 3000) // 30 seconds
+      }, 30000) // 30 seconds
 
       return () => clearTimeout(timer)
     }

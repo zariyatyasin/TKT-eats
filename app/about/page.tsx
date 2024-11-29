@@ -25,7 +25,7 @@ export default function AboutPage() {
             A Mission Rooted in Passion
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-            TheKitchenTable was born from co-founder Marvin's lifelong
+            TheKitchenTable was born from co-founder Marvin&apos;s lifelong
             connection to food and a deep understanding of the challenges chefs
             face. Marvin&apos;s grand uncle in Austria poured his heart into his
             small restaurant, yet he struggled to bring in customers. The joy on

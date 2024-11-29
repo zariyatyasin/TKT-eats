@@ -1,6 +1,6 @@
 // components/KnowTheChef.tsx
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CalendarIcon, LocateIcon, MapPin, TagIcon, XIcon } from "lucide-react";
 
 interface KnowTheChefProps {
@@ -22,9 +22,29 @@ const KnowTheChef: React.FC<KnowTheChefProps> = ({
   experience,
   location,
   description,
-
   onModalClose,
 }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        onModalClose();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen, onModalClose]);
+
   return (
     <section className="rounded-lg grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto py-6 md:py-14">
       <div className="gap-4">
@@ -57,14 +77,11 @@ const KnowTheChef: React.FC<KnowTheChefProps> = ({
       </div>
       {isModalOpen && selectedImage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="relative max-w-5xl mx-auto">
+          <div ref={modalRef} className="relative max-w-5xl mx-auto">
             <img
               src={selectedImage}
               alt="Gallery Image"
-              // width={800}
-              // height={800}
-              className="rounded-lg  over max-h-[90vh]"
-              // style={{ aspectRatio: "1200/800", objectFit: "cover" }}
+              className="rounded-lg max-h-[90vh] max-w-full"
             />
             <button
               className="absolute top-4 right-4 text-white bg-gray-800 hover:bg-gray-700 rounded-full p-2 focus:outline-none"

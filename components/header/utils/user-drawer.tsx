@@ -31,6 +31,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useUserDrawer } from "./userDrawerLogin";
 
 export function UserDrawer() {
   const { data: session, status } = useSession();
@@ -40,6 +41,7 @@ export function UserDrawer() {
   const [showSignup, setShowSignup] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const { isOpen, openDrawer, closeDrawer } = useUserDrawer();
 
   React.useEffect(() => {
     const checkScreenSize = () => {
@@ -61,6 +63,8 @@ export function UserDrawer() {
         email,
         password,
       });
+
+      console.log("result:", result);
 
       if (result?.ok) {
         setOpen(false);
@@ -103,7 +107,11 @@ export function UserDrawer() {
   };
 
   const handleOpenChange = (newOpen: boolean) => {
-    setOpen(newOpen);
+    if (newOpen) {
+      openDrawer();
+    } else {
+      closeDrawer();
+    }
     if (!newOpen) {
       setShowLogin(false);
       setShowSignup(false);
@@ -240,7 +248,7 @@ export function UserDrawer() {
 
   if (isDesktop) {
     return (
-      <Dialog open={open} onOpenChange={handleOpenChange}>
+      <Dialog open={isOpen} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild>
           <Button
             variant="outline"
@@ -257,7 +265,7 @@ export function UserDrawer() {
   }
 
   return (
-    <Drawer open={open} onOpenChange={handleOpenChange}>
+    <Drawer open={isOpen} onOpenChange={handleOpenChange}>
       <DrawerTrigger asChild>
         <Button variant="outline" size="icon" className="rounded-full p-2">
           <User className="h-5 w-5" />
@@ -269,7 +277,7 @@ export function UserDrawer() {
           variant="ghost"
           size="icon"
           className="absolute right-4 top-4"
-          onClick={() => setOpen(false)}
+          onClick={closeDrawer}
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>

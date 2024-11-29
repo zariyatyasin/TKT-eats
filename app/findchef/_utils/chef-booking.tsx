@@ -26,6 +26,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./payment-form";
 import { Loader2 } from "lucide-react";
+import { useUserDrawer } from "@/components/header/utils/userDrawerLogin";
 interface ChefBookingProps {
   initialChefData: any;
   initialReviews: any[];
@@ -59,6 +60,7 @@ export default function ChefBooking({
   const [bookingDetails, setBookingDetails] = useState<any>(null);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isStripeLoading, setIsStripeLoading] = useState(false);
+  const { openDrawer } = useUserDrawer();
 
   const [userId, setUserId] = useState<string | null>(null);
 
@@ -136,6 +138,10 @@ export default function ChefBooking({
 
   console.log(initialMenu);
   const handleBookingSubmit = async (details: any) => {
+    if (!session) {
+      openDrawer();
+      return;
+    }
     if (selectedItems.length === 0) {
       toast({
         title: "Booking Error",

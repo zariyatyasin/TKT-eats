@@ -15,7 +15,7 @@ interface PromoModalProps {
 }
 
 export function PromoModal({ isOpen, onClose }: PromoModalProps) {
-  const promoCode = "CHEF30";
+  const promoCode = "tkt15";
 
   useEffect(() => {
     if (isOpen) {
@@ -42,7 +42,7 @@ export function PromoModal({ isOpen, onClose }: PromoModalProps) {
         </DialogHeader>
         <div className="flex flex-col items-center gap-3 py-2">
           <DialogTitle className="text-2xl font-bold text-center text-[#9DCA30]">
-            30% OFF Your First Booking
+            15% OFF Your First Booking
           </DialogTitle>
           <p className="text-sm text-center text-gray-600">
             Experience culinary excellence at home
@@ -53,8 +53,7 @@ export function PromoModal({ isOpen, onClose }: PromoModalProps) {
             </p>
             <Button
               onClick={copyPromoCode}
-              variant="outline"
-              className="font-semibold rounded-l-none border-2 border-[#9DCA30] text-[#9DCA30]    "
+              className="font-semibold rounded-l-none outline-none border-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
             >
               Copy
             </Button>

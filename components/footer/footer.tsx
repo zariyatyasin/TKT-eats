@@ -24,7 +24,7 @@ export default function Footer() {
             className="text-base font-medium hover:underline"
             prefetch={false}
           >
-            Our partners
+            Our Partners
           </Link>
           <Link
             href="/about"

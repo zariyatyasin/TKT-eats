@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth/mongodb-adapter": "^3.7.4",
     "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-aspect-ratio": "^1.1.0",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.1",
@@ -54,7 +55,8 @@
     "stripe": "^17.4.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^0.9.1"
+    "vaul": "^0.9.1",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
