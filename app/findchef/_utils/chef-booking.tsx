@@ -225,7 +225,7 @@ export default function ChefBooking({
           <p><strong>Total Cost:</strong> $${totalCost}</p>
         `,
       };
-      // await sendemail(emailData);
+      await sendemail(emailData);
       const res = await createOrder(requestData);
 
       if (res.success === false) {

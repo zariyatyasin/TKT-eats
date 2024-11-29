@@ -37,28 +37,15 @@ const GenerateInvoiceButton = ({ orderData }: GenerateInvoiceButtonProps) => {
   const generateInvoice = () => {
     const doc = new jsPDF();
 
-    // Add company logo
-    const logoUrl = "/logo.webp"; // Assuming the logo is in the public folder
-    const logoWidth = 40; // Adjust as needed
-    const logoHeight = 40; // Adjust as needed
-    doc.addImage(
-      logoUrl,
-      "PNG",
-      doc.internal.pageSize.getWidth() / 2 - logoWidth / 2,
-      10,
-      logoWidth,
-      logoHeight
-    );
-
     // Add company name
     doc.setFontSize(20);
     doc.setTextColor("#9DCA30");
     doc.setFont("helvetica", "bold");
-    doc.text("TKT", doc.internal.pageSize.getWidth() / 2, 60, {
+    doc.text("TKT", doc.internal.pageSize.getWidth() / 2, 20, {
       align: "center",
     });
     doc.setFontSize(12);
-    doc.text("TheKitchenTable", doc.internal.pageSize.getWidth() / 2, 70, {
+    doc.text("TheKitchenTable", doc.internal.pageSize.getWidth() / 2, 30, {
       align: "center",
     });
 
@@ -66,16 +53,15 @@ const GenerateInvoiceButton = ({ orderData }: GenerateInvoiceButtonProps) => {
     doc.setFontSize(10);
     doc.setTextColor("#000000");
     doc.setFont("helvetica", "normal");
-    const startX = 20; // Adjusted starting X position
-    const lineHeight = 8; // Adjusted line height
-    doc.text(`Order ID: ${orderData._id.slice(-7)}`, 15, 90);
-    doc.text(`Customer: ${orderData.name}`, 15, 90 + lineHeight);
-    doc.text(`Email: ${orderData.email}`, 15, 90 + lineHeight * 2);
-    doc.text(`Phone: ${orderData.phone}`, 15, 90 + lineHeight * 3);
-    doc.text(`Address: ${orderData.address}`, 15, 90 + lineHeight * 4);
-    doc.text(`Date: ${orderData.date}`, 15, 90 + lineHeight * 5);
-    doc.text(`Time: ${orderData.time}`, 15, 90 + lineHeight * 6);
-    doc.text(`Chef: ${orderData.chefName}`, 15, 90 + lineHeight * 7);
+    const lineHeight = 8;
+    doc.text(`Order ID: ${orderData._id.slice(-7)}`, 15, 50);
+    doc.text(`Customer: ${orderData.name}`, 15, 50 + lineHeight);
+    doc.text(`Email: ${orderData.email}`, 15, 50 + lineHeight * 2);
+    doc.text(`Phone: ${orderData.phone}`, 15, 50 + lineHeight * 3);
+    doc.text(`Address: ${orderData.address}`, 15, 50 + lineHeight * 4);
+    doc.text(`Date: ${orderData.date}`, 15, 50 + lineHeight * 5);
+    doc.text(`Time: ${orderData.time}`, 15, 50 + lineHeight * 6);
+    doc.text(`Chef: ${orderData.chefName}`, 15, 50 + lineHeight * 7);
 
     // Add table for items
     const tableColumn = ["Product", "Quantity", "Price"];
@@ -86,14 +72,14 @@ const GenerateInvoiceButton = ({ orderData }: GenerateInvoiceButtonProps) => {
     ]);
 
     (doc as any).autoTable({
-      startY: 160,
+      startY: 120,
       head: [tableColumn],
       body: tableRows,
-      headStyles: { fillColor: "#9DCA30" }, // Set header color
+      headStyles: { fillColor: "#9DCA30" },
     });
 
     // Add totals
-    const finalY = (doc as any).lastAutoTable.finalY || 160;
+    const finalY = (doc as any).lastAutoTable.finalY || 120;
     doc.text(`Total Cost: $${orderData.totalCost.toFixed(2)}`, 10, finalY + 10);
 
     // Add thank you message
