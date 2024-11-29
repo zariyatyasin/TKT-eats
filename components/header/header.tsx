@@ -7,18 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { UserDrawer } from "./utils/user-drawer";
 import { MobileMenu } from "./utils/mobile-menu";
+import { usePromoModal } from "../home/use-promo-modal";
+import { PromoModal } from "../home/promo-modal";
 
 const navItems = [
   { href: "/partner", label: "Our Partners" },
   { href: "/findchef", label: "Find A Chef" },
   { href: "/about", label: "About Us" },
-  { href: "/faq", label: "Faq" },
+  { href: "/faq", label: "FAQ" },
   { href: "/#contact", label: "Contact" },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isOpen, onClose } = usePromoModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,6 +84,8 @@ export default function Header() {
           </button>
         </div>
       </div>
+      <PromoModal isOpen={isOpen} onClose={onClose} />
+
       <MobileMenu
         isOpen={isMenuOpen}
         onClose={toggleMenu}

@@ -38,7 +38,7 @@ export default function Footer() {
             className="text-base font-medium hover:underline"
             prefetch={false}
           >
-            Faq
+            FAQ
           </Link>
           <Link
             href="/#contact"

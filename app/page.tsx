@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const result = await GetAllChef({ limit: "4" });
+  const result = await GetAllChef({ limit: "8" });
 
   return (
     <div>

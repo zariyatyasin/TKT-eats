@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ChefHat, MapPin, Star } from "lucide-react";
 import Link from "next/link";
@@ -20,44 +21,52 @@ export default function ChefCard({
   reviewCount,
   location,
 }: ChefCardProps) {
+  console.log(cuisines);
+
   return (
-    <div className="bg-background rounded-xl overflow-hidden shadow-lg">
-      <div className="relative">
-        <img
-          src={
-            profileImage ||
-            "https://res.cloudinary.com/ddrjnijut/image/upload/v1723878189/chef_wkroiu.png"
-          }
-          width={400}
-          height={300}
-          alt="Chef Profile"
-          className="w-full h-48  object-center object-contain"
-          style={{ aspectRatio: "400/300", objectFit: "cover" }}
-        />
-        {reviewCount > 0 && (
-          <div className="absolute flex gap-1 items-center top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-            <Star className="  f h-4 w-4" />
-            {reviewCount}
+    <Link href={`/findchef/${id}?name=${encodeURIComponent(name)}`}>
+      <div className="bg-background rounded-xl overflow-hidden shadow flex flex-col h-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+        <div className="relative overflow-hidden">
+          <img
+            src={
+              profileImage ||
+              "https://res.cloudinary.com/ddrjnijut/image/upload/v1723878189/chef_wkroiu.png"
+            }
+            width={400}
+            height={300}
+            alt="Chef Profile"
+            className="w-full h-64 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
+          />
+          {reviewCount > 0 && (
+            <div className="absolute flex gap-1 items-center top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ease-in-out hover:bg-secondary hover:text-secondary-foreground">
+              <Star className="h-4 w-4" />
+              {reviewCount}
+            </div>
+          )}
+        </div>
+        <div className="p-4 flex flex-col flex-grow">
+          <h3 className="text-lg font-bold mb-2 transition-colors duration-300 ease-in-out hover:text-primary">
+            {name}
+          </h3>
+          <div className="flex flex-wrap gap-2 mb-2">
+            {cuisines.map((cuisine, index) => (
+              <Badge key={index} variant="secondary" className="text-xs">
+                {cuisine}
+              </Badge>
+            ))}
           </div>
-        )}
-      </div>
-      <div className="p-4  space-y-4">
-        <h3 className="text-xl font-bold">{name}</h3>
-        <p className="text-muted-foreground">{cuisines.join(", ")}</p>
-        <div className="flex items-center justify-between">
-          <Link href={"/findchef/" + id + "?name=" + name}>
-            <Button size={"sm"} className=" text-xs gap-1">
-              {" "}
-              <ChefHat className=" h-4 w-4" />
-              Book Now
-            </Button>
-          </Link>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 mb-4">
             <MapPin className="w-4 h-4 text-muted-foreground" />
-            <span className="text-muted-foreground text-xs">{location}</span>
+            <span className="text-muted-foreground text-sm">{location}</span>
+          </div>
+          <div className="mt-auto">
+            <Button size="lg" className="w-full text-sm gap-2  ">
+              <ChefHat className="h-5 w-5" />
+              View Profile
+            </Button>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

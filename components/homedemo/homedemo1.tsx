@@ -34,7 +34,7 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
     <div className="min-h-screen bg-slate-50 overflow-hidden">
       <main>
         <Hero />
-        <div className="max-w-7xl mx-auto py-24 px-6">
+        <div className="container mx-auto py-24 px-6">
           <h2 className="text-3xl text-center sm:text-4xl md:text-5xl font-bold text-gray-900 mb-12">
             Featured Chefs
           </h2>
