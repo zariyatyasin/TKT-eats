@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { X, ChefHat } from "lucide-react";
 import Image from "next/image";
 import {
@@ -16,6 +16,7 @@ interface PromoModalProps {
 
 export function PromoModal({ isOpen, onClose }: PromoModalProps) {
   const promoCode = "tkt15";
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -25,6 +26,8 @@ export function PromoModal({ isOpen, onClose }: PromoModalProps) {
 
   const copyPromoCode = () => {
     navigator.clipboard.writeText(promoCode);
+    setCopied(true);
+
     // You could add a toast notification here to confirm the copy action
   };
 
@@ -55,7 +58,7 @@ export function PromoModal({ isOpen, onClose }: PromoModalProps) {
               onClick={copyPromoCode}
               className="font-semibold rounded-l-none outline-none border-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
             >
-              Copy
+              {copied ? "Copied" : "Copy"}
             </Button>
           </div>
         </div>
