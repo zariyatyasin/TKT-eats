@@ -35,6 +35,18 @@ export const POST = async (request: Request) => {
       email: body.email, // Add email from the request body
       phone: body.phone, // Add phone from the request body
       address: body.address, // Add address from the request body
+      dietaryRestrictionsNotes: body.dietaryRestrictionsNotes,
+      allergiesOrAvoidIngredients: body.allergiesOrAvoidIngredients,
+      preferredProteins: {
+        chicken: body.preferredProteins?.chicken,
+        seafood: body.preferredProteins?.seafood,
+        beef: body.preferredProteins?.beef,
+        beefMaxPerWeek: body.preferredProteins?.beefMaxPerWeek,
+        other: body.preferredProteins?.other,
+      },
+      servingsPerMealNotes: body.servingsPerMealNotes,
+      preferredReheatingMethod: body.preferredReheatingMethod,
+
     });
 
     // Save the CustomMenu to the database

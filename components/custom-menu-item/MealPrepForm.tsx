@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { CalendarIcon, ClockIcon } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
 
 export function MealPrepForm({ onSubmit }: { onSubmit: (data: any) => void }) {
   const {
@@ -128,7 +129,87 @@ export function MealPrepForm({ onSubmit }: { onSubmit: (data: any) => void }) {
           </p>
         )}
       </div>
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <Label>Preferred Proteins</Label>
+          <div className="flex flex-wrap gap-4">
+            {["Chicken", "Seafood", "Beef", "Other"].map((protein) => (
+              <Controller
+                key={protein}
+                name={`preferredProteins.${protein.toLowerCase()}`}
+                control={control}
+                render={({ field }) => (
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id={protein.toLowerCase()}
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                    <Label htmlFor={protein.toLowerCase()}>{protein}</Label>
+                  </div>
+                )}
+              />
+            ))}
+          </div>
+        </div>
 
+        <Controller
+          name="preferredProteins.other"
+          control={control}
+          render={({ field }) => (
+            <div className="space-y-2">
+              {field.value && (
+                <>
+                  <Label htmlFor="otherProtein">Other Protein</Label>
+                  <Input
+                    id="otherProtein"
+                    placeholder="Please specify other protein"
+                    {...field}
+                    value={field.value === true ? "" : field.value}
+                    onChange={(e) => field.onChange(e.target.value)}
+                  />
+                </>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="preferredProteins.beef"
+          control={control}
+          render={({ field: beefField }) => (
+            <Controller
+              name="preferredProteins.beefMaxPerWeek"
+              control={control}
+              render={({ field }) => (
+                <div className="space-y-2">
+                  {beefField.value && (
+                    <>
+                      <Label htmlFor="beefMaxPerWeek">
+                        Maximum Beef Meals Per Week
+                      </Label>
+                      <Input
+                        id="beefMaxPerWeek"
+                        type="number"
+                        min="0"
+                        max="7"
+                        placeholder="Enter max beef meals per week"
+                        {...field}
+                        value={field.value || ""}
+                        onChange={(e) =>
+                          field.onChange(
+                            e.target.value ? Number(e.target.value) : ""
+                          )
+                        }
+                      />
+                    </>
+                  )}
+                </div>
+              )}
+            />
+          )}
+        />
+      </div>
       {/* New fields: Booking Date, Booking Time, and Additional Notes */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">

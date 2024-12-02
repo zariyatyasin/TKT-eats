@@ -161,7 +161,7 @@ export default function ReviewSection() {
         "https://res.cloudinary.com/deema2xo0/image/upload/v1728440633/Timothy%20jordan%20-%20Denver%2C%20CO/fux59ys2nr1eixglmaob.png",
       reviewText:
         "We had a wonderful time and delicious food with Chef Tim and TheKitchenTable. Its so great that an experience such as this that can cost on the higher end is now available for everyone to try",
-      userName: "Lindsey and Joe ",
+      userName: "Lindsey and Joe (@Denverfoodiecouple) ",
       rating: 5,
       chefId: "6705ecab4dcca27f8125033c", // Example chef ID
     },
@@ -201,7 +201,7 @@ export default function ReviewSection() {
         "https://res.cloudinary.com/deema2xo0/image/upload/v1728440633/Timothy%20jordan%20-%20Denver%2C%20CO/fux59ys2nr1eixglmaob.png",
       reviewText:
         "It was a wonderful meal but i would have preferred if there was less time waiting around before the meal started as it was about an hour from the start time until food was served. I liked the idea of guessing the secret ingredient",
-      userName: "Lianna",
+      userName: "Lianna (@Coloradofoodenthusiast) ",
       rating: 5,
       chefId: "6705ecab4dcca27f8125033c", // Example chef ID
     },
@@ -211,7 +211,7 @@ export default function ReviewSection() {
         "https://res.cloudinary.com/deema2xo0/image/upload/v1728440633/Timothy%20jordan%20-%20Denver%2C%20CO/fux59ys2nr1eixglmaob.png",
       reviewText:
         "Loved the experience. I am excited to spread the word and book again myself!ß",
-      userName: "Jen",
+      userName: "Jen (@denjeneats)",
       rating: 5,
       chefId: "6705ecab4dcca27f8125033c", // Example chef ID
     },

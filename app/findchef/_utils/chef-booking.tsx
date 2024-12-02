@@ -213,6 +213,7 @@ export default function ChefBooking({
             }</li>
           </ul>
           <p><strong>Selected Items:</strong></p>
+          
           <ul>
             ${selectedItems
               .map(

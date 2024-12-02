@@ -51,9 +51,7 @@ export default function CustomMenuPage({
           <li><strong>Additional Notes:</strong> ${
             data.additionalNotes || "N/A"
           }</li>
-          <li><strong>Dietary Restrictions:</strong> ${
-            data.dietaryRestrictions?.join(", ") || "N/A"
-          }</li>
+          
           <li><strong>Preparation Preferences:</strong> ${
             data.preparationPreferences || "N/A"
           }</li>
@@ -76,6 +74,19 @@ export default function CustomMenuPage({
           <li><strong>Budget:</strong> $${data.budget || "N/A"}</li>
           <li><strong>Guest Count:</strong> ${data.guestCount || "N/A"}</li>
           <li><strong>Chef Name:</strong> ${data.chefName || "N/A"}</li>
+          
+      <li><strong>Beef Max Per Week:</strong> ${
+        data.preferredProteins?.beefMaxPerWeek || "N/A"
+      }</li>
+      <li><strong>Other Proteins:</strong> ${
+        data.preferredProteins?.other || "N/A"
+      }</li>
+      <li><strong>Reheating Method:</strong> ${
+        data.reheatingMethod || "N/A"
+      }</li>
+      <li><strong>Breakfast:</strong> ${data.breakfast ? "Yes" : "No"}</li>
+      <li><strong>Lunch:</strong> ${data.lunch ? "Yes" : "No"}</li>
+      <li><strong>Dinner:</strong> ${data.dinner ? "Yes" : "No"}</li>
         </ul>
       `,
       };

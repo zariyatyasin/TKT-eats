@@ -24,6 +24,17 @@ interface ICustomMenu extends Document {
   email: string;
   phone: string;
   address: string;
+  dietaryRestrictionsNotes?: string;
+  allergiesOrAvoidIngredients?: string;
+  preferredProteins?: {
+    chicken: boolean;
+    seafood: boolean;
+    beef: boolean;
+    beefMaxPerWeek?: number;
+    other?: string;
+  };
+  servingsPerMealNotes?: string;
+  preferredReheatingMethod?: string;
 }
 
 const customMenuSchema = new Schema<ICustomMenu>({
@@ -55,6 +66,26 @@ const customMenuSchema = new Schema<ICustomMenu>({
   },
   allergies: {
     type: String,
+  },
+  dietaryRestrictionsNotes: {
+    type: String,
+  },
+  allergiesOrAvoidIngredients: {
+    type: String,
+  },
+  preferredProteins: {
+    chicken: Boolean,
+    seafood: Boolean,
+    beef: Boolean,
+    beefMaxPerWeek: Number,
+    other: String,
+  },
+  servingsPerMealNotes: {
+    type: String,
+  },
+  preferredReheatingMethod: {
+    type: String,
+    enum: ['Microwave', 'Oven', 'Stovetop'],
   },
   preferredIngredients: {
     type: String,
