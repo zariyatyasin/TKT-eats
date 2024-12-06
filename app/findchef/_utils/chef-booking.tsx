@@ -79,14 +79,27 @@ export default function ChefBooking({
 
     fetchUserDetails();
   }, [session]);
-  const createPaymentIntent = async (amount: number) => {
+  const createPaymentIntent = async (amount: number, bookingDetails: any) => {
+    const amountInCents = Math.max(Math.round(amount * 100), 50);
+
     try {
       const response = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount }),
+        body: JSON.stringify({
+          amount: amountInCents,
+          bookingDate: bookingDetails.date,
+          customerDetails: {
+            name: bookingDetails.name,
+            email: bookingDetails.email,
+            phone: bookingDetails.phone,
+            address: bookingDetails.address,
+            userId: userId,
+          },
+          capture_method: "manual",
+        }),
       });
       const data = await response.json();
       return data.clientSecret;
@@ -138,10 +151,10 @@ export default function ChefBooking({
 
   console.log(initialMenu);
   const handleBookingSubmit = async (details: any) => {
-    if (!session) {
-      openDrawer();
-      return;
-    }
+    // if (!session) {
+    //   openDrawer();
+    //   return;
+    // }
     if (selectedItems.length === 0) {
       toast({
         title: "Booking Error",
@@ -153,7 +166,7 @@ export default function ChefBooking({
     setBookingDetails(details);
     setIsStripeLoading(true);
     try {
-      const secret = await createPaymentIntent(totalCost);
+      const secret = await createPaymentIntent(totalCost, details);
       setClientSecret(secret);
       setIsPaymentModalOpen(true);
     } catch (error) {

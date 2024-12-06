@@ -6,6 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea"; // Assuming you have a Textarea component
 import { Button } from "@/components/ui/button";
 import { CircleDashedIcon } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface BookingDetailsForm {
   name: string;
@@ -15,7 +22,12 @@ interface BookingDetailsForm {
   date: string;
   time: string;
   notes?: string;
-  promocode?: string; // Add the promocode field
+  promocode?: string;
+  street?: string;
+  city?: string;
+  state?: string;
+  postal_code: string;
+  // Add the promocode field
 }
 
 interface DiscountInfo {
@@ -45,6 +57,14 @@ export function BookingDetails({
     handleSubmit,
     formState: { errors },
   } = useForm<BookingDetailsForm>();
+
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
 
   const handleBookingSubmit = (data: BookingDetailsForm) => {
     onSubmit(data);
@@ -138,7 +158,12 @@ export function BookingDetails({
                 control={control}
                 rules={{ required: "Date is required" }}
                 render={({ field }) => (
-                  <Input id="date" type="date" {...field} />
+                  <Input
+                    id="date"
+                    type="date"
+                    min={getTodayDate()}
+                    {...field}
+                  />
                 )}
               />
               {errors.date && (
@@ -204,6 +229,96 @@ export function BookingDetails({
                 </div>
               )}
             />
+            {/* <div className="grid gap-2">
+              <Label htmlFor="street">Street</Label>
+              <Controller
+                name="street"
+                control={control}
+                rules={{ required: "Street is required" }}
+                render={({ field }) => (
+                  <Input id="street" {...field} placeholder="123 Main St" />
+                )}
+              />
+              {errors.street && (
+                <span className="text-red-500 text-sm">
+                  {errors.street.message}
+                </span>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="city">City</Label>
+                <Controller
+                  name="city"
+                  control={control}
+                  rules={{ required: "City is required" }}
+                  render={({ field }) => (
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a city" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Anytown">Anytown</SelectItem>
+                        <SelectItem value="Springfield">Springfield</SelectItem>
+                        <SelectItem value="Metropolis">Metropolis</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {errors.city && (
+                  <span className="text-red-500 text-sm">
+                    {errors.city.message}
+                  </span>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="state">State</Label>
+                <Controller
+                  name="state"
+                  control={control}
+                  rules={{ required: "State is required" }}
+                  render={({ field }) => (
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="CA">California</SelectItem>
+                        <SelectItem value="NY">New York</SelectItem>
+                        <SelectItem value="TX">Texas</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {errors.state && (
+                  <span className="text-red-500 text-sm">
+                    {errors.state.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="postal_code">Postal Code</Label>
+              <Controller
+                name="postal_code"
+                control={control}
+                rules={{ required: "Postal code is required" }}
+                render={({ field }) => (
+                  <Input id="postal_code" {...field} placeholder="12345" />
+                )}
+              />
+              {errors.postal_code && (
+                <span className="text-red-500 text-sm">
+                  {errors.postal_code.message}
+                </span>
+              )}
+            </div> */}
             {promoError && (
               <span className="text-red-500 text-sm">{promoError}</span>
             )}

@@ -48,6 +48,11 @@ export default function PaymentForm({
       return;
     }
 
+    if (amount < 0.5) {
+      setMessage("Minimum payment amount is $0.50");
+      return;
+    }
+
     setIsProcessing(true);
 
     const { error, paymentIntent } = await stripe.confirmPayment({
@@ -60,7 +65,7 @@ export default function PaymentForm({
 
     if (error) {
       setMessage(error.message ?? "An unexpected error occurred.");
-    } else if (paymentIntent && paymentIntent.status === "succeeded") {
+    } else if (paymentIntent && paymentIntent.status === "requires_capture") {
       setIsSuccess(true);
       setTimeout(() => {
         onSuccess();
