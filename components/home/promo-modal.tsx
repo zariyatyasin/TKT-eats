@@ -45,7 +45,7 @@ export function PromoModal({ isOpen, onClose }: PromoModalProps) {
         </DialogHeader>
         <div className="flex flex-col items-center gap-3 py-2">
           <DialogTitle className="text-2xl font-bold text-center text-[#9DCA30]">
-            15% OFF Your First Booking
+            10% OFF Your First Booking
           </DialogTitle>
           <p className="text-sm text-center text-gray-600">
             Experience culinary excellence at home
