@@ -15,7 +15,7 @@ interface PromoModalProps {
 }
 
 export function PromoModal({ isOpen, onClose }: PromoModalProps) {
-  const promoCode = "tkt15";
+  const promoCode = "tkt10";
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
