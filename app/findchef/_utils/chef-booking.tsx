@@ -99,6 +99,7 @@ export default function ChefBooking({
             userId: userId,
           },
           capture_method: "manual",
+          schedule_capture: true, // Add this to indicate scheduled capture
         }),
       });
       const data = await response.json();
@@ -181,22 +182,25 @@ export default function ChefBooking({
   const handlePaymentSuccess = async () => {
     setIsSubmitting(true);
 
-    const requestData = {
-      name: bookingDetails.name,
-      address: bookingDetails.address,
-      phone: bookingDetails.phone,
-      email: bookingDetails.email,
-      date: bookingDetails.date,
-      time: bookingDetails.time,
-      items: selectedItems,
-      notes: bookingDetails.notes,
-      promocode: bookingDetails.promocode,
-      chefName: chefData.name,
-      userId: userId && userId,
-      chefId: chefData._id,
-    };
-
     try {
+      // First create the order
+      const requestData = {
+        name: bookingDetails.name,
+        address: bookingDetails.address,
+        phone: bookingDetails.phone,
+        email: bookingDetails.email,
+        date: bookingDetails.date,
+        time: bookingDetails.time,
+        items: selectedItems,
+        notes: bookingDetails.notes,
+        promocode: bookingDetails.promocode,
+        chefName: chefData.name,
+        userId: userId && userId,
+        chefId: chefData._id,
+        paymentStatus: "authorized", // Add this to track payment status
+      };
+
+      // Send email notification
       const emailData = {
         to: "tkteats@gmail.com",
         subject: "New Booking Confirmed",
@@ -237,8 +241,10 @@ export default function ChefBooking({
               .join("")}
           </ul>
           <p><strong>Total Cost:</strong> $${totalCost}</p>
+          <p><strong>Payment Status:</strong> Authorized (Pending Capture)</p>
         `,
       };
+
       await sendemail(emailData);
       const res = await createOrder(requestData);
 
@@ -248,8 +254,10 @@ export default function ChefBooking({
 
       toast({
         title: "Booking Confirmed",
-        description: "The chef has been successfully booked.",
+        description:
+          "Your booking is confirmed and payment has been authorized.",
       });
+
       router.push("/booking-confirm/" + res?.data?._id);
     } catch (error: any) {
       console.error("Booking submission failed:", error);

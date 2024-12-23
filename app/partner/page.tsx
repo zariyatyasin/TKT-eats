@@ -213,6 +213,154 @@ const partners = [
       </>
     ),
   },
+  {
+    href: "https://www.instagram.com/reel/DCRpdTQRynZ/?igsh=MXVxYmdwZmdsdDhseQ==",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734951691/t4aavskfj0s1n2irv5nb.png",
+    imgAlt: "Denjeneats",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/reel/DCRpdTQRynZ/?igsh=MXVxYmdwZmdsdDhseQ=="
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
+  {
+    href: "https://www.instagram.com/reel/DCUYrj-JBFr/?igsh=ZG9ydDRncGl2aDll",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734951838/b0wc4tnrf61lj9pcsphs.png",
+    imgAlt: "Denjeneats",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/reel/DCUYrj-JBFr/?igsh=ZG9ydDRncGl2aDll"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
+  {
+    href: "https://boldjourney.com/meet-marvin-lim/",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734952006/u7d1l2kaez88uhh8u8wn.png",
+    imgAlt: "Denjeneats",
+    description: (
+      <>
+        Discover more about our journey and mission in this insightful article
+        written by BoldJourney. Click{" "}
+        <Link
+          href="https://boldjourney.com/meet-marvin-lim/"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to read the full story.
+      </>
+    ),
+  },
+  {
+    href: "https://canvasrebel.com/meet-marvin-lim/l",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734952126/hmvgcghwt3jjxfzjnebi.png",
+    imgAlt: "https://canvasrebel.com/meet-marvin-lim/",
+    description: (
+      <>
+        Discover more about our journey and mission in this insightful article
+        written by CANVASREBEL. Click{" "}
+        <Link
+          href="https://canvasrebel.com/meet-marvin-lim/"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to read the full story.
+      </>
+    ),
+  },
+  {
+    href: "https://www.instagram.com/we_eat_nash/?hl=en",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734952914/ugun9bbcwkjbt7r711ac.jpg",
+    imgAlt: "https://www.instagram.com/we_eat_nash/?hl=en",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/we_eat_nash/?hl=en"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
+  {
+    href: "https://www.instagram.com/caseyirwinphotography/",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734953153/mfqzrpurbdfqkktvyr1t.jpg",
+    imgAlt: "https://www.instagram.com/caseyirwinphotography/",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/caseyirwinphotography/"
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
+  {
+    href: "https://www.instagram.com/reel/DD2u7yZx4Jz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734953270/arkenaky6df5tnxf3ewv.jpg",
+    imgAlt:
+      "https://www.instagram.com/reel/DD2u7yZx4Jz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/reel/DD2u7yZx4Jz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
+  {
+    href: "https://www.instagram.com/reel/DDzaIVrRcUa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    imgSrc:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734953445/aamwwhriz2gakoophzem.jpg",
+    imgAlt:
+      "https://res.cloudinary.com/ddrjnijut/image/upload/v1734953445/aamwwhriz2gakoophzem.jpg",
+    description: (
+      <>
+        Click{" "}
+        <Link
+          href="https://www.instagram.com/reel/DDzaIVrRcUa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+          className="text-primary hover:underline"
+        >
+          here
+        </Link>{" "}
+        to follow and support your local content creator!
+      </>
+    ),
+  },
 ];
 
 export default function Component() {

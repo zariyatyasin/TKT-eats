@@ -76,7 +76,6 @@ export default function PaymentForm({
 
     setIsProcessing(false);
   };
-
   const modalContent = isSuccess ? (
     <Card className="w-full max-w-md">
       <CardContent className="pt-6 text-center">
