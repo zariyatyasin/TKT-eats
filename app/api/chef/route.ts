@@ -1,7 +1,3 @@
- 
- 
- 
- 
 import Chef from "@/model/chef";
 import ChefMenu from "@/model/chefmenu";
 import Review from "@/model/reviews";
@@ -32,6 +28,7 @@ interface Chef {
 interface ReviewCount {
   _id: Types.ObjectId; // The chef ID
   count: number;
+  averageRating: number;
 }
 
 
@@ -112,7 +109,8 @@ export const GET = async (request: Request) => {
       {
         $group: {
           _id: "$chef",
-          count: { $sum: 1 }
+          count: { $sum: 1 },
+          averageRating: { $avg: "$rating" }
         }
       }
     ]);
@@ -123,7 +121,8 @@ export const GET = async (request: Request) => {
       );
       return {
         ...chef,
-        reviewCount: chefReviews ? chefReviews.count : 0
+        reviewCount: chefReviews ? chefReviews.count : 0,
+        averageReview: chefReviews ? chefReviews.averageRating : 0
       };
     });
 

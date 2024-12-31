@@ -11,6 +11,7 @@ interface ChefCardProps {
   profileImage: string;
   reviewCount: number;
   location: string;
+  averageReview?: number;
 }
 
 export default function ChefCard({
@@ -20,6 +21,7 @@ export default function ChefCard({
   profileImage,
   reviewCount,
   location,
+  averageReview,
 }: ChefCardProps) {
   console.log(cuisines);
 
@@ -40,7 +42,7 @@ export default function ChefCard({
           {reviewCount > 0 && (
             <div className="absolute flex gap-1 items-center top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ease-in-out hover:bg-secondary hover:text-secondary-foreground">
               <Star className="h-4 w-4" />
-              {reviewCount}
+              {averageReview?.toFixed(1) ?? "0.0"}
             </div>
           )}
         </div>
@@ -59,6 +61,7 @@ export default function ChefCard({
             <MapPin className="w-4 h-4 text-muted-foreground" />
             <span className="text-muted-foreground text-sm">{location}</span>
           </div>
+
           <div className="mt-auto">
             <Button size="lg" className="w-full text-sm gap-2  ">
               <ChefHat className="h-5 w-5" />

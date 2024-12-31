@@ -117,6 +117,7 @@ export default function Page({
                   name={chef.name}
                   id={chef._id}
                   cuisines={chef.cuisines}
+                  averageReview={chef.averageReview || 0}
                 />
               ))
             ) : (

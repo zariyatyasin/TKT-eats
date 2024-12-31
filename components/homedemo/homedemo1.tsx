@@ -23,6 +23,7 @@ interface Chef {
   location: string;
   cuisines: string[];
   reviewCount: number;
+  averageReview: number;
 }
 
 interface HomeDemo1Props {
@@ -49,6 +50,7 @@ export default function HomeDemo1({ result }: HomeDemo1Props) {
                   name={chef.name}
                   id={chef._id}
                   cuisines={chef.cuisines}
+                  averageReview={chef.averageReview}
                 />
               ))
             ) : (

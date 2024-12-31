@@ -30,7 +30,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
     });
 
     // Set the current page
-    newParams.set("page", current.toString());
+    newParams.set("page", current?.toString());
 
     // Update the URL with the new query parameters
     router.replace(`?${newParams.toString()}`, { scroll: false });
