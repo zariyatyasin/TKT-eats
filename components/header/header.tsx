@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 import { UserDrawer } from "./utils/user-drawer";
 import { MobileMenu } from "./utils/mobile-menu";
 import { usePromoModal } from "../home/use-promo-modal";
-import { PromoModal } from "../home/promo-modal";
+// import { PromoModal } from "../home/promo-modal";
 
 const navItems = [
   { href: "/partner", label: "Our Partners" },
@@ -84,7 +84,7 @@ export default function Header() {
           </button>
         </div>
       </div>
-      <PromoModal isOpen={isOpen} onClose={onClose} />
+      {/* <PromoModal isOpen={isOpen} onClose={onClose} /> */}
 
       <MobileMenu
         isOpen={isMenuOpen}
