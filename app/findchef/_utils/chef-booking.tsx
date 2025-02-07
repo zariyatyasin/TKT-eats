@@ -152,10 +152,10 @@ export default function ChefBooking({
 
   console.log(initialMenu);
   const handleBookingSubmit = async (details: any) => {
-    if (!session) {
-      openDrawer();
-      return;
-    }
+    // if (!session) {
+    //   openDrawer();
+    //   return;
+    // }
     if (selectedItems.length === 0) {
       toast({
         title: "Booking Error",

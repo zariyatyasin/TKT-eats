@@ -32,6 +32,9 @@ export function BookingSummary({
   handleRemoveFromBooking,
   discountInfo,
 }: BookingSummaryProps) {
+  // Calculate 3% service fee
+  const serviceFee = originalTotalCost * 0.03;
+
   return (
     <Card>
       <CardHeader>
@@ -69,6 +72,10 @@ export function BookingSummary({
           </div>
         </div>
         <Separator />
+        <div className="flex items-center justify-between">
+          <span>Subtotal</span>
+          <span className="font-bold">${originalTotalCost.toFixed(2)}</span>
+        </div>
         {discountInfo && discountInfo.value > 0 && (
           <div className="flex items-center justify-between">
             <span>Discount</span>
@@ -79,6 +86,16 @@ export function BookingSummary({
             </span>
           </div>
         )}
+        <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center gap-2">
+            <span>Service Fee (3%)</span>
+            <span className="text-xs text-green-600 font-medium">(Waived)</span>
+          </div>
+          <span className="line-through text-muted-foreground">
+            ${serviceFee.toFixed(2)}
+          </span>
+        </div>
+        <Separator />
         <div className="flex items-center justify-between">
           <span>Total Cost</span>
           <span className="font-bold">

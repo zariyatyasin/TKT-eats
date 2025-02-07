@@ -18,6 +18,26 @@ export default function Component() {
 
   const images = [
     {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1738701039/02-01%20Valentine%20Crimson%20Living/xqocypekxlmbygsm9mel.jpg",
+      name: "Valentine Crimson Living 1",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1738701048/02-01%20Valentine%20Crimson%20Living/klcwhzuqguzozxbuum4f.jpg",
+      name: "Valentine Crimson Living 2",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1735354596/12:19%20Chicago%20Event/bkuxx2a9nudayh4kotrv.jpg",
+      name: "Chicago Event 1",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1735354593/12:19%20Chicago%20Event/qd4pfdtm7noehmusv5w4.jpg",
+      name: "Chicago Event 2",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1735354566/12.17%20Nashville/qfn5iw7ktxtbcljzc8uz.jpg",
+      name: "Nashville Event",
+    },
+    {
       src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1732075800/11:19%20weekly%20meal%20plan/oloqvdios3wim6ig0gfb.jpg",
       name: "Chef cutting vegetables",
     },
@@ -25,7 +45,6 @@ export default function Component() {
       src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1732075795/11:19%20weekly%20meal%20plan/zhbyj9zaphnmpyuo8cvm.jpg",
       name: "Weekly menu all item",
     },
-
     {
       src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1732075782/11:19%20weekly%20meal%20plan/s6sbpuptfrwugzm5975e.jpg",
       name: "Weekly menu all item",
@@ -46,12 +65,10 @@ export default function Component() {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1726174699/Timothy%20Loaya%20-%20Nashville%2C%20TN/d7nsse3tbuo1xhwwxqn2.jpg",
       name: "Chef tim",
     },
-
     {
       src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1731888785/11-2%20event/11:2%20event/fa6uxnemuphsvswimije.jpg",
       name: "Event image",
     },
-
     {
       src: "https://res.cloudinary.com/deema2xo0/image/upload/v1730783586/Timothy%20jordan%20-%20Denver%2C%20CO/tmeephss9drv21p5aijl.jpg",
       name: "Tim jordan and guest",
