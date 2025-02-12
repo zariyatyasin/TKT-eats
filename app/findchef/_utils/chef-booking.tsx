@@ -167,7 +167,15 @@ export default function ChefBooking({
     setBookingDetails(details);
     setIsStripeLoading(true);
     try {
-      const secret = await createPaymentIntent(totalCost, details);
+      // Calculate service fee (3%)
+      const serviceFee = originalTotalCost * 0.03;
+      // Calculate final total including service fee
+      const finalTotal = discountedTotalCost
+        ? discountedTotalCost + serviceFee
+        : originalTotalCost + serviceFee;
+      const amountInCents = Math.round(finalTotal * 100);
+
+      const secret = await createPaymentIntent(amountInCents / 100, details);
       setClientSecret(secret);
       setIsPaymentModalOpen(true);
     } catch (error) {
@@ -285,6 +293,12 @@ export default function ChefBooking({
   );
 
   const discountedTotalCost = originalTotalCost - discount;
+
+  // Calculate service fee and final total
+  const serviceFee = originalTotalCost * 0.03;
+  const finalTotal = discountedTotalCost
+    ? discountedTotalCost + serviceFee
+    : originalTotalCost + serviceFee;
 
   const handlePromoCodeChange = async (code: string) => {
     setPromoCode(code);
@@ -418,7 +432,7 @@ export default function ChefBooking({
       {isPaymentModalOpen && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <PaymentForm
-            amount={totalCost}
+            amount={finalTotal}
             onSuccess={handlePaymentSuccess}
             onCancel={() => setIsPaymentModalOpen(false)}
           />

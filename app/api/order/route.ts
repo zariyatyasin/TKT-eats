@@ -20,8 +20,10 @@ export const POST = async (request: Request) => {
         totalCost += menuItem.price * item.quantity;
       }
     }
-    console.log("this is from backend", totalCost);
-
+    
+    // Calculate service fee (3%)
+    const serviceFee = totalCost * 0.03;
+    
     // Only process promocode if it exists
     if (body.promocode) {
       const codeLowerCase = body.promocode.toLowerCase();
@@ -54,6 +56,9 @@ export const POST = async (request: Request) => {
       }
     }
 
+    // Add service fee to final total
+    totalCost += serviceFee;
+
     const newOrder = new Order({
       name: body.name,
       address: body.address,
@@ -64,6 +69,7 @@ export const POST = async (request: Request) => {
       time: body.time,
       items: body.items,
       totalCost: totalCost,
+      serviceFee: serviceFee,
       chefName: body.chefName,
       chefId: body.chefId,
       ...(body.userId && { userId: body.userId }),

@@ -32,8 +32,14 @@ export function BookingSummary({
   handleRemoveFromBooking,
   discountInfo,
 }: BookingSummaryProps) {
-  // Calculate 3% service fee
-  const serviceFee = originalTotalCost * 0.03;
+  // Calculate 3% service fee only if there are items
+  const serviceFee = selectedItems.length > 0 ? originalTotalCost * 0.03 : 0;
+
+  // Calculate final total including service fee
+  const finalTotal =
+    discountInfo && discountInfo.value
+      ? discountedTotalCost + serviceFee
+      : originalTotalCost + serviceFee;
 
   return (
     <Card>
@@ -71,46 +77,45 @@ export function BookingSummary({
             ))}
           </div>
         </div>
-        <Separator />
-        <div className="flex items-center justify-between">
-          <span>Subtotal</span>
-          <span className="font-bold">${originalTotalCost.toFixed(2)}</span>
-        </div>
-        {discountInfo && discountInfo.value > 0 && (
-          <div className="flex items-center justify-between">
-            <span>Discount</span>
-            <span className="font-bold text-green-600">
-              {discountInfo.type === "percentage"
-                ? `${discountInfo.value}%`
-                : `$${discountInfo.value.toFixed(2)}`}
-            </span>
-          </div>
-        )}
-        <div className="flex items-center justify-between text-sm">
-          <div className="flex items-center gap-2">
-            <span>Service Fee (3%)</span>
-            <span className="text-xs text-green-600 font-medium">(Waived)</span>
-          </div>
-          <span className="line-through text-muted-foreground">
-            ${serviceFee.toFixed(2)}
-          </span>
-        </div>
-        <Separator />
-        <div className="flex items-center justify-between">
-          <span>Total Cost</span>
-          <span className="font-bold">
-            {discountInfo && discountInfo.value ? (
-              <>
-                <span className="line-through text-sm text-gray-600">
-                  ${originalTotalCost.toFixed(2)}
-                </span>{" "}
-                <span>${discountedTotalCost.toFixed(2)}</span>
-              </>
-            ) : (
-              <span>${originalTotalCost.toFixed(2)}</span>
+        {selectedItems.length > 0 && (
+          <>
+            <Separator />
+            <div className="flex items-center justify-between">
+              <span>Subtotal</span>
+              <span className="font-bold">${originalTotalCost.toFixed(2)}</span>
+            </div>
+            {discountInfo && discountInfo.value > 0 && (
+              <div className="flex items-center justify-between">
+                <span>Discount</span>
+                <span className="font-bold text-green-600">
+                  {discountInfo.type === "percentage"
+                    ? `${discountInfo.value}%`
+                    : `$${discountInfo.value.toFixed(2)}`}
+                </span>
+              </div>
             )}
-          </span>
-        </div>
+            <div className="flex items-center justify-between text-sm">
+              <span>Service Fee (3%)</span>
+              <span>${serviceFee.toFixed(2)}</span>
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between">
+              <span>Total Cost</span>
+              <span className="font-bold">
+                {discountInfo && discountInfo.value ? (
+                  <>
+                    <span className="line-through text-sm text-gray-600">
+                      ${originalTotalCost.toFixed(2)}
+                    </span>{" "}
+                    <span>${finalTotal.toFixed(2)}</span>
+                  </>
+                ) : (
+                  <span>${finalTotal.toFixed(2)}</span>
+                )}
+              </span>
+            </div>
+          </>
+        )}
       </CardContent>
     </Card>
   );
