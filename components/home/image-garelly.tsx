@@ -18,6 +18,26 @@ export default function Component() {
 
   const images = [
     {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1740462748/All%20menu%20template/kkta2hzvulb87np8nkjp.png",
+      name: "Menu Template 1",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1740462558/All%20menu%20template/kxq78brvkyq0wo3fvqwq.png",
+      name: "Menu Template 2",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1740464596/All%20menu%20template/bexhctzcrrvnph6uxi1j.jpg",
+      name: "Menu Template 3",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1740462776/All%20menu%20template/kx54cmhuaurkxpoawjdg.png",
+      name: "Menu Template 4",
+    },
+    {
+      src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1740463473/All%20menu%20template/hxweer1vrhsmdkzfaxdf.jpg",
+      name: "Menu Template 5",
+    },
+    {
       src: "https://res.cloudinary.com/dztq1zv9l/image/upload/v1738701039/02-01%20Valentine%20Crimson%20Living/xqocypekxlmbygsm9mel.jpg",
       name: "Valentine Crimson Living 1",
     },
