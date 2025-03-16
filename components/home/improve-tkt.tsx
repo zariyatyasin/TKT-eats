@@ -93,8 +93,8 @@ export default function ImproveTkt() {
           Culinary Excellence
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <StatCard icon={Users} end={307} label="Guests Served" />
-          <StatCard icon={Utensils} end={1292} label="Dishes Served" />
+          <StatCard icon={Users} end={382} label="Guests Served" />
+          <StatCard icon={Utensils} end={1646} label="Dishes Served" />
 
           <StatCard icon={Soup} end={758} label="UNIQUE MENU ITEMS " />
         </div>
